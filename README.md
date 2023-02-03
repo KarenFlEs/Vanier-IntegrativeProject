@@ -1,5 +1,6 @@
 ## IntegrativeProject
 # Pludo
-1. [Karen Florian (2034287)]
+
+1. Karen Florian (2034287) "Coordinator"
 2. Steven Lennox Dy (2153617)
 3. Darina Horescu (2126981)

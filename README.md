@@ -1,4 +1,4 @@
-## IntegrativeProject
+## Integrative Project
 # Pluto
 
 1. Karen Florian (2045287) "Coordinator"

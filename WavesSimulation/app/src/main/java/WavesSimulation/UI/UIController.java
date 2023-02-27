@@ -4,6 +4,8 @@
  */
 package WavesSimulation.UI;
 
+import javafx.fxml.FXML;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 /**
@@ -14,8 +16,20 @@ public class UIController extends Stage {
     
     Stage owner;
     
+    @FXML
+    private Rectangle recInt;
+    
+    @FXML 
+    private Rectangle recSlit;
+    
+    @FXML
+    private Rectangle recDiff;
+    
     public UIController (Stage owner){
         this.owner = owner;
+        
+        //recInt.setFill(value);
     }
+    
     
 }

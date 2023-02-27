@@ -4,10 +4,18 @@
  */
 package WavesSimulation.UI;
 
+import javafx.stage.Stage;
+
 /**
  *
  * @author 2153617
  */
-public class UIController {
+public class UIController extends Stage {
+    
+    Stage owner;
+    
+    public UIController (Stage owner){
+        this.owner = owner;
+    }
     
 }

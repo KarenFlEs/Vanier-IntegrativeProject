@@ -4,6 +4,7 @@
  */
 package WavesSimulation.UI;
 
+import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -51,11 +52,15 @@ public class UIController extends Stage {
         recInt.setFill(impInt);
         recSlit.setFill(impSlit);
         recDiff.setFill(impDiff);
+        
+        btnSlit.toFront();
+        btnInt.toFront();
+        btnDiff.toFront();
     }
 
     public UIController(Stage owner) {
         this.owner = owner;
-
+        
         //recInt.setFill(value);
     }
     
@@ -65,8 +70,10 @@ public class UIController extends Stage {
     }
     
     @FXML
-    public void handleBtnSlit(){
-        
+    public void handleBtnSlit() throws IOException{
+        DiffSimulationWindow diffSim = new DiffSimulationWindow();
+        diffSim.show();
+        owner.close();
     }
     @FXML
     public void handleBtnDiff(){

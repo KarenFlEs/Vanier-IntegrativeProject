@@ -11,6 +11,9 @@
 
 <Pane fx:id="paneMain" prefHeight="1056.0" prefWidth="1936.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
+      <Button fx:id="btnInt" layoutX="218.0" layoutY="489.0" mnemonicParsing="false" onAction="#handleBtnInt" prefHeight="300.0" prefWidth="300.0" style="-fx-background-color: TRANSPARENT;" text="Button" textFill="TRANSPARENT" />
+      <Button fx:id="btnSlit" layoutX="808.0" layoutY="500.0" mnemonicParsing="false" onAction="#handleBtnSlit" prefHeight="300.0" prefWidth="300.0" style="-fx-background-color: TRANSPARENT;" text="Button" textFill="TRANSPARENT" />
+      <Button fx:id="btnDiff" layoutX="1381.0" layoutY="501.0" mnemonicParsing="false" onAction="#handleBtnDiff" prefHeight="300.0" prefWidth="300.0" style="-fx-background-color: TRANSPARENT;" text="Button" textFill="TRANSPARENT" />
       <MenuBar layoutY="-4.0" prefHeight="16.0" prefWidth="1936.0">
         <menus>
           <Menu mnemonicParsing="false" text="File">
@@ -35,9 +38,6 @@
             <Font size="72.0" />
          </font>
       </Label>
-      <Button fx:id="btnInt" layoutX="218.0" layoutY="489.0" mnemonicParsing="false" onAction="#handleBtnInt" prefHeight="300.0" prefWidth="300.0" style="-fx-background-color: TRANSPARENT;" text="Button" textFill="TRANSPARENT" />
-      <Button fx:id="btnSlit" layoutX="808.0" layoutY="500.0" mnemonicParsing="false" onAction="#handleBtnSlit" prefHeight="300.0" prefWidth="300.0" style="-fx-background-color: TRANSPARENT;" text="Button" textFill="TRANSPARENT" />
-      <Button fx:id="btnDiff" layoutX="1381.0" layoutY="501.0" mnemonicParsing="false" onAction="#handleBtnDiff" prefHeight="300.0" prefWidth="300.0" style="-fx-background-color: TRANSPARENT;" text="Button" textFill="TRANSPARENT" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c6c6c6" height="300.0" layoutX="1382.0" layoutY="502.0" stroke="BLACK" strokeType="INSIDE" width="300.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c6c6c6" height="300.0" layoutX="217.0" layoutY="492.0" stroke="BLACK" strokeType="INSIDE" width="300.0" />
       <Rectangle fx:id="recInt" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="200.0" layoutX="271.0" layoutY="518.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />

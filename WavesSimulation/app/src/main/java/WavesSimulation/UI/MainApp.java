@@ -31,9 +31,12 @@ public class MainApp extends Application {
         stage.setTitle("Waves Simulation");
         
         //stage.setFullScreen(true);
-        stage.setResizable(true);
+        stage.setMaximized(true);
+        
         
         stage.show();
+        System.out.println(stage.heightProperty().getValue().toString());
+        System.out.println(stage.widthProperty().getValue().toString());
     }
 
     public static void main(String[] args) {

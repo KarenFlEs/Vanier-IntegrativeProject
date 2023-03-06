@@ -16,9 +16,9 @@ import javafx.stage.Stage;
  *
  * @author 2045287
  */
-public class DiffSimulationWindow extends Stage {
+public class SlitsSimulationWindow extends Stage {
 
-    public DiffSimulationWindow() throws IOException {
+    public SlitsSimulationWindow() throws IOException {
         loadComponents();
     }
     

@@ -71,8 +71,8 @@ public class UIController extends Stage {
     
     @FXML
     public void handleBtnSlit() throws IOException{
-        DiffSimulationWindow diffSim = new DiffSimulationWindow();
-        diffSim.show();
+        SlitsSimulationWindow slitsSim = new SlitsSimulationWindow();
+        slitsSim.show();
         owner.close();
     }
     @FXML

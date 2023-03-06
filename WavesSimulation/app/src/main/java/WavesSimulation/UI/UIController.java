@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author 2153617
+ * @author Steven Dy
  */
 public class UIController extends Stage {
 
@@ -65,8 +65,10 @@ public class UIController extends Stage {
     }
     
     @FXML
-    public void handleBtnInt(){
-        
+    public void handleBtnInt() throws IOException{
+        IntSimulationWindow interSim = new IntSimulationWindow();
+        interSim.show();
+        owner.close();
     }
     
     @FXML
@@ -76,8 +78,10 @@ public class UIController extends Stage {
         owner.close();
     }
     @FXML
-    public void handleBtnDiff(){
-        
+    public void handleBtnDiff() throws IOException{
+        DiffSimulationWindow diffSim = new DiffSimulationWindow();
+        diffSim.show();
+        owner.close();
     }
 
 }

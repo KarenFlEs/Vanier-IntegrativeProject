@@ -4,10 +4,58 @@
  */
 package WavesSimulation.Slits;
 
+import javafx.fxml.FXML;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.Slider;
+import javafx.stage.Stage;
+
 /**
  *
- * @author 2153617
+ * @author Steven Dy
  */
-public class SlitsController {
+public class SlitsController extends Stage {
+    
+    Stage owner;
+    
+    @FXML
+    private CheckBox btn1Slit;
+    
+    @FXML
+    private CheckBox btn2Slit;
+    
+    @FXML
+    private CheckBox btn3Slit;
+    
+    @FXML
+    private Slider sldFrequency;
+    
+    @FXML 
+    private Slider sldAmplitude;
+    
+    @FXML 
+    private Slider sldWidth;
+    
+    @FXML 
+    private Slider sldSeperation;
+
+    public SlitsController(Stage owner) {
+        this.owner = owner;
+    }
+    
+    @FXML
+    public void handle1Slit(){
+        
+    }
+    
+    @FXML
+    public void handle2Slit(){
+        
+    }
+    
+    @FXML
+    public void handle3Slit(){
+        
+    }
+    
     
 }

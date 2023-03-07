@@ -24,7 +24,7 @@ public class SlitsSimulationWindow extends Stage {
     
     private void loadComponents() throws IOException{
          FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/SlitsSimLayout.fxml"));
-        SlitsController mainController = new SlitsController();
+        SlitsController mainController = new SlitsController(this);
         loader.setController(mainController);
 
         Parent root = loader.load();

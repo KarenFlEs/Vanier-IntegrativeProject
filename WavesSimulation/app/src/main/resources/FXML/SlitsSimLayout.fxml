@@ -45,29 +45,29 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <Slider layoutX="60.0" layoutY="188.0" prefHeight="59.0" prefWidth="276.0" />
+            <Slider fx:id="sldFrequency" layoutX="60.0" layoutY="188.0" prefHeight="59.0" prefWidth="276.0" />
             <Label layoutX="146.0" layoutY="291.0" text="Amplitude">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <Slider layoutX="62.0" layoutY="333.0" prefHeight="59.0" prefWidth="276.0" />
+            <Slider fx:id="sldAmplitude" layoutX="62.0" layoutY="333.0" prefHeight="59.0" prefWidth="276.0" />
             <Label layoutX="179.0" layoutY="433.0" text="Slits">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <CheckBox layoutX="72.0" layoutY="494.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="46.0" text="1">
+            <CheckBox fx:id="btn1Slit" layoutX="72.0" layoutY="494.0" mnemonicParsing="false" onAction="#handle1Slit" prefHeight="46.0" prefWidth="46.0" text="1">
                <font>
                   <Font size="24.0" />
                </font>
             </CheckBox>
-            <CheckBox layoutX="173.0" layoutY="497.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="46.0" text="2">
+            <CheckBox fx:id="btn2Slit" layoutX="173.0" layoutY="497.0" mnemonicParsing="false" onAction="#handle2Slit" prefHeight="46.0" prefWidth="46.0" text="2">
                <font>
                   <Font size="24.0" />
                </font>
             </CheckBox>
-            <CheckBox layoutX="274.0" layoutY="500.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="46.0" text="3">
+            <CheckBox fx:id="btn3Slit" layoutX="274.0" layoutY="500.0" mnemonicParsing="false" onAction="#handle3Slit" prefHeight="46.0" prefWidth="46.0" text="3">
                <font>
                   <Font size="24.0" />
                </font>
@@ -77,14 +77,17 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <Slider layoutX="65.0" layoutY="666.0" prefHeight="59.0" prefWidth="276.0" />
+            <Slider fx:id="sldWidth" layoutX="65.0" layoutY="666.0" prefHeight="59.0" prefWidth="276.0" />
             <Label layoutX="136.0" layoutY="762.0" text="Slit Seperation">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <Slider layoutX="67.0" layoutY="832.0" prefHeight="59.0" prefWidth="276.0" />
+            <Slider fx:id="sldSeperation" layoutX="67.0" layoutY="832.0" prefHeight="59.0" prefWidth="276.0" />
          </children>
       </Pane>
    </right>
+   <center>
+      <Pane fx:id="mainScreen" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </center>
 </BorderPane>

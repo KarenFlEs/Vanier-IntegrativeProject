@@ -5,7 +5,6 @@
 package WavesSimulation.UI;
 
 import WavesSimulation.Interference.InterController;
-import WavesSimulation.Slits.SlitsController;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,7 +13,7 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author 2153617
+ * @author Steven & Darina
  */
 public class IntSimulationWindow extends Stage {
     
@@ -23,22 +22,18 @@ public class IntSimulationWindow extends Stage {
     }
     
     private void loadComponents() throws IOException{
-         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/InterferenceSimLayout.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/InterferenceSimLayout.fxml"));
+         
         InterController mainController = new InterController();
         loader.setController(mainController);
 
         Parent root = loader.load();
         
         Scene scene = new Scene(root, 800, 600);
-        
         this.setScene(scene);
-
-        this.setTitle("Waves Simulation");
-        
-        //stage.setFullScreen(true);
+        this.setTitle("Interference Simulation");
         this.setMaximized(true);
-        
-        
         this.show();
     }
 }
+

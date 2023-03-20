@@ -60,8 +60,6 @@ public class UIController extends Stage {
 
     public UIController(Stage owner) {
         this.owner = owner;
-        
-        //recInt.setFill(value);
     }
     
     @FXML

@@ -6,7 +6,7 @@ package WavesSimulation.Interference;
 
 /**
  *
- * @author 2153617
+ * @author Darina
  */
 public class InterController {
     

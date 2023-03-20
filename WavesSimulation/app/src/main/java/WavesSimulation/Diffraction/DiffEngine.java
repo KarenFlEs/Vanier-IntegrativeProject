@@ -6,12 +6,13 @@ package WavesSimulation.Diffraction;
 
 /**
  *
- * @author 2045287
+ * @author KarenFl
  */
 public class DiffEngine {
-    int wavelength;
-    int diameter;
-    int ecc;
+    
+    private int wavelength;
+    private int diameter;
+    private int ecc;
 
     public DiffEngine() {
     }
@@ -21,7 +22,6 @@ public class DiffEngine {
         this.diameter = diameter;
         this.ecc = ecc;
     }
-    
     
     public void addDiffraction(){
         
@@ -36,7 +36,7 @@ public class DiffEngine {
     }
     
     public void adjustEcc(int ecc){
-        
+ 
     }
     
     public boolean isInside(){

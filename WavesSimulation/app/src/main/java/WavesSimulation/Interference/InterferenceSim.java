@@ -6,7 +6,7 @@ package WavesSimulation.Interference;
 
 /**
  *
- * @author 2045287
+ * @author Darina
  */
 public class InterferenceSim {
     

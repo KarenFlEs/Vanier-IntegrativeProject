@@ -6,7 +6,6 @@ package WavesSimulation.UI;
 
 import WavesSimulation.Slits.SlitsController;
 import java.io.IOException;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -14,7 +13,7 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author 2045287
+ * @author Steven & Darina
  */
 public class SlitsSimulationWindow extends Stage {
 
@@ -23,23 +22,19 @@ public class SlitsSimulationWindow extends Stage {
     }
     
     private void loadComponents() throws IOException{
-         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/SlitsSimLayout.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/SlitsSimLayout.fxml"));
+        
         SlitsController mainController = new SlitsController(this);
         loader.setController(mainController);
 
         Parent root = loader.load();
         
         Scene scene = new Scene(root, 800, 600);
-        
         this.setScene(scene);
-
-        this.setTitle("Waves Simulation");
-        
-        //stage.setFullScreen(true);
+        this.setTitle("Slits Simulation");
         this.setMaximized(true);
-        
-        
         this.show();
     }
    
 }
+

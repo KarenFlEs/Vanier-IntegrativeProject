@@ -6,6 +6,8 @@ package WavesSimulation.Slits;
 
 import javafx.animation.Animation;
 import javafx.animation.Interpolator;
+import javafx.animation.ParallelTransition;
+import javafx.animation.ScaleTransition;
 import javafx.animation.SequentialTransition;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
@@ -57,7 +59,8 @@ public class SlitsController extends Stage {
     private Pane paneAnimation;
 
     private Rectangle straightWave = new Rectangle(100,900);
-    Arc arc = new Arc(400, 300, 40, 450, -90, 180);
+    Arc arc = new Arc(400, 300, 40, 40, -90, 180);
+    
 
     @FXML
     public void initialize() {
@@ -68,30 +71,36 @@ public class SlitsController extends Stage {
         paneAnimation.getChildren().addAll(straightWave);
 
         BoxBlur blur = new BoxBlur(50, 50, 3);
+        BoxBlur blur1 = new BoxBlur(10, 10, 3);
         straightWave.setEffect(blur);
 
         TranslateTransition trans = new TranslateTransition(Duration.seconds(5), straightWave);
         trans.setByX(240);
-        trans.setByX(400);
+        trans.setByX(350);
         trans.setInterpolator(Interpolator.LINEAR);
         trans.play();
         
         
         arc.setLayoutY(150);
-        //arc.setEffect(blur);
+        arc.setEffect(blur1);
         arc.setType(ArcType.OPEN);
-        arc.setStrokeWidth(100);
-        arc.setStroke(Color.BLACK);
+        arc.setStrokeWidth(30);
+        arc.setStroke(Color.WHITE);
         arc.setStrokeType(StrokeType.INSIDE);
-        arc.setFill(Color.WHITE);
+        arc.setFill(null);
         paneAnimation.getChildren().addAll(arc);
+        
         TranslateTransition trans1 = new TranslateTransition(Duration.seconds(5), arc);
         trans1.setByX(400);
         trans1.setByX(900);
         trans1.setInterpolator(Interpolator.LINEAR);
+        ScaleTransition scale = new ScaleTransition(Duration.seconds(1), arc);
+        scale.setToX(10.0);
+        scale.setToY(10.0);
+        ParallelTransition par = new ParallelTransition(trans1,scale);
         
         SequentialTransition trans2 = new SequentialTransition();
-        trans2.getChildren().addAll(trans,trans1);
+        trans2.getChildren().addAll(trans,par);
         trans2.setInterpolator(Interpolator.LINEAR);
         trans2.setCycleCount(Animation.INDEFINITE);
         trans2.play();

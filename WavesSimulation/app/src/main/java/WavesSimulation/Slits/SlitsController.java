@@ -4,75 +4,117 @@
  */
 package WavesSimulation.Slits;
 
+import javafx.animation.Animation;
+import javafx.animation.Interpolator;
+import javafx.animation.SequentialTransition;
+import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Slider;
+import javafx.scene.effect.BoxBlur;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Arc;
+import javafx.scene.shape.ArcType;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.StrokeType;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 /**
  *
  * @author Steven Dy
  */
 public class SlitsController extends Stage {
-    
+
     Stage owner;
-    
+
     @FXML
     private Pane mainScreen;
-    
+
     @FXML
     private CheckBox btn1Slit;
-    
+
     @FXML
     private CheckBox btn2Slit;
-    
+
     @FXML
     private CheckBox btn3Slit;
-    
+
     @FXML
     private Slider sldFrequency;
-    
-    @FXML 
-    private Slider sldAmplitude;
-    
-    @FXML 
-    private Slider sldWidth;
-    
-    @FXML 
-    private Slider sldSeperation;
-    
-    private Rectangle rec = new Rectangle(1000, 1000);
-    
+
     @FXML
-    public void initialize(){
+    private Slider sldAmplitude;
+
+    @FXML
+    private Slider sldWidth;
+
+    @FXML
+    private Slider sldSeperation;
+
+    @FXML
+    private Pane paneAnimation;
+
+    private Rectangle straightWave = new Rectangle(100,900);
+    Arc arc = new Arc(400, 300, 40, 450, -90, 180);
+
+    @FXML
+    public void initialize() {
+
         
-        rec.setLayoutX(200);
-        rec.setLayoutY(200);
-        mainScreen.getChildren().add(rec);
+        straightWave.setFill(Color.WHITE);
+
+        paneAnimation.getChildren().addAll(straightWave);
+
+        BoxBlur blur = new BoxBlur(50, 50, 3);
+        straightWave.setEffect(blur);
+
+        TranslateTransition trans = new TranslateTransition(Duration.seconds(5), straightWave);
+        trans.setByX(240);
+        trans.setByX(400);
+        trans.setInterpolator(Interpolator.LINEAR);
+        trans.play();
         
         
+        arc.setLayoutY(150);
+        //arc.setEffect(blur);
+        arc.setType(ArcType.OPEN);
+        arc.setStrokeWidth(100);
+        arc.setStroke(Color.BLACK);
+        arc.setStrokeType(StrokeType.INSIDE);
+        arc.setFill(Color.WHITE);
+        paneAnimation.getChildren().addAll(arc);
+        TranslateTransition trans1 = new TranslateTransition(Duration.seconds(5), arc);
+        trans1.setByX(400);
+        trans1.setByX(900);
+        trans1.setInterpolator(Interpolator.LINEAR);
+        
+        SequentialTransition trans2 = new SequentialTransition();
+        trans2.getChildren().addAll(trans,trans1);
+        trans2.setInterpolator(Interpolator.LINEAR);
+        trans2.setCycleCount(Animation.INDEFINITE);
+        trans2.play();
+
     }
 
     public SlitsController(Stage owner) {
         this.owner = owner;
     }
-    
+
     @FXML
-    public void handle1Slit(){
-        
+    public void handle1Slit() {
+
     }
-    
+
     @FXML
-    public void handle2Slit(){
-        
+    public void handle2Slit() {
+
     }
-    
+
     @FXML
-    public void handle3Slit(){
-        
+    public void handle3Slit() {
+
     }
-    
-    
+
 }

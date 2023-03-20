@@ -5,7 +5,6 @@
 package WavesSimulation.UI;
 
 import WavesSimulation.Interference.InterController;
-import WavesSimulation.Slits.SlitsController;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -32,7 +31,7 @@ public class IntSimulationWindow extends Stage {
         
         Scene scene = new Scene(root, 800, 600);
         this.setScene(scene);
-        this.setTitle("Waves Simulation");
+        this.setTitle("Interference Simulation");
         this.setMaximized(true);
         this.show();
     }

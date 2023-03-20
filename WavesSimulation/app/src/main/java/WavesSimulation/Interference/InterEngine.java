@@ -6,12 +6,13 @@ package WavesSimulation.Interference;
 
 /**
  *
- * @author 2045287
+ * @author Darina
  */
 public class InterEngine {
-    int frequency;
-    int amplitude;
-    int slitSep;
+    
+    private int frequency;
+    private int amplitude;
+    private int slitSep;
 
     public InterEngine() {
     }
@@ -38,3 +39,4 @@ public class InterEngine {
         return true; //for now
     }
 }
+

@@ -6,7 +6,7 @@ package WavesSimulation.Diffraction;
 
 /**
  *
- * @author 2045287
+ * @author KarenFl
  */
 public class DiffractionSim {
     

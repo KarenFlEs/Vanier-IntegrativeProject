@@ -6,7 +6,7 @@ package WavesSimulation.Diffraction;
 
 /**
  *
- * @author 2153617
+ * @author KarenFl
  */
 public class DiffController {
     

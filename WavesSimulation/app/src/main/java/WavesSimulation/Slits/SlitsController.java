@@ -84,19 +84,19 @@ public class SlitsController extends Stage {
         arc.setLayoutY(150);
         arc.setEffect(blur1);
         arc.setType(ArcType.OPEN);
-        arc.setStrokeWidth(30);
+        arc.setStrokeWidth(25);
         arc.setStroke(Color.WHITE);
         arc.setStrokeType(StrokeType.INSIDE);
         arc.setFill(null);
         paneAnimation.getChildren().addAll(arc);
         
-        TranslateTransition trans1 = new TranslateTransition(Duration.seconds(5), arc);
+        TranslateTransition trans1 = new TranslateTransition(Duration.seconds(4.5), arc);
         trans1.setByX(400);
-        trans1.setByX(900);
+        trans1.setByX(700);
         trans1.setInterpolator(Interpolator.LINEAR);
-        ScaleTransition scale = new ScaleTransition(Duration.seconds(1), arc);
-        scale.setToX(10.0);
-        scale.setToY(10.0);
+        ScaleTransition scale = new ScaleTransition(Duration.seconds(4), arc);
+        scale.setToX(15.0);
+        scale.setToY(15.0);
         ParallelTransition par = new ParallelTransition(trans1,scale);
         
         SequentialTransition trans2 = new SequentialTransition();
@@ -104,7 +104,7 @@ public class SlitsController extends Stage {
         trans2.setInterpolator(Interpolator.LINEAR);
         trans2.setCycleCount(Animation.INDEFINITE);
         trans2.play();
-
+        
     }
 
     public SlitsController(Stage owner) {

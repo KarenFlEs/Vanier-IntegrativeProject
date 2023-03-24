@@ -33,13 +33,13 @@ public class DiffController extends Stage{
     private Pane paneWave; 
     
     @FXML
-    private Slider sldWave; 
+    private Slider sliderWave; 
     
     @FXML
-    private Slider sldDiameter; 
+    private Slider sliderDiameter; 
     
     @FXML
-    private Slider sldEcc; 
+    private Slider sliderEcc; 
     
     @FXML
     private Label labelDiameter; 
@@ -59,25 +59,25 @@ public class DiffController extends Stage{
         circle.setTranslateY(230);
         circle.setFill(Color.WHITE);
         
-        sldDiameter.setMin(20);
-        sldDiameter.setMax(130);
+        sliderDiameter.setMin(20);
+        sliderDiameter.setMax(130);
         
-        sldDiameter.valueProperty().addListener(new ChangeListener<Number>() {
+        sliderDiameter.valueProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                double circleRadius = (int) sldDiameter.getValue()/2; 
+                double circleRadius = (int) sliderDiameter.getValue()/2; 
                 circle.setRadius(circleRadius);
                 labelDiameter.setText(Double.toString(circleRadius/100) + " mm");
                 System.out.println(circleRadius);
             }
         });
         
-        sldEcc.setMax(0.7);
+        sliderEcc.setMax(0.7);
         
-        sldEcc.valueProperty().addListener(new ChangeListener<Number>() {
+        sliderEcc.valueProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                double eccentricity = 1 - sldEcc.getValue(); 
+                double eccentricity = 1 - sliderEcc.getValue(); 
                 circle.setScaleY(eccentricity);
                 labelEcc.setText(Double.toString(1 - eccentricity) + " mm");
                 System.out.println(eccentricity);

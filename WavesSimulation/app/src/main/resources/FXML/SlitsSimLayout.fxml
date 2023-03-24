@@ -33,7 +33,7 @@
       </MenuBar>
    </top>
    <right>
-      <Pane prefHeight="1031.0" prefWidth="404.0" style="-fx-background-color: LIGHTGRAY;" BorderPane.alignment="CENTER">
+      <Pane fx:id="paneSettings" prefHeight="1031.0" prefWidth="404.0" style="-fx-background-color: LIGHTGRAY;" BorderPane.alignment="CENTER">
          <children>
             <Label layoutX="137.0" layoutY="34.0" text="Settings">
                <font>
@@ -90,7 +90,7 @@
    <center>
       <Pane fx:id="mainScreen" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Pane fx:id="paneAnimation" layoutX="319.0" layoutY="68.0" prefHeight="900.0" prefWidth="900.0" style="-fx-background-color: BLACK;" />
+            <Pane fx:id="paneAnimation" layoutX="307.0" layoutY="59.0" prefHeight="900.0" prefWidth="900.0" style="-fx-background-color: BLACK;" />
          </children></Pane>
    </center>
 </BorderPane>

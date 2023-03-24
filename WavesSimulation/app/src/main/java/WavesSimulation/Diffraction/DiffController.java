@@ -72,6 +72,18 @@ public class DiffController extends Stage{
             }
         });
         
+        sldEcc.setMax(0.7);
+        
+        sldEcc.valueProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                double eccentricity = 1 - sldEcc.getValue(); 
+                circle.setScaleY(eccentricity);
+                labelEcc.setText(Double.toString(1 - eccentricity) + " mm");
+                System.out.println(eccentricity);
+            }
+        });
+        
         paneSquare.getChildren().add(circle); 
     }
     

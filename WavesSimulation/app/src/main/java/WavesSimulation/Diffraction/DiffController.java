@@ -87,6 +87,13 @@ public class DiffController extends Stage{
         sliderWave.setMax(780);
         sliderWave.setMin(380);
         
+        sliderWave.valueProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                System.out.println(2);
+            }
+        });
+        
         paneSquare.getChildren().add(circle); 
     }
     

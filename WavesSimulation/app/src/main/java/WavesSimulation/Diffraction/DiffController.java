@@ -84,6 +84,9 @@ public class DiffController extends Stage{
             }
         });
         
+        sliderWave.setMax(780);
+        sliderWave.setMin(380);
+        
         paneSquare.getChildren().add(circle); 
     }
     

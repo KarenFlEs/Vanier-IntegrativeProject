@@ -42,6 +42,9 @@ public class DiffController extends Stage{
     private Slider sliderEcc; 
     
     @FXML
+    private Label labelWave; 
+    
+    @FXML
     private Label labelDiameter; 
     
     @FXML
@@ -81,6 +84,17 @@ public class DiffController extends Stage{
                 circle.setScaleY(eccentricity);
                 labelEcc.setText(Double.toString(1 - eccentricity) + " mm");
                 System.out.println(eccentricity);
+            }
+        });
+        
+        sliderWave.setMax(780);
+        sliderWave.setMin(380);
+        
+        sliderWave.valueProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                int wavelength = (int) sliderWave.getValue(); 
+                labelWave.setText(Integer.toString(wavelength) + " nm");
             }
         });
         

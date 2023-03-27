@@ -33,7 +33,7 @@
       </MenuBar>
    </top>
    <right>
-      <Pane prefHeight="1031.0" prefWidth="404.0" style="-fx-background-color: LIGHTGRAY;" BorderPane.alignment="CENTER">
+      <Pane fx:id="paneSettings" prefHeight="1031.0" prefWidth="404.0" style="-fx-background-color: LIGHTGRAY;" BorderPane.alignment="CENTER">
          <children>
             <Label layoutX="137.0" layoutY="34.0" text="Settings">
                <font>
@@ -83,11 +83,14 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <Slider fx:id="sldSeperation" layoutX="67.0" layoutY="832.0" prefHeight="59.0" prefWidth="276.0" />
+            <Slider fx:id="sldSeperation" layoutX="66.0" layoutY="696.0" prefHeight="59.0" prefWidth="276.0" />
          </children>
       </Pane>
    </right>
    <center>
-      <Pane fx:id="mainScreen" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <Pane fx:id="mainScreen" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Pane fx:id="paneAnimation" layoutX="307.0" layoutY="59.0" prefHeight="900.0" prefWidth="900.0" style="-fx-background-color: BLACK;" />
+         </children></Pane>
    </center>
 </BorderPane>

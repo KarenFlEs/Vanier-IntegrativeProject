@@ -31,7 +31,7 @@ public class SlitsSimulationWindow extends Stage {
         
         Scene scene = new Scene(root, 800, 600);
         this.setScene(scene);
-        this.setTitle("Waves Simulation");
+        this.setTitle("Slits Simulation");
         this.setMaximized(true);
         this.show();
     }

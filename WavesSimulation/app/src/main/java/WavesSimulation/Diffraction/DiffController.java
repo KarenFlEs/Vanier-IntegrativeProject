@@ -101,5 +101,5 @@ public class DiffController extends Stage{
         paneSquare.getChildren().add(circle); 
     }
     
-    
 }
+

@@ -8,6 +8,7 @@
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Cylinder?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1056.0" prefWidth="1936.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
@@ -90,7 +91,10 @@
    <center>
       <Pane fx:id="mainScreen" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Pane fx:id="paneAnimation" layoutX="307.0" layoutY="59.0" prefHeight="900.0" prefWidth="900.0" style="-fx-background-color: BLACK;" />
+            <Pane fx:id="paneAnimation" layoutX="307.0" layoutY="59.0" prefHeight="900.0" prefWidth="900.0" style="-fx-background-color: BLACK;">
+               <children>
+                  <Cylinder fx:id="cylinderWaveGenerator" height="900.0" layoutX="75.0" layoutY="450.0" radius="75.0" />
+               </children></Pane>
          </children></Pane>
    </center>
 </BorderPane>

@@ -61,6 +61,7 @@ public class DiffController extends Stage{
         circle.setTranslateX(280);
         circle.setTranslateY(230);
         circle.setFill(Color.WHITE);
+        circle.setRadius(10);
         
         sliderDiameter.setMin(20);
         sliderDiameter.setMax(130);
@@ -82,8 +83,8 @@ public class DiffController extends Stage{
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
                 double eccentricity = 1 - sliderEcc.getValue(); 
                 circle.setScaleY(eccentricity);
-                labelEcc.setText(Double.toString(1 - eccentricity) + " mm");
-                System.out.println(eccentricity);
+                double eccentricityLabel = (double) Math.round((1 - eccentricity)*100)/100; 
+                labelEcc.setText(Double.toString(eccentricityLabel) + " mm");
             }
         });
         

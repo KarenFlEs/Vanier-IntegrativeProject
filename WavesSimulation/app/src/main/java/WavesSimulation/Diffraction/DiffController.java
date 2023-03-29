@@ -9,7 +9,11 @@ import javafx.scene.control.Slider;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.CycleMethod;
+import javafx.scene.paint.LinearGradient;
+import javafx.scene.paint.Stop;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 /**
@@ -30,7 +34,7 @@ public class DiffController extends Stage{
     private Pane paneAnimation; 
     
     @FXML
-    private Pane paneWave; 
+    private Rectangle rectangleWave; 
     
     @FXML
     private Slider sliderWave; 
@@ -88,6 +92,8 @@ public class DiffController extends Stage{
             }
         });
         
+        paneSquare.getChildren().add(circle); 
+        
         sliderWave.setMax(780);
         sliderWave.setMin(380);
         
@@ -99,7 +105,14 @@ public class DiffController extends Stage{
             }
         });
         
-        paneSquare.getChildren().add(circle); 
+        //paneWave
+        Stop [] stop = new Stop []{new Stop (0, Color.BLACK),
+                                    new Stop (0.5, Color.GREEN),
+                                    new Stop (1, Color.RED)
+        }; 
+        
+        LinearGradient linearGradient = new LinearGradient(0,0,1,0, true, CycleMethod.NO_CYCLE, stop); 
+        rectangleWave.setFill(linearGradient);
     }
     
 }

@@ -39,12 +39,29 @@ public class SlitsEngine {
     private Rectangle straightWave = new Rectangle(100, 900);
     private Rectangle straightWave2 = new Rectangle(100, 900);
     private Rectangle straightWave3 = new Rectangle(100, 900);
-
+    
+    TranslateTransition translateRectangle = new TranslateTransition(Duration.seconds(6), straightWave);
+    TranslateTransition translateRectangle2 = new TranslateTransition(Duration.seconds(6), straightWave2);
+    TranslateTransition translateRectangle3 = new TranslateTransition(Duration.seconds(6), straightWave3);
+    
     private int nbSlits;
     private int slitWid;
 
     public SlitsEngine() {
 
+    }
+    
+    public void playAnimation(){
+        
+        translateRectangle.play();
+        translateRectangle2.play();
+        translateRectangle3.play();
+    }
+    
+    public void pauseAnimation(){
+        translateRectangle.pause();
+        translateRectangle2.pause();
+        translateRectangle3.pause();
     }
 
     public void setUpInput(Pane paneAnimation) {
@@ -54,13 +71,13 @@ public class SlitsEngine {
 
         straightWave.setEffect(blurRectangle);
 
-        TranslateTransition translateRectangle = new TranslateTransition(Duration.seconds(6), straightWave);
+        
         translateRectangle.setByX(240);
         translateRectangle.setByX(450);
         translateRectangle.setInterpolator(Interpolator.LINEAR);
         translateRectangle.setCycleCount(Animation.INDEFINITE);
 
-        translateRectangle.play();
+        //translateRectangle.play();
 
         straightWave2.setFill(Color.WHITE);
 
@@ -68,13 +85,13 @@ public class SlitsEngine {
 
         straightWave2.setEffect(blurRectangle);
 
-        TranslateTransition translateRectangle2 = new TranslateTransition(Duration.seconds(6), straightWave2);
+        
         translateRectangle2.setByX(240);
         translateRectangle2.setByX(450);
         translateRectangle2.setInterpolator(Interpolator.LINEAR);
         translateRectangle2.setCycleCount(Animation.INDEFINITE);
         translateRectangle2.setDelay(Duration.seconds(2));
-        translateRectangle2.play();
+        //translateRectangle2.play();
 
         straightWave3.setFill(Color.WHITE);
 
@@ -82,13 +99,13 @@ public class SlitsEngine {
 
         straightWave3.setEffect(blurRectangle);
 
-        TranslateTransition translateRectangle3 = new TranslateTransition(Duration.seconds(6), straightWave3);
+        
         translateRectangle3.setByX(240);
         translateRectangle3.setByX(450);
         translateRectangle3.setInterpolator(Interpolator.LINEAR);
         translateRectangle3.setCycleCount(Animation.INDEFINITE);
         translateRectangle3.setDelay(Duration.seconds(4));
-        translateRectangle3.play();
+        //translateRectangle3.play();
 
     }
 

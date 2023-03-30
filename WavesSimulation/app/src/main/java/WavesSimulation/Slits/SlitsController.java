@@ -13,6 +13,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Slider;
 import javafx.scene.effect.BoxBlur;
@@ -65,6 +66,9 @@ public class SlitsController extends Stage {
 
     @FXML
     private Pane paneAnimation;
+    
+    @FXML
+    private Button btnPlayAnimation;
 
     @FXML
     private Cylinder cylinderWaveGenerator;
@@ -90,7 +94,8 @@ public class SlitsController extends Stage {
         slit.startSlit(paneAnimation, btn1Slit, sldSeperation);
         slit.handleSlitWidth(sldWidth, sldSeperation);
 
-        //slit.setUpInput(paneAnimation);
+        slit.setUpInput(paneAnimation);
+        //slit.playAnimation();
 
         /*straightWave.setFill(Color.WHITE);
 
@@ -131,6 +136,7 @@ public class SlitsController extends Stage {
         trans2.setCycleCount(Animation.INDEFINITE);
         trans2.play();*/
         cylinderWaveGenerator.toFront();
+        btnPlayAnimation.toFront();
     }
 
     public SlitsController(Stage owner) {
@@ -171,6 +177,18 @@ public class SlitsController extends Stage {
     @FXML
     public void handle3Slit() {
 
+    }
+    
+    @FXML
+    public void handlePlayAnimation(){
+        if(btnPlayAnimation.getText().equals("Play")){
+            btnPlayAnimation.setText("Pause");
+            slit.playAnimation();
+        }
+        else if(btnPlayAnimation.getText().equals("Pause")){
+            btnPlayAnimation.setText("Play");
+            slit.pauseAnimation();
+        }
     }
 
 }

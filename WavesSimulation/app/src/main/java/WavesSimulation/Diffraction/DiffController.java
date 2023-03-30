@@ -106,9 +106,14 @@ public class DiffController extends Stage{
         });
         
         //paneWave
-        Stop [] stop = new Stop []{new Stop (0, Color.BLACK),
-                                    new Stop (0.5, Color.GREEN),
-                                    new Stop (1, Color.RED)
+        Stop [] stop = new Stop []{new Stop (0, Color.PURPLE),
+                                   new Stop (0.2, Color.BLUE),
+                                   new Stop (0.3, Color.CYAN),
+                                   new Stop (0.4, Color.LIME),
+                                   new Stop (0.5, Color.YELLOW),
+                                   new Stop (0.6, Color.ORANGE), 
+                                   new Stop (0.8, Color.RED),
+                                   new Stop (1, Color.DARKRED)
         }; 
         
         LinearGradient linearGradient = new LinearGradient(0,0,1,0, true, CycleMethod.NO_CYCLE, stop); 

@@ -36,10 +36,10 @@ public class InterController extends Stage{
     private Pane backgroundPane;
    
     @FXML 
-    private Button btnStart;
+    private Button btnStartTop;
     
     @FXML 
-    private Button btnStart2;
+    private Button btnStartBottom;
     
     @FXML
     private Label lblTitle; 
@@ -47,7 +47,7 @@ public class InterController extends Stage{
     ImageView imageFaucetBottom = new ImageView("/images/faucet.png");
     ImageView imageFaucetTop = new ImageView("/images/faucet.png");
     
-    InterEngine eng = new InterEngine();
+    InterEngine engine = new InterEngine();
     
     public void initialize(){  
         imageFaucetTop.setFitHeight(140);
@@ -61,11 +61,10 @@ public class InterController extends Stage{
         imageFaucetBottom.setTranslateY(490);
         
         backgroundPane.getChildren().addAll(imageFaucetTop, imageFaucetBottom);
-        btnStart.toFront();
-        btnStart2.toFront();
+        btnStartTop.toFront();
+        btnStartBottom.toFront();
         
-        eng.setAnimation(animationPane);
-       
+        engine.setAnimation(animationPane);
     }
 
     public InterController() {
@@ -76,14 +75,14 @@ public class InterController extends Stage{
     }
     
     @FXML
-    public void handleBtnStart(ActionEvent event){
-        eng.playTopAnimation();
+    public void handleBtnStartTop(ActionEvent event){
+        engine.playTopAnimation();
         System.out.println("Top Button");
     }
     
     @FXML
-    public void handleBtnStart2(ActionEvent event){
-        eng.playBottomAnimation();
+    public void handleBtnStartBottom(ActionEvent event){
+        engine.playBottomAnimation();
         System.out.println("Bottom Button");
     }
     
@@ -91,7 +90,7 @@ public class InterController extends Stage{
         sldFreq.valueProperty().addListener(new ChangeListener<Number>(){
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue){
                 int freq; 
-                freq = (int)sldFreq.getValue();
+                freq = (int) sldFreq.getValue();
                 System.out.println(freq);
             }
         }); 
@@ -101,7 +100,7 @@ public class InterController extends Stage{
         sldAmp.valueProperty().addListener(new ChangeListener<Number>(){
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue){
                 int amp;
-                amp = (int)sldAmp.getValue();
+                amp = (int) sldAmp.getValue();
                 System.out.println(amp);
             }
         });   
@@ -111,7 +110,7 @@ public class InterController extends Stage{
         sldSep.valueProperty().addListener(new ChangeListener<Number>(){
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue){
                 int sep;
-                sep = (int)sldSep.getValue();
+                sep = (int) sldSep.getValue();
                 System.out.println(sep);
             }
         });   

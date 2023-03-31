@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package WavesSimulation.Slits;
 
 import javafx.animation.Animation;
@@ -9,7 +6,6 @@ import javafx.animation.Interpolator;
 import javafx.animation.TranslateTransition;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
@@ -21,7 +17,7 @@ import javafx.util.Duration;
 
 /**
  *
- * @author 2045287
+ * @author StevenDy
  */
 public class SlitsEngine {
 
@@ -35,8 +31,6 @@ public class SlitsEngine {
     private Rectangle slitSeperationTop;
     private Rectangle slitSeperationBottom;
 
-    BoxBlur blurRectangle = new BoxBlur(50, 50, 3);
-
     private Rectangle straightWave1 = new Rectangle(100, 900);
     private Rectangle straightWave2 = new Rectangle(100, 900);
     private Rectangle straightWave3 = new Rectangle(100, 900);
@@ -47,15 +41,15 @@ public class SlitsEngine {
 
     private int nbSlits;
     private int slitWidth;
+    
+    BoxBlur blurRectangle = new BoxBlur(50, 50, 3);
 
     private SlitsController slitsController;
 
     public SlitsEngine() {
-
     }
 
     public void playAnimation() {
-
         translateRectangle1.play();
         translateRectangle2.play();
         translateRectangle3.play();
@@ -114,7 +108,6 @@ public class SlitsEngine {
                 slitBottomWall.setHeight(slitHeight);
                 slitBottomWall.setLayoutY(900 - slitHeight);
                 labelSlitWidth.setText(Integer.toString(slitHeight) + " cm");
-
             }
 
         });
@@ -128,7 +121,6 @@ public class SlitsEngine {
                 slitSeperationBottom.setHeight(seperationHeight + 50);
                 labelSlitSeperation.setText(Integer.toString(seperationHeight) + " cm");
             }
-
         });
     }
 
@@ -153,9 +145,7 @@ public class SlitsEngine {
                 straightWave1.setWidth(frequencyValue);
                 straightWave2.setWidth(frequencyValue);
                 straightWave3.setWidth(frequencyValue);
-
             }
-
         });
     }
 
@@ -192,15 +182,12 @@ public class SlitsEngine {
     }
 
     public void addWaves(int amplitude, int frequency) {
-
     }
 
     public void addSlit(int slitSep, int nbSlits, int slitWid) {
-
     }
 
     public void motion() {
-
     }
 
     public boolean isInside() {

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -9,7 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1056.0" prefWidth="1936.0" style="-fx-background-color: GRAY;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1056.0" prefWidth="1936.0" style="-fx-background-color: GRAY;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
@@ -39,31 +40,42 @@
                   <Font size="36.0" />
                </font>
             </Label>
-            <Slider fx:id="sldFreq" layoutX="112.0" layoutY="195.0" prefHeight="14.0" prefWidth="169.0" showTickMarks="true" />
-            <Slider fx:id="sldAmp" layoutX="116.0" layoutY="307.0" prefHeight="14.0" prefWidth="161.0" showTickMarks="true" />
-            <Slider fx:id="sldSep" layoutX="114.0" layoutY="418.0" majorTickUnit="1.0" max="5.0" min="1.0" minorTickCount="0" prefHeight="14.0" prefWidth="164.0" showTickLabels="true" showTickMarks="true" />
-            <Label layoutX="161.0" layoutY="161.0" text="Frequency">
+            <Slider fx:id="sldFreq" blockIncrement="200.0" layoutX="81.0" layoutY="201.0" majorTickUnit="40.0" max="2000.0" min="20.0" prefHeight="66.0" prefWidth="230.0" showTickMarks="true" />
+            <Slider fx:id="sldAmp" layoutX="81.0" layoutY="317.0" prefHeight="92.0" prefWidth="230.0" showTickMarks="true" />
+            <Slider fx:id="sldSep" layoutX="80.0" layoutY="476.0" majorTickUnit="1.0" max="5.0" min="1.0" minorTickCount="0" prefHeight="99.0" prefWidth="232.0" showTickLabels="true" showTickMarks="true" />
+            <Label layoutX="156.0" layoutY="174.0" text="Frequency">
                <font>
-                  <Font size="16.0" />
+                  <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="160.0" layoutY="268.0" text="Amplitude">
+            <Label layoutX="155.0" layoutY="310.0" text="Amplitude">
                <font>
-                  <Font size="16.0" />
+                  <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="158.0" layoutY="383.0" text="Separation">
+            <Label layoutX="153.0" layoutY="462.0" text="Separation">
                <font>
-                  <Font size="16.0" />
+                  <Font size="18.0" />
                </font>
             </Label>
+            <Label layoutX="80.0" layoutY="201.0" text="min" />
+            <Label layoutX="290.0" layoutY="201.0" text="max" />
+            <Label layoutX="87.0" layoutY="329.0" text="0" />
+            <Label layoutX="290.0" layoutY="329.0" text="max" />
          </children>
       </Pane>
    </right>
    <center>
-      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <Pane fx:id="backgroundPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: LIGHTGRAY;" BorderPane.alignment="CENTER">
          <children>
-            <Pane fx:id="animationPane" layoutX="329.0" layoutY="207.0" prefHeight="575.0" prefWidth="887.0" style="-fx-background-color: WHITE;" />
+            <Pane fx:id="animationPane" layoutX="247.0" layoutY="179.0" prefHeight="704.0" prefWidth="1049.0" style="-fx-background-color: BLACK;" />
+            <Label fx:id="lblTitle" layoutX="560.0" layoutY="42.0" text="INTERFERENCE">
+               <font>
+                  <Font size="64.0" />
+               </font>
+            </Label>
+            <Button fx:id="btnStart" layoutX="227.0" layoutY="350.0" mnemonicParsing="false" onAction="#handleBtnStart" />
+            <Button fx:id="btnStart2" layoutX="227.0" layoutY="569.0" mnemonicParsing="false" onAction="#handleBtnStart2" />
          </children>
       </Pane>
    </center>

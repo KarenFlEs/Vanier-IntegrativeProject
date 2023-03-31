@@ -44,6 +44,12 @@ public class InterController extends Stage{
     @FXML
     private Label lblTitle; 
     
+    @FXML
+    private Label labelFreq;
+   
+    @FXML
+    private Label labelAmp;
+    
     ImageView imageFaucetBottom = new ImageView("/images/faucet.png");
     ImageView imageFaucetTop = new ImageView("/images/faucet.png");
     
@@ -65,6 +71,8 @@ public class InterController extends Stage{
         btnStartBottom.toFront();
         
         engine.setAnimation(animationPane);
+        handleSldAmp();
+        handleSldFreq();
     }
 
     public InterController() {
@@ -115,6 +123,26 @@ public class InterController extends Stage{
             }
         });   
     }  
+    
+    public void handleSldAmp(){
+        sldAmp.valueProperty().addListener(new ChangeListener<Number>(){
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue){
+                int amp;
+                amp = (int) sldAmp.getValue();
+                labelAmp.setText(Integer.toString(amp));
+            }
+        });   
+    }
+    
+    public void handleSldFreq(){
+        sldFreq.valueProperty().addListener(new ChangeListener<Number>(){
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue){
+                int freq;
+                freq = (int) sldFreq.getValue();
+                labelFreq.setText(Integer.toString(freq));
+            }
+        });   
+    }
     
 }
 

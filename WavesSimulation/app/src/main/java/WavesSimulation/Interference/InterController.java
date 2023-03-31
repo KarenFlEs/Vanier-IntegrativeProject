@@ -44,14 +44,12 @@ public class InterController extends Stage{
     @FXML
     private Label lblTitle; 
     
-    
     ImageView imageFaucetBottom = new ImageView("/images/faucet.png");
     ImageView imageFaucetTop = new ImageView("/images/faucet.png");
     
     InterEngine eng = new InterEngine();
     
-    public void initialize(){
-        
+    public void initialize(){  
         imageFaucetTop.setFitHeight(140);
         imageFaucetTop.setFitWidth(140);
         imageFaucetTop.setTranslateX(160);
@@ -72,8 +70,7 @@ public class InterController extends Stage{
 
     public InterController() {
     }
-
-    
+ 
     public InterController(Stage owner) {
         this.owner = owner;
     }
@@ -101,7 +98,6 @@ public class InterController extends Stage{
     }
    
     public void getAmp(){
-        
         sldAmp.valueProperty().addListener(new ChangeListener<Number>(){
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue){
                 int amp;
@@ -111,8 +107,7 @@ public class InterController extends Stage{
         });   
     }
     
-    public void getSep(){
-        
+    public void getSep(){     
         sldSep.valueProperty().addListener(new ChangeListener<Number>(){
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue){
                 int sep;
@@ -120,7 +115,8 @@ public class InterController extends Stage{
                 System.out.println(sep);
             }
         });   
-    }   
+    }  
+    
 }
 
 

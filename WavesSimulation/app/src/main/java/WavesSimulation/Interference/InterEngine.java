@@ -32,8 +32,7 @@ public class InterEngine {
     private ScaleTransition scaleTopCirc = new ScaleTransition(Duration.seconds(4), topCirc);
     private ScaleTransition scaleBottomCirc = new ScaleTransition(Duration.seconds(4), bottomCirc);
     
-    private InterController interController;
-    
+    private InterController interController; 
     
     public void playTopAnimation(){
         translateTopCirc.play();
@@ -81,19 +80,16 @@ public class InterEngine {
         this.amplitude = amplitude;
         this.slitSep = slitSep;
     }
-    
-    
-    public void addWaves(int frequency, int amplitude){
-        
+      
+    public void addWaves(int frequency, int amplitude){     
     }
     
-    public void adjustSeparation(int slitSep){
-        
+    public void adjustSeparation(int slitSep){  
     }
     
-    public void motion(){
-        
+    public void motion(){     
     }
+    
     public boolean isInside(){
         return true; //for now
     }
@@ -153,8 +149,6 @@ public class InterEngine {
     public void setTranslateBottomCirc(TranslateTransition translateBottomCirc) {
         this.translateBottomCirc = translateBottomCirc;
     }
-    
-    
     
 }
 

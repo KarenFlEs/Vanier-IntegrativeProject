@@ -15,6 +15,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.effect.BoxBlur;
 import javafx.scene.image.Image;
@@ -53,10 +54,10 @@ public class SlitsController extends Stage {
     private CheckBox btn3Slit;
 
     @FXML
-    private Slider sldFrequency;
-
-    @FXML
     private Slider sldAmplitude;
+    
+    @FXML
+    private Slider sldFrequency;
 
     @FXML
     private Slider sldWidth;
@@ -66,18 +67,22 @@ public class SlitsController extends Stage {
 
     @FXML
     private Pane paneAnimation;
-    
+
     @FXML
     private Button btnPlayAnimation;
 
     @FXML
     private Cylinder cylinderWaveGenerator;
 
+    @FXML
+    private Label labelSlitWidth;
+
+    @FXML
+    private Label labelSlitSeperation;
+
     //Variables for the seperation of the Waves
-    
     Arc arc = new Arc(400, 300, 40, 40, -90, 180);
 
-    
     SlitsEngine slit = new SlitsEngine();
 
     @FXML
@@ -89,29 +94,21 @@ public class SlitsController extends Stage {
         sldSeperation.setMin(10);
         sldSeperation.setMax(100);
 
-        //startSlit();
+        sldAmplitude.setMin(15);
+        sldAmplitude.setMax(150);
         
+        sldFrequency.setMin(10);
+        sldFrequency.setMax(100);
+
         slit.startSlit(paneAnimation, btn1Slit, sldSeperation);
-        slit.handleSlitWidth(sldWidth, sldSeperation);
+        slit.handleSlitWidth(sldWidth, sldSeperation, labelSlitSeperation, labelSlitWidth);
 
         slit.setUpInput(paneAnimation);
+        slit.handleSliderAmplitude(sldAmplitude);
+        slit.hadnleSliderFrequency(sldFrequency);
         //slit.playAnimation();
 
-        /*straightWave.setFill(Color.WHITE);
-
-        paneAnimation.getChildren().addAll(straightWave);
-
-        //
-        BoxBlur blurRectangle = new BoxBlur(50, 50, 3);
-        BoxBlur blurArc = new BoxBlur(10, 10, 3);
-        straightWave.setEffect(blurRectangle);
-
-        TranslateTransition translateRectangle = new TranslateTransition(Duration.seconds(5), straightWave);
-        translateRectangle.setByX(240);
-        translateRectangle.setByX(350);
-        translateRectangle.setInterpolator(Interpolator.LINEAR);
-        translateRectangle.play();
-
+        /*
         arc.setLayoutY(150);
         arc.setEffect(blurArc);
         arc.setType(ArcType.OPEN);
@@ -147,10 +144,10 @@ public class SlitsController extends Stage {
     public void handle1Slit() {
         if (btn2Slit.isSelected()) {
             btn2Slit.setSelected(false);
-            
+
             sldWidth.setMin(150);
             sldWidth.setMax(400);
-            
+
             slit.getSlitSeperationTop().setVisible(false);
             slit.getSlitSeperationBottom().setVisible(false);
             sldSeperation.setDisable(true);
@@ -166,7 +163,7 @@ public class SlitsController extends Stage {
 
             sldWidth.setMin(150);
             sldWidth.setMax(300);
-            
+
             slit.getSlitSeperationTop().setVisible(true);
             slit.getSlitSeperationBottom().setVisible(true);
             sldSeperation.setDisable(false);
@@ -178,14 +175,13 @@ public class SlitsController extends Stage {
     public void handle3Slit() {
 
     }
-    
+
     @FXML
-    public void handlePlayAnimation(){
-        if(btnPlayAnimation.getText().equals("Play")){
+    public void handlePlayAnimation() {
+        if (btnPlayAnimation.getText().equals("Play")) {
             btnPlayAnimation.setText("Pause");
             slit.playAnimation();
-        }
-        else if(btnPlayAnimation.getText().equals("Pause")){
+        } else if (btnPlayAnimation.getText().equals("Pause")) {
             btnPlayAnimation.setText("Play");
             slit.pauseAnimation();
         }

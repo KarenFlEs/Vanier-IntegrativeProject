@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.Cylinder?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1056.0" prefWidth="1936.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1056.0" prefWidth="1936.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
@@ -79,13 +79,23 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <Slider fx:id="sldWidth" layoutX="65.0" layoutY="666.0" prefHeight="59.0" prefWidth="276.0" />
+            <Slider fx:id="sldWidth" layoutX="69.0" layoutY="675.0" prefHeight="59.0" prefWidth="276.0" />
             <Label layoutX="136.0" layoutY="762.0" text="Slit Seperation">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <Slider fx:id="sldSeperation" layoutX="66.0" layoutY="696.0" prefHeight="59.0" prefWidth="276.0" />
+            <Slider fx:id="sldSeperation" layoutX="68.0" layoutY="836.0" prefHeight="59.0" prefWidth="276.0" />
+            <Label fx:id="labelSlitWidth" layoutX="176.0" layoutY="655.0" prefHeight="38.0" prefWidth="92.0">
+               <font>
+                  <Font name="Times New Roman" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelSlitSeperation" layoutX="179.0" layoutY="816.0" prefHeight="39.0" prefWidth="95.0">
+               <font>
+                  <Font name="Times New Roman" size="20.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
    </right>

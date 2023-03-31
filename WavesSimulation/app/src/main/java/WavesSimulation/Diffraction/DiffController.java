@@ -94,7 +94,7 @@ public class DiffController extends Stage{
         paneSquare.getChildren().add(circle); 
        
         //Wavelength 
-        Stop [] stops = new Stop []{new Stop (0, Color.PURPLE),
+        Stop[] stops = new Stop[]{new Stop (0, Color.PURPLE),
                                    new Stop (0.2, Color.BLUE),
                                    new Stop (0.3, Color.CYAN),
                                    new Stop (0.4, Color.LIME),
@@ -118,6 +118,22 @@ public class DiffController extends Stage{
             }
         });
         
+        //The circles on the right
+        Circle rightCircle = new Circle (); 
+        rightCircle.setTranslateX(1240);
+        rightCircle.setTranslateY(230);
+        rightCircle.setFill(Color.WHITE);
+        rightCircle.setRadius(100);
+        
+        Circle arcCircle = new Circle (); 
+        arcCircle.setTranslateX(1240);
+        arcCircle.setTranslateY(230);
+        arcCircle.setRadius(200);
+        arcCircle.setStrokeWidth(50.0);
+        arcCircle.setStroke(Color.WHITE);
+        arcCircle.setFill(Color.BLACK);
+        
+        paneSquare.getChildren().addAll(arcCircle, rightCircle); 
     }
     
 }

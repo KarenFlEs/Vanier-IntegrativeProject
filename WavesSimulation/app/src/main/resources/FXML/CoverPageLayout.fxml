@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<Pane fx:id="paneMain" prefHeight="1056.0" prefWidth="1936.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button fx:id="btnInt" layoutX="218.0" layoutY="489.0" mnemonicParsing="false" onAction="#handleBtnInt" prefHeight="300.0" prefWidth="300.0" style="-fx-background-color: TRANSPARENT;" text="Button" textFill="TRANSPARENT" />
+      <Button fx:id="btnSlit" layoutX="808.0" layoutY="500.0" mnemonicParsing="false" onAction="#handleBtnSlit" prefHeight="300.0" prefWidth="300.0" style="-fx-background-color: TRANSPARENT;" text="Button" textFill="TRANSPARENT" />
+      <Button fx:id="btnDiff" layoutX="1381.0" layoutY="501.0" mnemonicParsing="false" onAction="#handleBtnDiff" prefHeight="300.0" prefWidth="300.0" style="-fx-background-color: TRANSPARENT;" text="Button" textFill="TRANSPARENT" />
+      <MenuBar layoutY="-4.0" prefHeight="16.0" prefWidth="1936.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <Label layoutX="654.0" layoutY="81.0" prefHeight="246.0" prefWidth="652.0" text="Waves Simulation">
+         <font>
+            <Font size="72.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c6c6c6" height="300.0" layoutX="1382.0" layoutY="502.0" stroke="BLACK" strokeType="INSIDE" width="300.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c6c6c6" height="300.0" layoutX="217.0" layoutY="492.0" stroke="BLACK" strokeType="INSIDE" width="300.0" />
+      <Rectangle fx:id="recInt" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="200.0" layoutX="271.0" layoutY="518.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c6c6c6" height="300.0" layoutX="806.0" layoutY="498.0" stroke="BLACK" strokeType="INSIDE" width="300.0" />
+      <Rectangle fx:id="recDiff" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="200.0" layoutX="1432.0" layoutY="523.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+      <Label layoutX="275.0" layoutY="724.0" text="Interference">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <Label layoutX="922.0" layoutY="729.0" text="Slits">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <Label layoutX="1450.0" layoutY="725.0" prefHeight="68.0" prefWidth="187.0" text="Diffraction">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <Rectangle fx:id="recSlit" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="200.0" layoutX="857.0" layoutY="518.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+   </children>
+</Pane>

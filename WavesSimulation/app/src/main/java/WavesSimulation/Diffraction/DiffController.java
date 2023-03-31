@@ -55,12 +55,12 @@ public class DiffController extends Stage{
     private Label labelEcc; 
     
     /**
-     * This is the initialize method which runs when the simulationWindow opens
+     * This is the initialize method which runs when the DiffractionWindow opens
      */
     @FXML
     public void initialize() {
         
-        //The circle in the left pane (left black square) 
+        //The circle in the left pane (in the left black square) 
         Circle circle = new Circle();
         circle.setTranslateX(280);
         circle.setTranslateY(230);
@@ -93,7 +93,7 @@ public class DiffController extends Stage{
         
         paneSquare.getChildren().add(circle); 
        
-        //Wavelength
+        //Wavelength 
         Stop [] stops = new Stop []{new Stop (0, Color.PURPLE),
                                    new Stop (0.2, Color.BLUE),
                                    new Stop (0.3, Color.CYAN),
@@ -117,6 +117,7 @@ public class DiffController extends Stage{
                 labelWave.setText(Integer.toString(wavelength) + " nm");
             }
         });
+        
     }
     
 }

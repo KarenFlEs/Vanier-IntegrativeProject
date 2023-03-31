@@ -48,31 +48,46 @@ public class InterController extends Stage{
     ImageView imageFaucetBottom = new ImageView("/images/faucet.png");
     ImageView imageFaucetTop = new ImageView("/images/faucet.png");
     
-    
-    @FXML
-    public void handleBtnStart(ActionEvent event){
-        
-    }
-    
-    @FXML
-    public void handleBtnStart2(ActionEvent event){
-        
-    }
+    InterEngine eng = new InterEngine();
     
     public void initialize(){
-        
-        imageFaucetBottom.setFitHeight(140);
-        imageFaucetBottom.setFitWidth(140);
-        imageFaucetBottom.setTranslateX(160);
-        imageFaucetBottom.setTranslateY(490);
         
         imageFaucetTop.setFitHeight(140);
         imageFaucetTop.setFitWidth(140);
         imageFaucetTop.setTranslateX(160);
         imageFaucetTop.setTranslateY(270);
         
-        backgroundPane.getChildren().clear();
-        backgroundPane.getChildren().addAll(animationPane, lblTitle, imageFaucetBottom, imageFaucetTop, btnStart, btnStart2);
+        imageFaucetBottom.setFitHeight(140);
+        imageFaucetBottom.setFitWidth(140);
+        imageFaucetBottom.setTranslateX(160);
+        imageFaucetBottom.setTranslateY(490);
+        
+        backgroundPane.getChildren().addAll(imageFaucetTop, imageFaucetBottom);
+        btnStart.toFront();
+        btnStart2.toFront();
+        
+        eng.setAnimation(animationPane);
+       
+    }
+
+    public InterController() {
+    }
+
+    
+    public InterController(Stage owner) {
+        this.owner = owner;
+    }
+    
+    @FXML
+    public void handleBtnStart(ActionEvent event){
+        eng.playTopAnimation();
+        System.out.println("Top Button");
+    }
+    
+    @FXML
+    public void handleBtnStart2(ActionEvent event){
+        eng.playBottomAnimation();
+        System.out.println("Bottom Button");
     }
     
     public void getFreq(){

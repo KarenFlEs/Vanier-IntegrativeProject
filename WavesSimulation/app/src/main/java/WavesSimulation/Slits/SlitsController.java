@@ -55,7 +55,7 @@ public class SlitsController extends Stage {
 
     @FXML
     private Slider sldAmplitude;
-    
+
     @FXML
     private Slider sldFrequency;
 
@@ -96,7 +96,7 @@ public class SlitsController extends Stage {
 
         sldAmplitude.setMin(15);
         sldAmplitude.setMax(150);
-        
+
         sldFrequency.setMin(10);
         sldFrequency.setMax(100);
 
@@ -106,32 +106,7 @@ public class SlitsController extends Stage {
         slit.setUpInput(paneAnimation);
         slit.handleSliderAmplitude(sldAmplitude);
         slit.hadnleSliderFrequency(sldFrequency);
-        //slit.playAnimation();
 
-        /*
-        arc.setLayoutY(150);
-        arc.setEffect(blurArc);
-        arc.setType(ArcType.OPEN);
-        arc.setStrokeWidth(25);
-        arc.setStroke(Color.WHITE);
-        arc.setStrokeType(StrokeType.INSIDE);
-        arc.setFill(null);
-        paneAnimation.getChildren().addAll(arc);
-
-        TranslateTransition translateArc = new TranslateTransition(Duration.seconds(4.5), arc);
-        translateArc.setByX(400);
-        translateArc.setByX(700);
-        translateArc.setInterpolator(Interpolator.LINEAR);
-        ScaleTransition scale = new ScaleTransition(Duration.seconds(4), arc);
-        scale.setToX(15.0);
-        scale.setToY(15.0);
-        ParallelTransition par = new ParallelTransition(translateArc, scale);
-
-        SequentialTransition trans2 = new SequentialTransition();
-        trans2.getChildren().addAll(translateRectangle, par);
-        trans2.setInterpolator(Interpolator.LINEAR);
-        trans2.setCycleCount(Animation.INDEFINITE);
-        trans2.play();*/
         cylinderWaveGenerator.toFront();
         btnPlayAnimation.toFront();
     }
@@ -151,7 +126,6 @@ public class SlitsController extends Stage {
             slit.getSlitSeperationTop().setVisible(false);
             slit.getSlitSeperationBottom().setVisible(false);
             sldSeperation.setDisable(true);
-
         }
     }
 
@@ -167,7 +141,6 @@ public class SlitsController extends Stage {
             slit.getSlitSeperationTop().setVisible(true);
             slit.getSlitSeperationBottom().setVisible(true);
             sldSeperation.setDisable(false);
-
         }
     }
 

@@ -1,8 +1,9 @@
-
 package WavesSimulation.Slits;
 
 import javafx.animation.Animation;
 import javafx.animation.Interpolator;
+import javafx.animation.ParallelTransition;
+import javafx.animation.ScaleTransition;
 import javafx.animation.TranslateTransition;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -12,7 +13,10 @@ import javafx.scene.control.Slider;
 import javafx.scene.effect.BoxBlur;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Arc;
+import javafx.scene.shape.ArcType;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.StrokeType;
 import javafx.util.Duration;
 
 /**
@@ -35,14 +39,31 @@ public class SlitsEngine {
     private Rectangle straightWave2 = new Rectangle(100, 900);
     private Rectangle straightWave3 = new Rectangle(100, 900);
 
+    Arc arc1 = new Arc(400, 300, 40, 40, -90, 180);
+    Arc arc2 = new Arc(400, 300, 40, 40, -90, 180);
+    Arc arc3 = new Arc(400, 300, 40, 40, -90, 180);
+
     private TranslateTransition translateRectangle1 = new TranslateTransition(Duration.seconds(6), straightWave1);
     private TranslateTransition translateRectangle2 = new TranslateTransition(Duration.seconds(6), straightWave2);
     private TranslateTransition translateRectangle3 = new TranslateTransition(Duration.seconds(6), straightWave3);
 
+    private TranslateTransition translateArc = new TranslateTransition(Duration.seconds(6), arc1);
+    private TranslateTransition translateArc2 = new TranslateTransition(Duration.seconds(6), arc2);
+    private TranslateTransition translateArc3 = new TranslateTransition(Duration.seconds(6), arc3);
+
+    private ScaleTransition scaleArc1 = new ScaleTransition(Duration.seconds(6), arc1);
+    private ScaleTransition scaleArc2 = new ScaleTransition(Duration.seconds(6), arc2);
+    private ScaleTransition scaleArc3 = new ScaleTransition(Duration.seconds(6), arc3);
+
+    private ParallelTransition parallelTransition1 = new ParallelTransition(translateArc, scaleArc1);
+    private ParallelTransition parallelTransition2 = new ParallelTransition(translateArc2, scaleArc2);
+    private ParallelTransition parallelTransition3 = new ParallelTransition(translateArc3, scaleArc3);
+
     private int nbSlits;
     private int slitWidth;
-    
-    BoxBlur blurRectangle = new BoxBlur(50, 50, 3);
+
+    private BoxBlur blurRectangle = new BoxBlur(75, 75, 3);
+    private BoxBlur blurArc = new BoxBlur(30, 30, 3);
 
     private SlitsController slitsController;
 
@@ -53,32 +74,34 @@ public class SlitsEngine {
         translateRectangle1.play();
         translateRectangle2.play();
         translateRectangle3.play();
+
+        parallelTransition1.play();
+        parallelTransition2.play();
+        parallelTransition3.play();
     }
 
     public void pauseAnimation() {
         translateRectangle1.pause();
         translateRectangle2.pause();
         translateRectangle3.pause();
+        
+        parallelTransition1.pause();
+        parallelTransition2.pause();
+        parallelTransition3.pause();
     }
 
     public void setUpInput(Pane paneAnimation) {
         straightWave1.setFill(Color.WHITE);
-
         paneAnimation.getChildren().addAll(straightWave1);
-
         straightWave1.setEffect(blurRectangle);
-
         translateRectangle1.setByX(240);
         translateRectangle1.setByX(450);
         translateRectangle1.setInterpolator(Interpolator.LINEAR);
         translateRectangle1.setCycleCount(Animation.INDEFINITE);
 
         straightWave2.setFill(Color.WHITE);
-
         paneAnimation.getChildren().add(straightWave2);
-
         straightWave2.setEffect(blurRectangle);
-
         translateRectangle2.setByX(240);
         translateRectangle2.setByX(450);
         translateRectangle2.setInterpolator(Interpolator.LINEAR);
@@ -86,16 +109,67 @@ public class SlitsEngine {
         translateRectangle2.setDelay(Duration.seconds(2));
 
         straightWave3.setFill(Color.WHITE);
-
         paneAnimation.getChildren().add(straightWave3);
-
         straightWave3.setEffect(blurRectangle);
-
         translateRectangle3.setByX(240);
         translateRectangle3.setByX(450);
         translateRectangle3.setInterpolator(Interpolator.LINEAR);
         translateRectangle3.setCycleCount(Animation.INDEFINITE);
         translateRectangle3.setDelay(Duration.seconds(4));
+    }
+
+    public void setUpArc(Pane paneAnimation) {
+
+        arc1.setLayoutY(150);
+        arc1.setLayoutX(75);
+        arc1.setEffect(blurArc);
+        arc1.setType(ArcType.OPEN);
+        arc1.setStrokeWidth(25);
+        arc1.setStroke(Color.WHITE);
+        arc1.setStrokeType(StrokeType.INSIDE);
+        arc1.setFill(null);
+        paneAnimation.getChildren().add(arc1);
+        translateArc.setByX(450);
+        translateArc.setByX(500);
+        translateArc.setInterpolator(Interpolator.LINEAR);
+        //scale.setToX(15.0);
+        scaleArc1.setToY(15.0);
+        parallelTransition1.setDelay(Duration.seconds(5.5));
+        parallelTransition1.setCycleCount(Animation.INDEFINITE);
+        
+        arc2.setLayoutY(150);
+        arc2.setLayoutX(75);
+        arc2.setEffect(blurArc);
+        arc2.setType(ArcType.OPEN);
+        arc2.setStrokeWidth(25);
+        arc2.setStroke(Color.WHITE);
+        arc2.setStrokeType(StrokeType.INSIDE);
+        arc2.setFill(null);
+        paneAnimation.getChildren().add(arc2);
+        translateArc2.setByX(450);
+        translateArc2.setByX(500);
+        translateArc2.setInterpolator(Interpolator.LINEAR);
+        //scale.setToX(15.0);
+        scaleArc2.setToY(15.0);
+        parallelTransition2.setDelay(Duration.seconds(7.5));
+        parallelTransition2.setCycleCount(Animation.INDEFINITE);
+        
+        arc3.setLayoutY(150);
+        arc3.setLayoutX(75);
+        arc3.setEffect(blurArc);
+        arc3.setType(ArcType.OPEN);
+        arc3.setStrokeWidth(25);
+        arc3.setStroke(Color.WHITE);
+        arc3.setStrokeType(StrokeType.INSIDE);
+        arc3.setFill(null);
+        paneAnimation.getChildren().add(arc3);
+        translateArc3.setByX(450);
+        translateArc3.setByX(500);
+        translateArc3.setInterpolator(Interpolator.LINEAR);
+        //scale.setToX(15.0);
+        scaleArc3.setToY(15.0);
+        parallelTransition3.setDelay(Duration.seconds(9.5));
+        parallelTransition3.setCycleCount(Animation.INDEFINITE);
 
     }
 

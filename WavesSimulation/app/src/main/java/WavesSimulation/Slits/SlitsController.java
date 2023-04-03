@@ -83,6 +83,7 @@ public class SlitsController extends Stage {
         slit.handleSlitWidth(sldWidth, sldSeperation, labelSlitSeperation, labelSlitWidth);
 
         slit.setUpInput(paneAnimation);
+        slit.setUpArc(paneAnimation);
         slit.handleSliderAmplitude(sldAmplitude);
         slit.hadnleSliderFrequency(sldFrequency);
 

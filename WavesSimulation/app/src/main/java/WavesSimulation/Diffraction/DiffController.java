@@ -54,6 +54,8 @@ public class DiffController extends Stage{
     @FXML
     private Label labelEcc; 
     
+    DiffEngine diffEngine = new DiffEngine(); 
+    
     /**
      * This is the initialize method which runs when the DiffractionWindow opens
      */
@@ -118,22 +120,7 @@ public class DiffController extends Stage{
             }
         });
         
-        //The circles on the right
-        Circle rightCircle = new Circle (); 
-        rightCircle.setTranslateX(1240);
-        rightCircle.setTranslateY(230);
-        rightCircle.setFill(Color.WHITE);
-        rightCircle.setRadius(100);
-        
-        Circle arcCircle = new Circle (); 
-        arcCircle.setTranslateX(1240);
-        arcCircle.setTranslateY(230);
-        arcCircle.setRadius(200);
-        arcCircle.setStrokeWidth(50.0);
-        arcCircle.setStroke(Color.WHITE);
-        arcCircle.setFill(Color.BLACK);
-        
-        paneSquare.getChildren().addAll(arcCircle, rightCircle); 
+        diffEngine.addDiffraction(paneAnimation);
     }
     
 }

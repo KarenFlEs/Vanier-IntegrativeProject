@@ -37,7 +37,7 @@ public class DiffractionSim {
         this.diffractionRadius = diffractionRadius;
     }
     
-     private double calculationAngle (int wavelength){
+    protected double calculationAngle (int wavelength){
        //dsin(angle)= m(wavelength)
        double sinOfAngle = (wavelength*getOrderNumber())/DISTANCE_BETWEEN_SLITS; 
        double angle = Math.asin(sinOfAngle); 
@@ -46,7 +46,7 @@ public class DiffractionSim {
        return getDiffractionAngle(); 
    }
     
-    private double calculationDiffractionRadius (){
+    protected double calculationDiffractionRadius (){
        //y=Ltan(angle)
        double height = LENGTH_SLIT*Math.tan(getDiffractionAngle()); 
        setDiffractionRadius(height); 

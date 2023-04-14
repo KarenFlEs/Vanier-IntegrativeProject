@@ -40,9 +40,9 @@ public class SlitsEngine {
     private Rectangle straightWave2 = new Rectangle(100, 900);
     private Rectangle straightWave3 = new Rectangle(100, 900);
 
-    Arc arc1 = new Arc(400, 300, 40, 40, -90, 180);
-    Arc arc2 = new Arc(400, 300, 40, 40, -90, 180);
-    Arc arc3 = new Arc(400, 300, 40, 40, -90, 180);
+    Arc arc1 = new Arc(400, 300, 40, 150, -90, 180);
+    Arc arc2 = new Arc(400, 300, 40, 150, -90, 180);
+    Arc arc3 = new Arc(400, 300, 40, 150, -90, 180);
 
     Arc arc4 = new Arc(400, 300, 40, 40, -90, 180);
     Arc arc5 = new Arc(400, 300, 40, 40, -90, 180);
@@ -155,7 +155,7 @@ public class SlitsEngine {
         translateArc.setByX(500);
         translateArc.setInterpolator(Interpolator.LINEAR);
         //scale.setToX(15.0);
-        scaleArc1.setToY(15.0);
+        scaleArc1.setToY(5.0);
         parallelTransition1.setDelay(Duration.seconds(5.5));
         parallelTransition1.setCycleCount(Animation.INDEFINITE);
 
@@ -172,7 +172,7 @@ public class SlitsEngine {
         translateArc2.setByX(500);
         translateArc2.setInterpolator(Interpolator.LINEAR);
         //scale.setToX(15.0);
-        scaleArc2.setToY(15.0);
+        scaleArc2.setToY(5.0);
         parallelTransition2.setDelay(Duration.seconds(7.5));
         parallelTransition2.setCycleCount(Animation.INDEFINITE);
 
@@ -189,7 +189,7 @@ public class SlitsEngine {
         translateArc3.setByX(500);
         translateArc3.setInterpolator(Interpolator.LINEAR);
         //scale.setToX(15.0);
-        scaleArc3.setToY(15.0);
+        scaleArc3.setToY(5.0);
         parallelTransition3.setDelay(Duration.seconds(9.5));
         parallelTransition3.setCycleCount(Animation.INDEFINITE);
 

@@ -247,9 +247,6 @@ public class SlitsEngine {
             scaleArc6.setToY(15.0);
             parallelTransition6.setDelay(Duration.seconds(9.5));
             parallelTransition6.setCycleCount(Animation.INDEFINITE);
-            arc1.setVisible(false);
-            arc2.setVisible(false);
-            arc3.setVisible(false);
     }
 
     public void handleSliderWidth(Slider sldWidth, Slider sldSeperation, Label labelSlitSeperation, Label labelSlitWidth) {

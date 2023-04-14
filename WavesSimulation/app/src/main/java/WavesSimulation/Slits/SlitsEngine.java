@@ -1,5 +1,6 @@
 package WavesSimulation.Slits;
 
+import java.util.ArrayList;
 import javafx.animation.Animation;
 import javafx.animation.Interpolator;
 import javafx.animation.ParallelTransition;
@@ -43,6 +44,10 @@ public class SlitsEngine {
     Arc arc2 = new Arc(400, 300, 40, 40, -90, 180);
     Arc arc3 = new Arc(400, 300, 40, 40, -90, 180);
 
+    Arc arc4 = new Arc(400, 300, 40, 40, -90, 180);
+    Arc arc5 = new Arc(400, 300, 40, 40, -90, 180);
+    Arc arc6 = new Arc(400, 300, 40, 40, -90, 180);
+
     private TranslateTransition translateRectangle1 = new TranslateTransition(Duration.seconds(6), straightWave1);
     private TranslateTransition translateRectangle2 = new TranslateTransition(Duration.seconds(6), straightWave2);
     private TranslateTransition translateRectangle3 = new TranslateTransition(Duration.seconds(6), straightWave3);
@@ -50,14 +55,25 @@ public class SlitsEngine {
     private TranslateTransition translateArc = new TranslateTransition(Duration.seconds(6), arc1);
     private TranslateTransition translateArc2 = new TranslateTransition(Duration.seconds(6), arc2);
     private TranslateTransition translateArc3 = new TranslateTransition(Duration.seconds(6), arc3);
+    private TranslateTransition translateArc4 = new TranslateTransition(Duration.seconds(6), arc4);
+    private TranslateTransition translateArc5 = new TranslateTransition(Duration.seconds(6), arc5);
+    private TranslateTransition translateArc6 = new TranslateTransition(Duration.seconds(6), arc6);
 
     private ScaleTransition scaleArc1 = new ScaleTransition(Duration.seconds(6), arc1);
     private ScaleTransition scaleArc2 = new ScaleTransition(Duration.seconds(6), arc2);
     private ScaleTransition scaleArc3 = new ScaleTransition(Duration.seconds(6), arc3);
+    private ScaleTransition scaleArc4 = new ScaleTransition(Duration.seconds(6), arc4);
+    private ScaleTransition scaleArc5 = new ScaleTransition(Duration.seconds(6), arc5);
+    private ScaleTransition scaleArc6 = new ScaleTransition(Duration.seconds(6), arc6);
 
     private ParallelTransition parallelTransition1 = new ParallelTransition(translateArc, scaleArc1);
     private ParallelTransition parallelTransition2 = new ParallelTransition(translateArc2, scaleArc2);
     private ParallelTransition parallelTransition3 = new ParallelTransition(translateArc3, scaleArc3);
+    private ParallelTransition parallelTransition4 = new ParallelTransition(translateArc4, scaleArc4);
+    private ParallelTransition parallelTransition5 = new ParallelTransition(translateArc5, scaleArc5);
+    private ParallelTransition parallelTransition6 = new ParallelTransition(translateArc6, scaleArc6);
+
+    private ArrayList<Rectangle> listRectangle = new ArrayList<>();
 
     private int nbSlits;
     private int slitWidth;
@@ -65,7 +81,7 @@ public class SlitsEngine {
     private BoxBlur blurRectangle = new BoxBlur(75, 75, 3);
     private BoxBlur blurArc = new BoxBlur(30, 30, 3);
 
-    private SlitsController slitsController;
+    //private SlitsController slitsController =  new SlitsController();
 
     public SlitsEngine() {
     }
@@ -74,23 +90,30 @@ public class SlitsEngine {
         translateRectangle1.play();
         translateRectangle2.play();
         translateRectangle3.play();
+        
 
         parallelTransition1.play();
         parallelTransition2.play();
         parallelTransition3.play();
+        parallelTransition4.play();
+        parallelTransition5.play();
+        parallelTransition6.play();
     }
 
     public void pauseAnimation() {
         translateRectangle1.pause();
         translateRectangle2.pause();
         translateRectangle3.pause();
-        
+
         parallelTransition1.pause();
         parallelTransition2.pause();
         parallelTransition3.pause();
+        parallelTransition4.pause();
+        parallelTransition5.pause();
+        parallelTransition6.pause();
     }
 
-    public void setUpInput(Pane paneAnimation) {
+    public void setUpRectangle(Pane paneAnimation) {
         straightWave1.setFill(Color.WHITE);
         paneAnimation.getChildren().addAll(straightWave1);
         straightWave1.setEffect(blurRectangle);
@@ -117,7 +140,6 @@ public class SlitsEngine {
         translateRectangle3.setCycleCount(Animation.INDEFINITE);
         translateRectangle3.setDelay(Duration.seconds(4));
     }
-
     public void setUpArc(Pane paneAnimation) {
 
         arc1.setLayoutY(150);
@@ -136,7 +158,7 @@ public class SlitsEngine {
         scaleArc1.setToY(15.0);
         parallelTransition1.setDelay(Duration.seconds(5.5));
         parallelTransition1.setCycleCount(Animation.INDEFINITE);
-        
+
         arc2.setLayoutY(150);
         arc2.setLayoutX(75);
         arc2.setEffect(blurArc);
@@ -153,7 +175,7 @@ public class SlitsEngine {
         scaleArc2.setToY(15.0);
         parallelTransition2.setDelay(Duration.seconds(7.5));
         parallelTransition2.setCycleCount(Animation.INDEFINITE);
-        
+
         arc3.setLayoutY(150);
         arc3.setLayoutX(75);
         arc3.setEffect(blurArc);
@@ -171,9 +193,66 @@ public class SlitsEngine {
         parallelTransition3.setDelay(Duration.seconds(9.5));
         parallelTransition3.setCycleCount(Animation.INDEFINITE);
 
+            arc4.setVisible(false);
+            arc4.setLayoutY(175);
+            arc4.setLayoutX(75);
+            arc4.setEffect(blurArc);
+            arc4.setType(ArcType.OPEN);
+            arc4.setStrokeWidth(25);
+            arc4.setStroke(Color.WHITE);
+            arc4.setStrokeType(StrokeType.INSIDE);
+            arc4.setFill(null);
+            paneAnimation.getChildren().add(arc4);
+            translateArc4.setByX(450);
+            translateArc4.setByX(500);
+            translateArc4.setInterpolator(Interpolator.LINEAR);
+            //scale.setToX(15.0);
+            scaleArc4.setToY(15.0);
+            parallelTransition4.setDelay(Duration.seconds(5.5));
+            parallelTransition4.setCycleCount(Animation.INDEFINITE);
+
+            
+            arc5.setVisible(false);
+            arc5.setLayoutY(175);
+            arc5.setLayoutX(75);
+            arc5.setEffect(blurArc);
+            arc5.setType(ArcType.OPEN);
+            arc5.setStrokeWidth(25);
+            arc5.setStroke(Color.WHITE);
+            arc5.setStrokeType(StrokeType.INSIDE);
+            arc5.setFill(null);
+            paneAnimation.getChildren().add(arc5);
+            translateArc5.setByX(450);
+            translateArc5.setByX(500);
+            translateArc5.setInterpolator(Interpolator.LINEAR);
+            //scale.setToX(15.0);
+            scaleArc5.setToY(15.0);
+            parallelTransition5.setDelay(Duration.seconds(7.5));
+            parallelTransition5.setCycleCount(Animation.INDEFINITE);
+
+            arc6.setVisible(false);
+            arc6.setLayoutY(175);
+            arc6.setLayoutX(75);
+            arc6.setEffect(blurArc);
+            arc6.setType(ArcType.OPEN);
+            arc6.setStrokeWidth(25);
+            arc6.setStroke(Color.WHITE);
+            arc6.setStrokeType(StrokeType.INSIDE);
+            arc6.setFill(null);
+            paneAnimation.getChildren().add(arc6);
+            translateArc6.setByX(450);
+            translateArc6.setByX(500);
+            translateArc6.setInterpolator(Interpolator.LINEAR);
+            //scale.setX(15.0);
+            scaleArc6.setToY(15.0);
+            parallelTransition6.setDelay(Duration.seconds(9.5));
+            parallelTransition6.setCycleCount(Animation.INDEFINITE);
+            arc1.setVisible(false);
+            arc2.setVisible(false);
+            arc3.setVisible(false);
     }
 
-    public void handleSlitWidth(Slider sldWidth, Slider sldSeperation, Label labelSlitSeperation, Label labelSlitWidth) {
+    public void handleSliderWidth(Slider sldWidth, Slider sldSeperation, Label labelSlitSeperation, Label labelSlitWidth) {
         sldWidth.valueProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
@@ -182,10 +261,15 @@ public class SlitsEngine {
                 slitBottomWall.setHeight(slitHeight);
                 slitBottomWall.setLayoutY(900 - slitHeight);
                 labelSlitWidth.setText(Integer.toString(slitHeight) + " cm");
+
+                arc1.setRadiusY(450 - slitHeight);
+                arc2.setRadiusY(450 - slitHeight);
+                arc3.setRadiusY(450 - slitHeight);
             }
-
         });
+    }
 
+    public void handleSliderSeperation(Slider sldWidth, Slider sldSeperation, Label labelSlitSeperation, Label labelSlitWidth) {
         sldSeperation.valueProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
@@ -255,6 +339,12 @@ public class SlitsEngine {
         this.slitWidth = slitWidth;
     }
 
+    /**
+     *
+     * @param amplitude
+     * @param frequency
+     */
+    //TODO:
     public void addWaves(int amplitude, int frequency) {
     }
 

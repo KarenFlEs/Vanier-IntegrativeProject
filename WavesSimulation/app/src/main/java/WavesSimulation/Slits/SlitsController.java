@@ -67,6 +67,7 @@ public class SlitsController extends Stage {
 
     @FXML
     public void initialize() {
+        
         sldWidth.setMin(150);
         sldWidth.setMax(300);
 
@@ -80,9 +81,11 @@ public class SlitsController extends Stage {
         sldFrequency.setMax(100);
 
         slit.startSlit(paneAnimation, btn1Slit, sldSeperation);
-        slit.handleSlitWidth(sldWidth, sldSeperation, labelSlitSeperation, labelSlitWidth);
+        slit.handleSliderWidth(sldWidth, sldSeperation, labelSlitSeperation, labelSlitWidth);
+        slit.handleSliderSeperation(sldWidth, sldSeperation, labelSlitSeperation, labelSlitWidth);
 
-        slit.setUpInput(paneAnimation);
+        slit.setUpRectangle(paneAnimation);
+
         slit.setUpArc(paneAnimation);
         slit.handleSliderAmplitude(sldAmplitude);
         slit.hadnleSliderFrequency(sldFrequency);
@@ -95,8 +98,12 @@ public class SlitsController extends Stage {
         this.owner = owner;
     }
 
+    public SlitsController() {
+    }
+
     @FXML
     public void handle1Slit() {
+        arcDisappearance(slit.arc4, slit.arc5, slit.arc6);
         if (btn2Slit.isSelected()) {
             btn2Slit.setSelected(false);
 
@@ -111,6 +118,7 @@ public class SlitsController extends Stage {
 
     @FXML
     public void handle2Slit() {
+        arcAppearance(slit.arc4, slit.arc5, slit.arc6);
         if (btn1Slit.isSelected()) {
             btn1Slit.setSelected(false);
             btn2Slit.setSelected(true);
@@ -138,6 +146,30 @@ public class SlitsController extends Stage {
             btnPlayAnimation.setText("Play");
             slit.pauseAnimation();
         }
+    }
+
+    public void arcAppearance(Arc arc1, Arc arc2, Arc arc3) {
+
+        arc1.setVisible(true);
+        arc2.setVisible(true);
+        arc3.setVisible(true);
+
+    }
+
+    public void arcDisappearance(Arc arc1, Arc arc2, Arc arc3) {
+
+        arc1.setVisible(false);
+        arc2.setVisible(false);
+        arc3.setVisible(false);
+
+    }
+
+    public CheckBox getBtn2Slit() {
+        return btn2Slit;
+    }
+
+    public void setBtn2Slit(CheckBox btn2Slit) {
+        this.btn2Slit = btn2Slit;
     }
 
 }

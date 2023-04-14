@@ -25,13 +25,15 @@ public class DiffEngine {
         this.ecc = ecc;
     }
     
-    public void addDiffraction(Pane paneAnimation){
+    public void addDiffraction(Pane paneAnimation, int wavelength){
+        
+        Color color = addColor(wavelength); 
         
         //The circles on the right
         Circle rightCircle = new Circle (); 
         rightCircle.setTranslateX(340);
         rightCircle.setTranslateY(300);
-        rightCircle.setFill(Color.WHITE);
+        rightCircle.setFill(color);
         rightCircle.setRadius(100);
         rightCircle.setEffect(new BoxBlur(10, 10, 3));
         
@@ -40,7 +42,7 @@ public class DiffEngine {
         arcCircle1.setTranslateY(300);
         arcCircle1.setRadius(150);
         arcCircle1.setStrokeWidth(50.0);
-        arcCircle1.setStroke(Color.WHITE);
+        arcCircle1.setStroke(color);
         arcCircle1.setFill(Color.BLACK);
         arcCircle1.setOpacity(0.7);
         arcCircle1.setEffect(new BoxBlur(20, 20, 3));
@@ -50,7 +52,7 @@ public class DiffEngine {
         arcCircle2.setTranslateY(300);
         arcCircle2.setRadius(250);
         arcCircle2.setStrokeWidth(50.0);
-        arcCircle2.setStroke(Color.WHITE);
+        arcCircle2.setStroke(color);
         arcCircle2.setFill(Color.BLACK);
         arcCircle2.setOpacity(0.5);
         arcCircle2.setEffect(new BoxBlur(20, 20, 3));
@@ -60,7 +62,7 @@ public class DiffEngine {
         arcCircle3.setTranslateY(300);
         arcCircle3.setRadius(350);
         arcCircle3.setStrokeWidth(50.0);
-        arcCircle3.setStroke(Color.WHITE);
+        arcCircle3.setStroke(color);
         arcCircle3.setFill(Color.BLACK);
         arcCircle3.setOpacity(0.2);
         arcCircle3.setEffect(new BoxBlur(28, 28, 3));
@@ -68,9 +70,38 @@ public class DiffEngine {
         paneAnimation.getChildren().addAll(arcCircle3, arcCircle2, arcCircle1, rightCircle); 
     }
     
-    public void addLaser(int wavelength, Pane paneScreen){
+    public Color addColor(int wavelength){
+        Color color = Color.WHITE; 
+       
+        if (wavelength <= 420){
+            color = Color.PURPLE; 
+        }
+        else if (wavelength <= 465){
+            color = Color.BLUE; 
+        }
+        else if (wavelength <= 510){
+            color = Color.CYAN; 
+        }
+        else if (wavelength <= 565){
+            color = Color.LIME; 
+        }
+        else if (wavelength <= 610){
+            color = Color.YELLOW; 
+        }
+        else if (wavelength <= 660){
+            color = Color.ORANGE; 
+        }
+        else if (wavelength <= 725){
+            color = Color.RED; 
+        }
+        else if (wavelength <= 780){
+            color = Color.DARKRED; 
+        }
+        
+        return color; 
     }
     
+    // TODO: Intergrate the math calculations in the animation
     public void adjustDiameter(int wavelength){
         DiffractionSim diffSim = new DiffractionSim();
         diffSim.calculationAngle(wavelength);
@@ -78,9 +109,10 @@ public class DiffEngine {
         System.out.println(circleRadius);
     }
     
+    // TODO: intergate the eccentricity values in the beginning
     public void adjustEcc(int ecc){
     }
-    
+   
     public boolean isInside(){
         return true; //for now
     }

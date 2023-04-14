@@ -3,9 +3,11 @@ package WavesSimulation.Diffraction;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -55,6 +57,7 @@ public class DiffController extends Stage{
     private Label labelEcc; 
     
     DiffEngine diffEngine = new DiffEngine(); 
+    int wavelength; 
     
     /**
      * This is the initialize method which runs when the DiffractionWindow opens
@@ -115,13 +118,20 @@ public class DiffController extends Stage{
         sliderWave.valueProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                int wavelength = (int) sliderWave.getValue(); 
+                wavelength = (int) sliderWave.getValue(); 
                 labelWave.setText(Integer.toString(wavelength) + " nm");
             }
         });
         
-        diffEngine.addDiffraction(paneAnimation);
+        sliderWave.setOnMouseReleased(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                paneAnimation.getChildren().clear();
+                diffEngine.addDiffraction(paneAnimation, wavelength);
+            }
+        });
+        
     }
-    
 }
+
 

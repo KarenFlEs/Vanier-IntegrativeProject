@@ -248,7 +248,8 @@ public class SlitsEngine {
             parallelTransition6.setDelay(Duration.seconds(9.5));
             parallelTransition6.setCycleCount(Animation.INDEFINITE);
     }
-
+    
+    //TODO: Adjust arcs' radius in accordance to the slits
     public void handleSliderWidth(Slider sldWidth, Slider sldSeperation, Label labelSlitSeperation, Label labelSlitWidth) {
         sldWidth.valueProperty().addListener(new ChangeListener<Number>() {
             @Override

@@ -120,6 +120,7 @@ public class SlitsController extends Stage {
     @FXML
     public void handle2Slit() {
         arcAppearance(slit.arc4, slit.arc5, slit.arc6);
+        
         /*slit.arc1.setLayoutY(100);
         slit.arc1.setRadiusY(50);
         slit.arc2.setRadiusY(50);
@@ -127,6 +128,7 @@ public class SlitsController extends Stage {
         slit.arc2.setLayoutY(100);
         slit.arc3.setLayoutY(100);
         */
+        
         if (btn1Slit.isSelected()) {
             btn1Slit.setSelected(false);
             btn2Slit.setSelected(true);

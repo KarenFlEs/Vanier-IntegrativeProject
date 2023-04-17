@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package WavesSimulation.UI;
 
 import javafx.application.Application;
@@ -26,7 +23,6 @@ public class MainApp extends Application {
         Scene scene = new Scene(root, 800, 600);
         stage.setScene(scene);
         stage.setTitle("Waves Simulation");
-        //stage.setFullScreen(true);
         stage.setMaximized(true);
         stage.show();
         

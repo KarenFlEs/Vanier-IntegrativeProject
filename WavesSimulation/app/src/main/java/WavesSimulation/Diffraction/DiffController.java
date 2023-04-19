@@ -58,6 +58,7 @@ public class DiffController extends Stage{
     
     DiffEngine diffEngine = new DiffEngine(); 
     int wavelength; 
+    double eccentricity; 
     
     /**
      * This is the initialize method which runs when the DiffractionWindow opens
@@ -81,6 +82,8 @@ public class DiffController extends Stage{
                 double circleRadius = (int) sliderDiameter.getValue()/2; 
                 circle.setRadius(circleRadius);
                 labelDiameter.setText(Double.toString(circleRadius/100) + " mm");
+                
+                
             }
         });
         
@@ -89,10 +92,13 @@ public class DiffController extends Stage{
         sliderEcc.valueProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                double eccentricity = 1 - sliderEcc.getValue(); 
+                eccentricity = 1 - sliderEcc.getValue(); 
                 circle.setScaleY(eccentricity);
                 double eccentricityLabel = (double) Math.round((1 - eccentricity)*100)/100; 
                 labelEcc.setText(Double.toString(eccentricityLabel) + " mm");
+                
+                paneAnimation.getChildren().clear();
+                diffEngine.addDiffraction(paneAnimation, wavelength, eccentricity);
             }
         });
         
@@ -127,9 +133,21 @@ public class DiffController extends Stage{
             @Override
             public void handle(MouseEvent event) {
                 paneAnimation.getChildren().clear();
-                diffEngine.addDiffraction(paneAnimation, wavelength);
+                diffEngine.addDiffraction(paneAnimation, wavelength, 1.0);
             }
         });
+        
+        /*
+        sliderEcc.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                paneAnimation.getChildren().clear();
+                diffEngine.addDiffraction(paneAnimation, wavelength, eccentricity);
+            }
+        });
+        */
+        
+        
         
     }
 }

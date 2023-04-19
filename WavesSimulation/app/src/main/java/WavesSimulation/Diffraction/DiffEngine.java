@@ -25,17 +25,19 @@ public class DiffEngine {
         this.ecc = ecc;
     }
     
-    public void addDiffraction(Pane paneAnimation, int wavelength){
+    public void addDiffraction(Pane paneAnimation, int wavelength, double eccentricity){
         
         Color color = addColor(wavelength); 
+        double newRadius = adjustDiameter(wavelength); 
         
         //The circles on the right
         Circle rightCircle = new Circle (); 
         rightCircle.setTranslateX(340);
         rightCircle.setTranslateY(300);
         rightCircle.setFill(color);
-        rightCircle.setRadius(100);
+        rightCircle.setRadius(newRadius*500);
         rightCircle.setEffect(new BoxBlur(10, 10, 3));
+        rightCircle.setScaleX(eccentricity);
         
         Circle arcCircle1 = new Circle (); 
         arcCircle1.setTranslateX(340);
@@ -46,6 +48,7 @@ public class DiffEngine {
         arcCircle1.setFill(Color.BLACK);
         arcCircle1.setOpacity(0.7);
         arcCircle1.setEffect(new BoxBlur(20, 20, 3));
+        arcCircle1.setScaleX(eccentricity);
        
         Circle arcCircle2 = new Circle (); 
         arcCircle2.setTranslateX(340);
@@ -56,6 +59,7 @@ public class DiffEngine {
         arcCircle2.setFill(Color.BLACK);
         arcCircle2.setOpacity(0.5);
         arcCircle2.setEffect(new BoxBlur(20, 20, 3));
+        arcCircle2.setScaleX(eccentricity); 
         
         Circle arcCircle3 = new Circle (); 
         arcCircle3.setTranslateX(340);
@@ -66,6 +70,7 @@ public class DiffEngine {
         arcCircle3.setFill(Color.BLACK);
         arcCircle3.setOpacity(0.2);
         arcCircle3.setEffect(new BoxBlur(28, 28, 3));
+        arcCircle3.setScaleX(eccentricity); 
         
         paneAnimation.getChildren().addAll(arcCircle3, arcCircle2, arcCircle1, rightCircle); 
     }
@@ -102,12 +107,24 @@ public class DiffEngine {
     }
     
     // TODO: Intergrate the math calculations in the animation
-    public void adjustDiameter(int wavelength){
+    public double adjustDiameter(int wavelength){
         DiffractionSim diffSim = new DiffractionSim();
         diffSim.calculationAngle(wavelength);
         double circleRadius = diffSim.calculationDiffractionRadius(); 
-        System.out.println(circleRadius);
+        return circleRadius; 
     }
+    
+    /*
+    public double diffractionRadius(boolean isWavelengthChanged, boolean isDiameterChanged, int wavelength){
+        double diffractionRadius; 
+                
+        if (isWavelengthChanged){
+            diffractionRadius = adjustDiameter(wavelength); 
+        }
+        if (isDiameterChanged)
+                
+    }
+    */
     
     // TODO: intergate the eccentricity values in the beginning
     public void adjustEcc(int ecc){

@@ -25,17 +25,17 @@ public class DiffEngine {
         this.ecc = ecc;
     }
     
-    public void addDiffraction(Pane paneAnimation, int wavelength, double eccentricity){
+    public void addDiffraction(Pane paneAnimation, int wavelength, double eccentricity, double slitDistance){
         
         Color color = addColor(wavelength); 
-        double newRadius = adjustDiameter(wavelength); 
+        double newRadius = adjustDiameter(wavelength, slitDistance); 
         
         //The circles on the right
         Circle rightCircle = new Circle (); 
         rightCircle.setTranslateX(340);
         rightCircle.setTranslateY(300);
         rightCircle.setFill(color);
-        rightCircle.setRadius(newRadius*500);
+        rightCircle.setRadius(newRadius*150);
         rightCircle.setEffect(new BoxBlur(10, 10, 3));
         rightCircle.setScaleX(eccentricity);
         
@@ -107,9 +107,9 @@ public class DiffEngine {
     }
     
     // TODO: Intergrate the math calculations in the animation
-    public double adjustDiameter(int wavelength){
+    public double adjustDiameter(int wavelength, double slitDistance){
         DiffractionSim diffSim = new DiffractionSim();
-        diffSim.calculationAngle(wavelength);
+        diffSim.calculationAngle(wavelength, slitDistance);
         double circleRadius = diffSim.calculationDiffractionRadius(); 
         return circleRadius; 
     }

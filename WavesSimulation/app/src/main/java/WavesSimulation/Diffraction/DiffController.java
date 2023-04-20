@@ -57,8 +57,9 @@ public class DiffController extends Stage{
     private Label labelEcc; 
     
     DiffEngine diffEngine = new DiffEngine(); 
-    int wavelength; 
-    double eccentricity; 
+    int wavelength = 380; 
+    double slitDistance = 20; 
+    double eccentricity = 1.0; 
     
     /**
      * This is the initialize method which runs when the DiffractionWindow opens
@@ -73,6 +74,8 @@ public class DiffController extends Stage{
         circle.setFill(Color.WHITE);
         circle.setRadius(10);
         
+        labelDiameter.setText("0.1 mm");
+        
         sliderDiameter.setMin(20);
         sliderDiameter.setMax(130);
         
@@ -83,9 +86,13 @@ public class DiffController extends Stage{
                 circle.setRadius(circleRadius);
                 labelDiameter.setText(Double.toString(circleRadius/100) + " mm");
                 
-                
+                slitDistance = sliderDiameter.getValue(); 
+                paneAnimation.getChildren().clear();
+                diffEngine.addDiffraction(paneAnimation, wavelength, eccentricity, slitDistance);
             }
         });
+        
+        labelEcc.setText("0.0 mm");
         
         sliderEcc.setMax(0.7);
         
@@ -98,7 +105,7 @@ public class DiffController extends Stage{
                 labelEcc.setText(Double.toString(eccentricityLabel) + " mm");
                 
                 paneAnimation.getChildren().clear();
-                diffEngine.addDiffraction(paneAnimation, wavelength, eccentricity);
+                diffEngine.addDiffraction(paneAnimation, wavelength, eccentricity, slitDistance);
             }
         });
         
@@ -133,7 +140,7 @@ public class DiffController extends Stage{
             @Override
             public void handle(MouseEvent event) {
                 paneAnimation.getChildren().clear();
-                diffEngine.addDiffraction(paneAnimation, wavelength, 1.0);
+                diffEngine.addDiffraction(paneAnimation, wavelength, eccentricity, slitDistance);
             }
         });
         

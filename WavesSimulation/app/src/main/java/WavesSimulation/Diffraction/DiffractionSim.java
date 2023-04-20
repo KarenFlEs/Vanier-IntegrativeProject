@@ -10,7 +10,7 @@ public class DiffractionSim {
     private final int ORDER_NUM = 1; 
     private double diffractionAngle; 
     private double diffractionRadius; 
-    private final double SLIT_DISTANCE = 0.001; 
+    //private final double slitDistance = 0.001; 
     private final double LENGTH_TO_SCREEN = 5.0; 
 
     public double getDiffractionAngle() {
@@ -29,9 +29,9 @@ public class DiffractionSim {
         this.diffractionRadius = diffractionRadius;
     }
     
-    protected double calculationAngle (int wavelength){
+    protected double calculationAngle (int wavelength, double slitDistance){
        //dsin(angle)= m(wavelength)
-       double sinOfAngle = (Math.pow(10, -9)*wavelength*ORDER_NUM)/SLIT_DISTANCE; 
+       double sinOfAngle = (Math.pow(10, -4)*wavelength*ORDER_NUM)/slitDistance; 
        double angle = Math.toDegrees(Math.asin(sinOfAngle)); 
        setDiffractionAngle(angle); 
        

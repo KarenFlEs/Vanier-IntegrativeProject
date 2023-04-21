@@ -141,8 +141,8 @@ public class SlitsController extends Stage {
         slit.getArc3().setLayoutY(slit.getSlitTopWall().getLayoutY());
         slit.getArc3().setRadiusY(slit.getSlitSeperationTop().getLayoutY() - slit.getSlitTopWall().getHeight());
         
-        sldWidth.setMin(425);
-        sldWidth.setMax(450);
+        sldWidth.setMin(350);
+        sldWidth.setMax(425);
         
         slit.handleSliderWidth(sldWidth, sldSeperation, labelSlitSeperation, labelSlitWidth);
         

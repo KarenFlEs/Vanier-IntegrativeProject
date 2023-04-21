@@ -219,24 +219,38 @@ public class SlitsEngine {
 
     //TODO: Adjust arcs' radius in accordance to the slits
     public void handleSliderWidth(Slider sldWidth, Slider sldSeperation, Label labelSlitSeperation, Label labelSlitWidth) {
+        if (sldWidth.getMin() == 0 && sldWidth.getMax() == 100) {
+            sldWidth.setMin(150);
+            sldWidth.setMax(300);
+        }
 
         sldWidth.valueProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                if (sldWidth.getMin() == 0 && sldWidth.getMax() == 100) {
-                    sldWidth.setMin(150);
-                    sldWidth.setMax(300);
+                if (sldWidth.getMin() == 150 && sldWidth.getMax() == 300) {
+                    int slitHeight = (int) sldWidth.getValue();
+                    slitTopWall.setHeight(slitHeight);
+                    slitBottomWall.setHeight(slitHeight);
+                    slitBottomWall.setLayoutY(900 - slitHeight);
+                    labelSlitWidth.setText(Integer.toString(slitHeight) + " cm");
+
+                    arc1.setRadiusY(450 - slitHeight);
+                    arc2.setRadiusY(450 - slitHeight);
+                    arc3.setRadiusY(450 - slitHeight);
+                }else if(sldWidth.getMin() == 350 && sldWidth.getMax() == 425){
+                    int slitHeight = (int) sldWidth.getValue();
+                    slitTopWall.setHeight(slitHeight - 275);
+                    slitBottomWall.setHeight(slitHeight - 275);
+                    slitBottomWall.setLayoutY(900 - slitHeight);
+                    labelSlitWidth.setText(Integer.toString(slitHeight) + " cm");
+
+                    arc1.setRadiusY(450 - slitHeight);
+                    arc1.setLayoutY(slitTopWall.getHeight() - 175);
+                    arc2.setRadiusY(450 - slitHeight);
+                    arc2.setLayoutY(slitTopWall.getHeight() - 175);
+                    arc3.setRadiusY(450 - slitHeight);
+                    arc3.setLayoutY(slitTopWall.getHeight() - 175);
                 }
-                int slitHeight = (int) sldWidth.getValue();
-                slitTopWall.setHeight(slitHeight);
-                slitBottomWall.setHeight(slitHeight);
-                slitBottomWall.setLayoutY(900 - slitHeight);
-                labelSlitWidth.setText(Integer.toString(slitHeight) + " cm");
-
-                arc1.setRadiusY(450 - slitHeight);
-                arc2.setRadiusY(450 - slitHeight);
-                arc3.setRadiusY(450 - slitHeight);
-
             }
         });
     }

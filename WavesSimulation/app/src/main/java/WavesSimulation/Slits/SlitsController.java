@@ -121,7 +121,7 @@ public class SlitsController extends Stage {
             btn2Slit.setSelected(false);
 
             sldWidth.setMin(150);
-            sldWidth.setMax(400);
+            sldWidth.setMax(300);
 
             slit.getSlitSeperationTop().setVisible(false);
             slit.getSlitSeperationBottom().setVisible(false);
@@ -151,8 +151,8 @@ public class SlitsController extends Stage {
             btn1Slit.setSelected(false);
             btn2Slit.setSelected(true);
 
-            sldWidth.setMin(150);
-            sldWidth.setMax(300);
+            //sldWidth.setMin(150);
+            //sldWidth.setMax(300);
 
             slit.getSlitSeperationTop().setVisible(true);
             slit.getSlitSeperationBottom().setVisible(true);

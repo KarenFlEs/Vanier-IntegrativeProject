@@ -1,6 +1,9 @@
 package WavesSimulation.Slits;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import javafx.animation.Animation;
 import javafx.animation.Interpolator;
 import javafx.animation.ParallelTransition;
@@ -40,13 +43,13 @@ public class SlitsEngine {
     private Rectangle straightWave2 = new Rectangle(100, 900);
     private Rectangle straightWave3 = new Rectangle(100, 900);
 
-    Arc arc1 = new Arc(400, 300, 40, 150, -90, 180);
-    Arc arc2 = new Arc(400, 300, 40, 150, -90, 180);
-    Arc arc3 = new Arc(400, 300, 40, 150, -90, 180);
+    private Arc arc1 = new Arc(400, 300, 40, 150, -90, 180);
+    private Arc arc2 = new Arc(400, 300, 40, 150, -90, 180);
+    private Arc arc3 = new Arc(400, 300, 40, 150, -90, 180);
 
-    Arc arc4 = new Arc(400, 300, 40, 40, -90, 180);
-    Arc arc5 = new Arc(400, 300, 40, 40, -90, 180);
-    Arc arc6 = new Arc(400, 300, 40, 40, -90, 180);
+    private Arc arc4 = new Arc(400, 300, 40, 40, -90, 180);
+    private Arc arc5 = new Arc(400, 300, 40, 40, -90, 180);
+    private Arc arc6 = new Arc(400, 300, 40, 40, -90, 180);
 
     private TranslateTransition translateRectangle1 = new TranslateTransition(Duration.seconds(6), straightWave1);
     private TranslateTransition translateRectangle2 = new TranslateTransition(Duration.seconds(6), straightWave2);
@@ -73,7 +76,9 @@ public class SlitsEngine {
     private ParallelTransition parallelTransition5 = new ParallelTransition(translateArc5, scaleArc5);
     private ParallelTransition parallelTransition6 = new ParallelTransition(translateArc6, scaleArc6);
 
-    private ArrayList<Rectangle> listRectangle = new ArrayList<>();
+    private ArrayList<Rectangle> listRectangle = new ArrayList<>(Arrays.asList(straightWave1, straightWave2, straightWave3));
+    private ArrayList<Arc> listArc = new ArrayList<>(Arrays.asList(arc1, arc2, arc3));
+    private ArrayList<Arc> listArc2 = new ArrayList<>(Arrays.asList(arc4, arc5, arc6));
 
     private int nbSlits;
     private int slitWidth;
@@ -81,16 +86,14 @@ public class SlitsEngine {
     private BoxBlur blurRectangle = new BoxBlur(75, 75, 3);
     private BoxBlur blurArc = new BoxBlur(30, 30, 3);
 
-    //private SlitsController slitsController =  new SlitsController();
-
     public SlitsEngine() {
+
     }
 
     public void playAnimation() {
         translateRectangle1.play();
         translateRectangle2.play();
         translateRectangle3.play();
-        
 
         parallelTransition1.play();
         parallelTransition2.play();
@@ -114,43 +117,45 @@ public class SlitsEngine {
     }
 
     public void setUpRectangle(Pane paneAnimation) {
-        straightWave1.setFill(Color.WHITE);
-        paneAnimation.getChildren().addAll(straightWave1);
-        straightWave1.setEffect(blurRectangle);
+
+        for (Rectangle rectangle : listRectangle) {
+            rectangle.setFill(Color.WHITE);
+            paneAnimation.getChildren().add(rectangle);
+            rectangle.setEffect(blurRectangle);
+        }
+
         translateRectangle1.setByX(240);
         translateRectangle1.setByX(450);
         translateRectangle1.setInterpolator(Interpolator.LINEAR);
         translateRectangle1.setCycleCount(Animation.INDEFINITE);
 
-        straightWave2.setFill(Color.WHITE);
-        paneAnimation.getChildren().add(straightWave2);
-        straightWave2.setEffect(blurRectangle);
         translateRectangle2.setByX(240);
         translateRectangle2.setByX(450);
         translateRectangle2.setInterpolator(Interpolator.LINEAR);
         translateRectangle2.setCycleCount(Animation.INDEFINITE);
         translateRectangle2.setDelay(Duration.seconds(2));
 
-        straightWave3.setFill(Color.WHITE);
-        paneAnimation.getChildren().add(straightWave3);
-        straightWave3.setEffect(blurRectangle);
         translateRectangle3.setByX(240);
         translateRectangle3.setByX(450);
         translateRectangle3.setInterpolator(Interpolator.LINEAR);
         translateRectangle3.setCycleCount(Animation.INDEFINITE);
         translateRectangle3.setDelay(Duration.seconds(4));
     }
+
     public void setUpArc(Pane paneAnimation) {
 
-        arc1.setLayoutY(150);
-        arc1.setLayoutX(75);
-        arc1.setEffect(blurArc);
-        arc1.setType(ArcType.OPEN);
-        arc1.setStrokeWidth(25);
-        arc1.setStroke(Color.WHITE);
-        arc1.setStrokeType(StrokeType.INSIDE);
-        arc1.setFill(null);
-        paneAnimation.getChildren().add(arc1);
+        for (Arc arc : listArc) {
+            arc.setLayoutY(150);
+            arc.setLayoutX(75);
+            arc.setEffect(blurArc);
+            arc.setType(ArcType.OPEN);
+            arc.setStrokeWidth(25);
+            arc.setStroke(Color.WHITE);
+            arc.setStrokeType(StrokeType.INSIDE);
+            arc.setFill(null);
+            paneAnimation.getChildren().add(arc);
+        }
+
         translateArc.setByX(450);
         translateArc.setByX(500);
         translateArc.setInterpolator(Interpolator.LINEAR);
@@ -159,15 +164,6 @@ public class SlitsEngine {
         parallelTransition1.setDelay(Duration.seconds(5.5));
         parallelTransition1.setCycleCount(Animation.INDEFINITE);
 
-        arc2.setLayoutY(150);
-        arc2.setLayoutX(75);
-        arc2.setEffect(blurArc);
-        arc2.setType(ArcType.OPEN);
-        arc2.setStrokeWidth(25);
-        arc2.setStroke(Color.WHITE);
-        arc2.setStrokeType(StrokeType.INSIDE);
-        arc2.setFill(null);
-        paneAnimation.getChildren().add(arc2);
         translateArc2.setByX(450);
         translateArc2.setByX(500);
         translateArc2.setInterpolator(Interpolator.LINEAR);
@@ -176,84 +172,61 @@ public class SlitsEngine {
         parallelTransition2.setDelay(Duration.seconds(7.5));
         parallelTransition2.setCycleCount(Animation.INDEFINITE);
 
-        arc3.setLayoutY(150);
-        arc3.setLayoutX(75);
-        arc3.setEffect(blurArc);
-        arc3.setType(ArcType.OPEN);
-        arc3.setStrokeWidth(25);
-        arc3.setStroke(Color.WHITE);
-        arc3.setStrokeType(StrokeType.INSIDE);
-        arc3.setFill(null);
-        paneAnimation.getChildren().add(arc3);
         translateArc3.setByX(450);
         translateArc3.setByX(500);
         translateArc3.setInterpolator(Interpolator.LINEAR);
-        //scale.setToX(15.0);
         scaleArc3.setToY(5.0);
         parallelTransition3.setDelay(Duration.seconds(9.5));
         parallelTransition3.setCycleCount(Animation.INDEFINITE);
 
-            arc4.setVisible(false);
-            arc4.setLayoutY(175);
-            arc4.setLayoutX(75);
-            arc4.setEffect(blurArc);
-            arc4.setType(ArcType.OPEN);
-            arc4.setStrokeWidth(25);
-            arc4.setStroke(Color.WHITE);
-            arc4.setStrokeType(StrokeType.INSIDE);
-            arc4.setFill(null);
-            paneAnimation.getChildren().add(arc4);
-            translateArc4.setByX(450);
-            translateArc4.setByX(500);
-            translateArc4.setInterpolator(Interpolator.LINEAR);
-            //scale.setToX(15.0);
-            scaleArc4.setToY(15.0);
-            parallelTransition4.setDelay(Duration.seconds(5.5));
-            parallelTransition4.setCycleCount(Animation.INDEFINITE);
+        for (Arc arc : listArc2) {
+            arc.setVisible(false);
+            arc.setLayoutY(175);
+            arc.setLayoutX(75);
+            arc.setEffect(blurArc);
+            arc.setType(ArcType.OPEN);
+            arc.setStrokeWidth(25);
+            arc.setStroke(Color.WHITE);
+            arc.setStrokeType(StrokeType.INSIDE);
+            arc.setFill(null);
+            paneAnimation.getChildren().add(arc);
+        }
 
-            
-            arc5.setVisible(false);
-            arc5.setLayoutY(175);
-            arc5.setLayoutX(75);
-            arc5.setEffect(blurArc);
-            arc5.setType(ArcType.OPEN);
-            arc5.setStrokeWidth(25);
-            arc5.setStroke(Color.WHITE);
-            arc5.setStrokeType(StrokeType.INSIDE);
-            arc5.setFill(null);
-            paneAnimation.getChildren().add(arc5);
-            translateArc5.setByX(450);
-            translateArc5.setByX(500);
-            translateArc5.setInterpolator(Interpolator.LINEAR);
-            //scale.setToX(15.0);
-            scaleArc5.setToY(15.0);
-            parallelTransition5.setDelay(Duration.seconds(7.5));
-            parallelTransition5.setCycleCount(Animation.INDEFINITE);
+        translateArc4.setByX(450);
+        translateArc4.setByX(500);
+        translateArc4.setInterpolator(Interpolator.LINEAR);
+        //scale.setToX(15.0);
+        scaleArc4.setToY(15.0);
+        parallelTransition4.setDelay(Duration.seconds(5.5));
+        parallelTransition4.setCycleCount(Animation.INDEFINITE);
 
-            arc6.setVisible(false);
-            arc6.setLayoutY(175);
-            arc6.setLayoutX(75);
-            arc6.setEffect(blurArc);
-            arc6.setType(ArcType.OPEN);
-            arc6.setStrokeWidth(25);
-            arc6.setStroke(Color.WHITE);
-            arc6.setStrokeType(StrokeType.INSIDE);
-            arc6.setFill(null);
-            paneAnimation.getChildren().add(arc6);
-            translateArc6.setByX(450);
-            translateArc6.setByX(500);
-            translateArc6.setInterpolator(Interpolator.LINEAR);
-            //scale.setX(15.0);
-            scaleArc6.setToY(15.0);
-            parallelTransition6.setDelay(Duration.seconds(9.5));
-            parallelTransition6.setCycleCount(Animation.INDEFINITE);
+        translateArc5.setByX(450);
+        translateArc5.setByX(500);
+        translateArc5.setInterpolator(Interpolator.LINEAR);
+        //scale.setToX(15.0);
+        scaleArc5.setToY(15.0);
+        parallelTransition5.setDelay(Duration.seconds(7.5));
+        parallelTransition5.setCycleCount(Animation.INDEFINITE);
+
+        translateArc6.setByX(450);
+        translateArc6.setByX(500);
+        translateArc6.setInterpolator(Interpolator.LINEAR);
+        //scale.setX(15.0);
+        scaleArc6.setToY(15.0);
+        parallelTransition6.setDelay(Duration.seconds(9.5));
+        parallelTransition6.setCycleCount(Animation.INDEFINITE);
     }
-    
+
     //TODO: Adjust arcs' radius in accordance to the slits
     public void handleSliderWidth(Slider sldWidth, Slider sldSeperation, Label labelSlitSeperation, Label labelSlitWidth) {
+
         sldWidth.valueProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                if (sldWidth.getMin() == 0 && sldWidth.getMax() == 100) {
+                    sldWidth.setMin(150);
+                    sldWidth.setMax(300);
+                }
                 int slitHeight = (int) sldWidth.getValue();
                 slitTopWall.setHeight(slitHeight);
                 slitBottomWall.setHeight(slitHeight);
@@ -263,6 +236,7 @@ public class SlitsEngine {
                 arc1.setRadiusY(450 - slitHeight);
                 arc2.setRadiusY(450 - slitHeight);
                 arc3.setRadiusY(450 - slitHeight);
+
             }
         });
     }
@@ -327,65 +301,6 @@ public class SlitsEngine {
 
         btn.setSelected(true);
         sldSeperation.setDisable(true);
-    }
-
-    public SlitsEngine(int frequency, int amplitude, int slitSep, int nbSlits, int slitWidth) {
-        this.frequency = frequency;
-        this.amplitude = amplitude;
-        this.slitSep = slitSep;
-        this.nbSlits = nbSlits;
-        this.slitWidth = slitWidth;
-    }
-
-    /**
-     *
-     * @param amplitude
-     * @param frequency
-     */
-    //TODO:
-    public void addWaves(int amplitude, int frequency) {
-    }
-
-    public void addSlit(int slitSep, int nbSlits, int slitWid) {
-    }
-
-    public void motion() {
-    }
-
-    public boolean isInside() {
-        return true;
-    }
-
-    public int getFrequency() {
-        return this.frequency;
-    }
-
-    public void setFrequency(int frequency) {
-        this.frequency = frequency;
-    }
-
-    public int getAmplitude() {
-        return this.amplitude;
-    }
-
-    public void setAmplitude(int amplitude) {
-        this.amplitude = amplitude;
-    }
-
-    public int getSlitSep() {
-        return this.slitSep;
-    }
-
-    public void setSlitSep(int slitSep) {
-        this.slitSep = slitSep;
-    }
-
-    public int getNbSlits() {
-        return this.nbSlits;
-    }
-
-    public void setNbSlits(int nbSlits) {
-        this.nbSlits = nbSlits;
     }
 
     public int getSlitWidth() {
@@ -460,7 +375,52 @@ public class SlitsEngine {
         this.straightWave3 = straightWave3;
     }
 
+    public Arc getArc1() {
+        return arc1;
+    }
+
+    public void setArc1(Arc arc1) {
+        this.arc1 = arc1;
+    }
+
+    public Arc getArc2() {
+        return arc2;
+    }
+
+    public void setArc2(Arc arc2) {
+        this.arc2 = arc2;
+    }
+
+    public Arc getArc3() {
+        return arc3;
+    }
+
+    public void setArc3(Arc arc3) {
+        this.arc3 = arc3;
+    }
+
+    public Arc getArc4() {
+        return arc4;
+    }
+
+    public void setArc4(Arc arc4) {
+        this.arc4 = arc4;
+    }
+
+    public Arc getArc5() {
+        return arc5;
+    }
+
+    public void setArc5(Arc arc5) {
+        this.arc5 = arc5;
+    }
+
+    public Arc getArc6() {
+        return arc6;
+    }
+
+    public void setArc6(Arc arc6) {
+        this.arc6 = arc6;
+    }
+
 }
-
-
-

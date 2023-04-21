@@ -12,6 +12,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Arc;
 import javafx.scene.shape.ArcType;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.StrokeType;
 import javafx.util.Duration;
 
@@ -33,15 +34,15 @@ public class InterEngine {
     private Arc bottomArc = new Arc(400,300,240,240, -90, 180);
     
     
-    private ScaleTransition scaleTopCirc = new ScaleTransition(Duration.seconds(4), topCirc);
-    private ScaleTransition scaleBottomCirc = new ScaleTransition(Duration.seconds(4), bottomCirc);
+    private ScaleTransition scaleTopCirc = new ScaleTransition(Duration.seconds(5), topCirc);
+    private ScaleTransition scaleBottomCirc = new ScaleTransition(Duration.seconds(5), bottomCirc);
     
     
-    private TranslateTransition translateTopArc = new TranslateTransition(Duration.seconds(4), topArc);
-    private TranslateTransition translateBottomArc = new TranslateTransition(Duration.seconds(4), bottomArc);
+    private TranslateTransition translateTopArc = new TranslateTransition(Duration.seconds(5), topArc);
+    private TranslateTransition translateBottomArc = new TranslateTransition(Duration.seconds(5), bottomArc);
     
-    private ScaleTransition scaleTopArc = new ScaleTransition(Duration.seconds(4), topArc);
-    private ScaleTransition scaleBottomArc = new ScaleTransition(Duration.seconds(4), bottomArc);
+    private ScaleTransition scaleTopArc = new ScaleTransition(Duration.seconds(5), topArc);
+    private ScaleTransition scaleBottomArc = new ScaleTransition(Duration.seconds(5), bottomArc);
     
     
     private ParallelTransition parallelTransitionTop = new ParallelTransition(translateTopArc, scaleTopArc);
@@ -54,15 +55,18 @@ public class InterEngine {
     
     public void playTopAnimation(){
         topCirc.fillProperty().set(null);
-        scaleTopCirc.play();
+        scaleTopCirc.play();   
+        topArc.setVisible(true);
         parallelTransitionTop.play();
-          
+        parallelTransitionTop.setDelay(scaleTopCirc.getCycleDuration());
     }
     
      public void playBottomAnimation(){
         bottomCirc.fillProperty().set(null);
         scaleBottomCirc.play();
+        bottomArc.setVisible(true);
         parallelTransitionBottom.play();
+        parallelTransitionBottom.setDelay(scaleBottomCirc.getCycleDuration());
     }
     
     public void setAnimation(Pane animationPane){
@@ -71,7 +75,6 @@ public class InterEngine {
         topCirc.setStroke(Color.BLUE);
         topCirc.setLayoutX(40);
         topCirc.setLayoutY(270);
-        
       //  topCirc.setEffect(blurCircle);
         animationPane.getChildren().addAll(topCirc);
       
@@ -92,12 +95,15 @@ public class InterEngine {
         scaleBottomCirc.setByY(8f);
         scaleBottomCirc.setCycleCount(Animation.INDEFINITE);
         
+    }
+    public void setAnimationArc(Pane animationPane){
         topArc.setLayoutX(-320);
         topArc.setLayoutY(-40);
         topArc.setStrokeWidth(15);
         topArc.setStroke(Color.BLUE);
         topArc.fillProperty().set(null);
         topArc.setEffect(blurArc);
+        topArc.setVisible(false);
         animationPane.getChildren().add(topArc);
         
         bottomArc.setLayoutX(-320);
@@ -106,24 +112,24 @@ public class InterEngine {
         bottomArc.setStroke(Color.BLUE);
         bottomArc.fillProperty().set(null);
         bottomArc.setEffect(blurArc);
+        bottomArc.setVisible(false);
         animationPane.getChildren().add(bottomArc);
         
-        scaleTopArc.setByX(5f);
-        scaleTopArc.setByY(5f);
+        scaleTopArc.setByX(2f);
+        scaleTopArc.setByY(2f);
         translateTopArc.setByX(400);
         translateTopArc.setInterpolator(Interpolator.LINEAR);
-        parallelTransitionTop.setDelay(Duration.seconds(4));
+        parallelTransitionTop.setDelay(Duration.seconds(5));
         parallelTransitionTop.setCycleCount(Animation.INDEFINITE);
         
-        scaleBottomArc.setByX(5f);
-        scaleBottomArc.setByY(5f);
+        scaleBottomArc.setByX(2f);
+        scaleBottomArc.setByY(2f);
         translateBottomArc.setByX(400);
         translateBottomArc.setInterpolator(Interpolator.LINEAR);
-        parallelTransitionBottom.setDelay(Duration.seconds(4));
+        parallelTransitionBottom.setDelay(Duration.seconds(5));
         parallelTransitionBottom.setCycleCount(Animation.INDEFINITE);
-        
     }
-    
+            
     public InterEngine() {
     }
 
@@ -186,5 +192,22 @@ public class InterEngine {
         this.bottomCirc = bottomCirc;
     }
 
+    public Arc getTopArc() {
+        return topArc;
+    }
+
+    public void setTopArc(Arc topArc) {
+        this.topArc = topArc;
+    }
+
+    public Arc getBottomArc() {
+        return bottomArc;
+    }
+
+    public void setBottomArc(Arc bottomArc) {
+        this.bottomArc = bottomArc;
+    }
+    
+    
 }
 

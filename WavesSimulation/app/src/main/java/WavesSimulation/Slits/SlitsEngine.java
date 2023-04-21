@@ -2,8 +2,6 @@ package WavesSimulation.Slits;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
 import javafx.animation.Animation;
 import javafx.animation.Interpolator;
 import javafx.animation.ParallelTransition;
@@ -28,11 +26,6 @@ import javafx.util.Duration;
  * @author StevenDy
  */
 public class SlitsEngine {
-
-    private int frequency;
-    private int amplitude;
-    private int slitSep;
-
     private Rectangle slitTopWall;
     private Rectangle slitBottomWall;
 
@@ -196,7 +189,7 @@ public class SlitsEngine {
         translateArc4.setByX(500);
         translateArc4.setInterpolator(Interpolator.LINEAR);
         //scale.setToX(15.0);
-        scaleArc4.setToY(15.0);
+        scaleArc4.setToY(5.0);
         parallelTransition4.setDelay(Duration.seconds(5.5));
         parallelTransition4.setCycleCount(Animation.INDEFINITE);
 
@@ -204,7 +197,7 @@ public class SlitsEngine {
         translateArc5.setByX(500);
         translateArc5.setInterpolator(Interpolator.LINEAR);
         //scale.setToX(15.0);
-        scaleArc5.setToY(15.0);
+        scaleArc5.setToY(5.0);
         parallelTransition5.setDelay(Duration.seconds(7.5));
         parallelTransition5.setCycleCount(Animation.INDEFINITE);
 
@@ -212,7 +205,7 @@ public class SlitsEngine {
         translateArc6.setByX(500);
         translateArc6.setInterpolator(Interpolator.LINEAR);
         //scale.setX(15.0);
-        scaleArc6.setToY(15.0);
+        scaleArc6.setToY(5.0);
         parallelTransition6.setDelay(Duration.seconds(9.5));
         parallelTransition6.setCycleCount(Animation.INDEFINITE);
     }
@@ -223,33 +216,42 @@ public class SlitsEngine {
             sldWidth.setMin(150);
             sldWidth.setMax(300);
         }
-
         sldWidth.valueProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
                 if (sldWidth.getMin() == 150 && sldWidth.getMax() == 300) {
+
                     int slitHeight = (int) sldWidth.getValue();
+
                     slitTopWall.setHeight(slitHeight);
                     slitBottomWall.setHeight(slitHeight);
                     slitBottomWall.setLayoutY(900 - slitHeight);
+
                     labelSlitWidth.setText(Integer.toString(slitHeight) + " cm");
 
                     arc1.setRadiusY(450 - slitHeight);
                     arc2.setRadiusY(450 - slitHeight);
                     arc3.setRadiusY(450 - slitHeight);
-                }else if(sldWidth.getMin() == 350 && sldWidth.getMax() == 425){
+                } else if (sldWidth.getMin() == 350 && sldWidth.getMax() == 425) {
                     int slitHeight = (int) sldWidth.getValue();
                     slitTopWall.setHeight(slitHeight - 275);
                     slitBottomWall.setHeight(slitHeight - 275);
-                    slitBottomWall.setLayoutY(900 - slitHeight);
-                    labelSlitWidth.setText(Integer.toString(slitHeight) + " cm");
+                    slitBottomWall.setLayoutY(1175 - slitHeight);
 
-                    arc1.setRadiusY(450 - slitHeight);
-                    arc1.setLayoutY(slitTopWall.getHeight() - 175);
-                    arc2.setRadiusY(450 - slitHeight);
-                    arc2.setLayoutY(slitTopWall.getHeight() - 175);
-                    arc3.setRadiusY(450 - slitHeight);
-                    arc3.setLayoutY(slitTopWall.getHeight() - 175);
+                    labelSlitWidth.setText(Integer.toString(slitHeight - 200) + " cm");
+
+                    slitHeight = slitHeight - 50;
+
+                    for (Arc arc : listArc) {
+                        arc.setRadiusY(450 - slitHeight);
+                        arc.setLayoutY(slitTopWall.getHeight() - 200);
+                    }
+                    for (Arc arc : listArc2) {
+                        arc.setRadiusY(450 - slitHeight);
+                        System.out.println(slitSeperationBottom.getLayoutY());
+                        arc.setLayoutY(slitBottomWall.getLayoutY() - 400);
+                    }
+
                 }
             }
         });
@@ -264,6 +266,16 @@ public class SlitsEngine {
                 slitSeperationTop.setLayoutY(425 - seperationHeight);
                 slitSeperationBottom.setHeight(seperationHeight + 50);
                 labelSlitSeperation.setText(Integer.toString(seperationHeight) + " cm");
+
+                for (Arc arc : listArc) {
+                    arc.setRadiusY(550 - (int) sldWidth.getValue() - seperationHeight);
+                    arc.setLayoutY(slitSeperationTop.getLayoutY() - 450);
+                }
+
+                for (Arc arc : listArc2) {
+                    arc.setRadiusY(550 - (int) sldWidth.getValue() - seperationHeight);
+                    arc.setLayoutY(800 - slitSeperationBottom.getLayoutY());
+                }
             }
         });
     }
@@ -275,20 +287,26 @@ public class SlitsEngine {
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
                 int AmplitudeValue = (int) slitAmplitude.getValue();
                 blurRectangle.setIterations(AmplitudeValue / 15);
+                blurArc.setIterations(AmplitudeValue / 15);
             }
         });
     }
 
     public void hadnleSliderFrequency(Slider slitFrequency) {
-
         slitFrequency.valueProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
                 int frequencyValue = (int) slitFrequency.getValue();
 
-                straightWave1.setWidth(frequencyValue);
-                straightWave2.setWidth(frequencyValue);
-                straightWave3.setWidth(frequencyValue);
+                for (Rectangle rectangle : listRectangle) {
+                    rectangle.setWidth(frequencyValue);
+                }
+                for (Arc arc : listArc) {
+                    arc.setRadiusX(frequencyValue);
+                }
+                for (Arc arc : listArc2) {
+                    arc.setRadiusX(frequencyValue);
+                }
             }
         });
     }

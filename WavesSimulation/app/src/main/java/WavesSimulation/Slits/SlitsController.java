@@ -70,7 +70,6 @@ public class SlitsController extends Stage {
 
         //sldWidth.setMin(150);
         //sldWidth.setMax(300);
-
         sldSeperation.setMin(10);
         sldSeperation.setMax(100);
 

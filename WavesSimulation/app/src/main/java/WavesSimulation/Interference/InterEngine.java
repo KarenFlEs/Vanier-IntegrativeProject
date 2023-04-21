@@ -3,11 +3,16 @@ package WavesSimulation.Interference;
 
 import javafx.animation.Animation;
 import javafx.animation.Interpolator;
+import javafx.animation.ParallelTransition;
 import javafx.animation.ScaleTransition;
 import javafx.animation.TranslateTransition;
+import javafx.scene.effect.BoxBlur;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Arc;
+import javafx.scene.shape.ArcType;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.StrokeType;
 import javafx.util.Duration;
 
 /**
@@ -22,51 +27,101 @@ public class InterEngine {
     
     private Circle topCirc = new Circle(30);
     private Circle bottomCirc = new Circle(30);
+   
     
-    private TranslateTransition translateTopCirc = new TranslateTransition(Duration.seconds(4), topCirc);
-    private TranslateTransition translateBottomCirc = new TranslateTransition(Duration.seconds(4), bottomCirc);
+    private Arc topArc = new Arc(400,300,240,240,-90,180);
+    private Arc bottomArc = new Arc(400,300,240,240, -90, 180);
+    
     
     private ScaleTransition scaleTopCirc = new ScaleTransition(Duration.seconds(4), topCirc);
     private ScaleTransition scaleBottomCirc = new ScaleTransition(Duration.seconds(4), bottomCirc);
     
+    
+    private TranslateTransition translateTopArc = new TranslateTransition(Duration.seconds(4), topArc);
+    private TranslateTransition translateBottomArc = new TranslateTransition(Duration.seconds(4), bottomArc);
+    
+    private ScaleTransition scaleTopArc = new ScaleTransition(Duration.seconds(4), topArc);
+    private ScaleTransition scaleBottomArc = new ScaleTransition(Duration.seconds(4), bottomArc);
+    
+    
+    private ParallelTransition parallelTransitionTop = new ParallelTransition(translateTopArc, scaleTopArc);
+    private ParallelTransition parallelTransitionBottom = new ParallelTransition(translateBottomArc, scaleBottomArc);
+    
+    private BoxBlur blurCircle = new BoxBlur(10, 10, 1);
+    private BoxBlur blurArc = new BoxBlur(10, 10, 1);
+    
     private InterController interController; 
     
     public void playTopAnimation(){
-        translateTopCirc.play();
+        topCirc.fillProperty().set(null);
         scaleTopCirc.play();
+        parallelTransitionTop.play();
+          
     }
     
      public void playBottomAnimation(){
-        translateBottomCirc.play(); 
+        bottomCirc.fillProperty().set(null);
         scaleBottomCirc.play();
+        parallelTransitionBottom.play();
     }
     
     public void setAnimation(Pane animationPane){
         topCirc.setFill(Color.BLUE);
+        topCirc.setStrokeWidth(5);
+        topCirc.setStroke(Color.BLUE);
+        topCirc.setLayoutX(40);
         topCirc.setLayoutY(270);
-        topCirc.setLayoutX(30);
+        
+      //  topCirc.setEffect(blurCircle);
         animationPane.getChildren().addAll(topCirc);
-        
-        translateTopCirc.setByX(800);
-        translateTopCirc.setInterpolator(Interpolator.LINEAR);
-        translateTopCirc.setCycleCount(Animation.INDEFINITE);
-        
-        scaleTopCirc.setByX(6f);
-        scaleTopCirc.setByY(6f);
+      
+        scaleTopCirc.setByX(8f);
+        scaleTopCirc.setByY(8f);
         scaleTopCirc.setCycleCount(Animation.INDEFINITE);
         
         bottomCirc.setFill(Color.BLUE);
+        bottomCirc.setStrokeWidth(5);
+        bottomCirc.setStroke(Color.BLUE);
+        bottomCirc.setLayoutX(40);
         bottomCirc.setLayoutY(490);
-        bottomCirc.setLayoutX(30);
+        
+      //  bottomCirc.setEffect(blurCircle);
         animationPane.getChildren().addAll(bottomCirc);
-        
-        translateBottomCirc.setByX(800);
-        translateBottomCirc.setInterpolator(Interpolator.LINEAR);
-        translateBottomCirc.setCycleCount(Animation.INDEFINITE);
-        
-        scaleBottomCirc.setByX(6f);
-        scaleBottomCirc.setByY(6f);
+       
+        scaleBottomCirc.setByX(8f);
+        scaleBottomCirc.setByY(8f);
         scaleBottomCirc.setCycleCount(Animation.INDEFINITE);
+        
+        topArc.setLayoutX(-320);
+        topArc.setLayoutY(-40);
+        topArc.setStrokeWidth(15);
+        topArc.setStroke(Color.BLUE);
+        topArc.fillProperty().set(null);
+        topArc.setEffect(blurArc);
+        animationPane.getChildren().add(topArc);
+        
+        bottomArc.setLayoutX(-320);
+        bottomArc.setLayoutY(200);
+        bottomArc.setStrokeWidth(15);
+        bottomArc.setStroke(Color.BLUE);
+        bottomArc.fillProperty().set(null);
+        bottomArc.setEffect(blurArc);
+        animationPane.getChildren().add(bottomArc);
+        
+        scaleTopArc.setByX(5f);
+        scaleTopArc.setByY(5f);
+        translateTopArc.setByX(400);
+        translateTopArc.setInterpolator(Interpolator.LINEAR);
+        parallelTransitionTop.setDelay(Duration.seconds(4));
+        parallelTransitionTop.setCycleCount(Animation.INDEFINITE);
+        
+        scaleBottomArc.setByX(5f);
+        scaleBottomArc.setByY(5f);
+        translateBottomArc.setByX(400);
+        translateBottomArc.setInterpolator(Interpolator.LINEAR);
+        parallelTransitionBottom.setDelay(Duration.seconds(4));
+        parallelTransitionBottom.setCycleCount(Animation.INDEFINITE);
+        
     }
     
     public InterEngine() {
@@ -131,21 +186,5 @@ public class InterEngine {
         this.bottomCirc = bottomCirc;
     }
 
-    public TranslateTransition getTranslateTopCirc() {
-        return translateTopCirc;
-    }
-
-    public void setTranslateTopCirc(TranslateTransition translateTopCirc) {
-        this.translateTopCirc = translateTopCirc;
-    }
-
-    public TranslateTransition getTranslateBottomCirc() {
-        return translateBottomCirc;
-    }
-
-    public void setTranslateBottomCirc(TranslateTransition translateBottomCirc) {
-        this.translateBottomCirc = translateBottomCirc;
-    }
-    
 }
 

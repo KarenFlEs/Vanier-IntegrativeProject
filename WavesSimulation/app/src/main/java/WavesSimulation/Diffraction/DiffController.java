@@ -57,7 +57,9 @@ public class DiffController extends Stage{
     private Label labelEcc; 
     
     DiffEngine diffEngine = new DiffEngine(); 
-    int wavelength; 
+    int wavelength = 380; 
+    double slitDistance = 20; 
+    double eccentricity = 1.0; 
     
     /**
      * This is the initialize method which runs when the DiffractionWindow opens
@@ -72,6 +74,8 @@ public class DiffController extends Stage{
         circle.setFill(Color.WHITE);
         circle.setRadius(10);
         
+        labelDiameter.setText("0.1 mm");
+        
         sliderDiameter.setMin(20);
         sliderDiameter.setMax(130);
         
@@ -81,18 +85,27 @@ public class DiffController extends Stage{
                 double circleRadius = (int) sliderDiameter.getValue()/2; 
                 circle.setRadius(circleRadius);
                 labelDiameter.setText(Double.toString(circleRadius/100) + " mm");
+                
+                slitDistance = sliderDiameter.getValue(); 
+                paneAnimation.getChildren().clear();
+                diffEngine.addDiffraction(paneAnimation, wavelength, eccentricity, slitDistance);
             }
         });
+        
+        labelEcc.setText("0.0 mm");
         
         sliderEcc.setMax(0.7);
         
         sliderEcc.valueProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                double eccentricity = 1 - sliderEcc.getValue(); 
+                eccentricity = 1 - sliderEcc.getValue(); 
                 circle.setScaleY(eccentricity);
                 double eccentricityLabel = (double) Math.round((1 - eccentricity)*100)/100; 
                 labelEcc.setText(Double.toString(eccentricityLabel) + " mm");
+                
+                paneAnimation.getChildren().clear();
+                diffEngine.addDiffraction(paneAnimation, wavelength, eccentricity, slitDistance);
             }
         });
         
@@ -120,16 +133,32 @@ public class DiffController extends Stage{
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
                 wavelength = (int) sliderWave.getValue(); 
                 labelWave.setText(Integer.toString(wavelength) + " nm");
+                
+                paneAnimation.getChildren().clear();
+                diffEngine.addDiffraction(paneAnimation, wavelength, eccentricity, slitDistance);
             }
         });
         
+        /*
         sliderWave.setOnMouseReleased(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 paneAnimation.getChildren().clear();
-                diffEngine.addDiffraction(paneAnimation, wavelength);
+                diffEngine.addDiffraction(paneAnimation, wavelength, eccentricity, slitDistance);
             }
         });
+        
+        
+        sliderEcc.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                paneAnimation.getChildren().clear();
+                diffEngine.addDiffraction(paneAnimation, wavelength, eccentricity);
+            }
+        });
+        */
+        
+        
         
     }
 }

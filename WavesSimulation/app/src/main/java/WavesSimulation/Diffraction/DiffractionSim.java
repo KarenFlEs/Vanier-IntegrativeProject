@@ -7,19 +7,11 @@ package WavesSimulation.Diffraction;
  */
 public class DiffractionSim {
     
-    private int orderNumber; 
+   // private final int ORDER_NUM = 1; 
     private double diffractionAngle; 
     private double diffractionRadius; 
-    private final double DISTANCE_BETWEEN_SLITS = 0.1; 
-    private final double LENGTH_SLIT = 0.1; 
-
-    public int getOrderNumber() {
-        return orderNumber;
-    }
-
-    public void setOrderNumber(int orderNumber) {
-        this.orderNumber = orderNumber;
-    }
+    //private final double slitDistance = 0.001; 
+    private final double LENGTH_TO_SCREEN = 5.0; 
 
     public double getDiffractionAngle() {
         return diffractionAngle;
@@ -37,18 +29,18 @@ public class DiffractionSim {
         this.diffractionRadius = diffractionRadius;
     }
     
-    protected double calculationAngle (int wavelength){
+    protected double calculationAngle (int wavelength, double slitDistance, int orderNum){
        //dsin(angle)= m(wavelength)
-       double sinOfAngle = (wavelength*getOrderNumber())/DISTANCE_BETWEEN_SLITS; 
-       double angle = Math.asin(sinOfAngle); 
+       double sinOfAngle = (Math.pow(10, -4)*wavelength*orderNum)/slitDistance; 
+       double angle = Math.toDegrees(Math.asin(sinOfAngle)); 
        setDiffractionAngle(angle); 
-               
+       
        return getDiffractionAngle(); 
    }
     
     protected double calculationDiffractionRadius (){
        //y=Ltan(angle)
-       double height = LENGTH_SLIT*Math.tan(getDiffractionAngle()); 
+       double height = LENGTH_TO_SCREEN*Math.tan(getDiffractionAngle()); 
        setDiffractionRadius(height); 
        
        return getDiffractionRadius(); 

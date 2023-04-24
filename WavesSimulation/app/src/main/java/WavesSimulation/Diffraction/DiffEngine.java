@@ -12,60 +12,67 @@ import javafx.scene.shape.Circle;
  */
 public class DiffEngine {
     
-    private int wavelength;
-    private int diameter;
-    private int ecc;
+    private final int POSITION_X = 340;
+    private final int POSITION_Y = 300;
+    
+    BoxBlur circleBoxBlur = new BoxBlur(10, 10, 3);
+    BoxBlur arc1BoxBlur = new BoxBlur(20, 20, 3);
+    BoxBlur arc2BoxBlur = new BoxBlur(25, 25, 3);
+    BoxBlur arc3BoxBlur = new BoxBlur(28, 28, 3);
 
     public DiffEngine() {
     }
-
-    public DiffEngine(int wavelength, int diameter, int ecc) {
-        this.wavelength = wavelength;
-        this.diameter = diameter;
-        this.ecc = ecc;
-    }
     
-    public void addDiffraction(Pane paneAnimation, int wavelength){
+    
+    public void addDiffraction(Pane paneAnimation, int wavelength, double eccentricity, double slitDistance){
         
         Color color = addColor(wavelength); 
+        double newRadius1 = adjustRadius(wavelength, slitDistance, 1); 
+        double newRadius2 = adjustRadius(wavelength, slitDistance, 2); 
+        double newRadius3 = adjustRadius(wavelength, slitDistance, 3); 
+        double newRadius4 = adjustRadius(wavelength, slitDistance, 4); 
         
         //The circles on the right
         Circle rightCircle = new Circle (); 
-        rightCircle.setTranslateX(340);
-        rightCircle.setTranslateY(300);
+        rightCircle.setTranslateX(POSITION_X);
+        rightCircle.setTranslateY(POSITION_Y);
         rightCircle.setFill(color);
-        rightCircle.setRadius(100);
-        rightCircle.setEffect(new BoxBlur(10, 10, 3));
+        rightCircle.setRadius(newRadius1*130);
+        rightCircle.setEffect(circleBoxBlur);
+        rightCircle.setScaleX(eccentricity);
         
         Circle arcCircle1 = new Circle (); 
-        arcCircle1.setTranslateX(340);
-        arcCircle1.setTranslateY(300);
-        arcCircle1.setRadius(150);
-        arcCircle1.setStrokeWidth(50.0);
+        arcCircle1.setTranslateX(POSITION_X);
+        arcCircle1.setTranslateY(POSITION_Y);
+        arcCircle1.setRadius(newRadius2*100);
+        arcCircle1.setStrokeWidth((newRadius2 - newRadius1)*50);
         arcCircle1.setStroke(color);
         arcCircle1.setFill(Color.BLACK);
         arcCircle1.setOpacity(0.7);
-        arcCircle1.setEffect(new BoxBlur(20, 20, 3));
+        arcCircle1.setEffect(arc1BoxBlur);
+        arcCircle1.setScaleX(eccentricity);
        
         Circle arcCircle2 = new Circle (); 
-        arcCircle2.setTranslateX(340);
-        arcCircle2.setTranslateY(300);
-        arcCircle2.setRadius(250);
-        arcCircle2.setStrokeWidth(50.0);
+        arcCircle2.setTranslateX(POSITION_X);
+        arcCircle2.setTranslateY(POSITION_Y);
+        arcCircle2.setRadius(newRadius3*100);
+        arcCircle2.setStrokeWidth((newRadius3 - newRadius2)*50);
         arcCircle2.setStroke(color);
         arcCircle2.setFill(Color.BLACK);
         arcCircle2.setOpacity(0.5);
-        arcCircle2.setEffect(new BoxBlur(20, 20, 3));
+        arcCircle2.setEffect(arc2BoxBlur);
+        arcCircle2.setScaleX(eccentricity); 
         
         Circle arcCircle3 = new Circle (); 
-        arcCircle3.setTranslateX(340);
-        arcCircle3.setTranslateY(300);
-        arcCircle3.setRadius(350);
-        arcCircle3.setStrokeWidth(50.0);
+        arcCircle3.setTranslateX(POSITION_X);
+        arcCircle3.setTranslateY(POSITION_Y);
+        arcCircle3.setRadius(newRadius4*100);
+        arcCircle3.setStrokeWidth((newRadius4 - newRadius3)*50);
         arcCircle3.setStroke(color);
         arcCircle3.setFill(Color.BLACK);
         arcCircle3.setOpacity(0.2);
-        arcCircle3.setEffect(new BoxBlur(28, 28, 3));
+        arcCircle3.setEffect(arc3BoxBlur);
+        arcCircle3.setScaleX(eccentricity); 
         
         paneAnimation.getChildren().addAll(arcCircle3, arcCircle2, arcCircle1, rightCircle); 
     }
@@ -101,17 +108,26 @@ public class DiffEngine {
         return color; 
     }
     
-    // TODO: Intergrate the math calculations in the animation
-    public void adjustDiameter(int wavelength){
+    // Intergrate the math calculations in the animation
+    public double adjustRadius(int wavelength, double slitDistance, int orderNum){
         DiffractionSim diffSim = new DiffractionSim();
-        diffSim.calculationAngle(wavelength);
+        diffSim.calculationAngle(wavelength, slitDistance, orderNum);
         double circleRadius = diffSim.calculationDiffractionRadius(); 
-        System.out.println(circleRadius);
+        return circleRadius; 
     }
     
-    // TODO: intergate the eccentricity values in the beginning
-    public void adjustEcc(int ecc){
+    /*
+    public double diffractionRadius(boolean isWavelengthChanged, boolean isDiameterChanged, int wavelength){
+        double diffractionRadius; 
+                
+        if (isWavelengthChanged){
+            diffractionRadius = adjustRadius(wavelength); 
+        }
+        if (isDiameterChanged)
+                
     }
+    */
+    
    
     public boolean isInside(){
         return true; //for now

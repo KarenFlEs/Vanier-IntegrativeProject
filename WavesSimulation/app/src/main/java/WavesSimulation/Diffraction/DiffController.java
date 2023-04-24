@@ -133,9 +133,13 @@ public class DiffController extends Stage{
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
                 wavelength = (int) sliderWave.getValue(); 
                 labelWave.setText(Integer.toString(wavelength) + " nm");
+                
+                paneAnimation.getChildren().clear();
+                diffEngine.addDiffraction(paneAnimation, wavelength, eccentricity, slitDistance);
             }
         });
         
+        /*
         sliderWave.setOnMouseReleased(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -144,7 +148,7 @@ public class DiffController extends Stage{
             }
         });
         
-        /*
+        
         sliderEcc.setOnMouseDragged(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {

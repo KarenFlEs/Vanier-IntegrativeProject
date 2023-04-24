@@ -7,7 +7,7 @@ package WavesSimulation.Diffraction;
  */
 public class DiffractionSim {
     
-    private final int ORDER_NUM = 1; 
+   // private final int ORDER_NUM = 1; 
     private double diffractionAngle; 
     private double diffractionRadius; 
     //private final double slitDistance = 0.001; 
@@ -29,9 +29,9 @@ public class DiffractionSim {
         this.diffractionRadius = diffractionRadius;
     }
     
-    protected double calculationAngle (int wavelength, double slitDistance){
+    protected double calculationAngle (int wavelength, double slitDistance, int orderNum){
        //dsin(angle)= m(wavelength)
-       double sinOfAngle = (Math.pow(10, -4)*wavelength*ORDER_NUM)/slitDistance; 
+       double sinOfAngle = (Math.pow(10, -4)*wavelength*orderNum)/slitDistance; 
        double angle = Math.toDegrees(Math.asin(sinOfAngle)); 
        setDiffractionAngle(angle); 
        

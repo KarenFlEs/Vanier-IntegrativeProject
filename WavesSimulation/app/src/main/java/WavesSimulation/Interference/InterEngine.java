@@ -128,8 +128,28 @@ public class InterEngine {
         translateBottomArc.setInterpolator(Interpolator.LINEAR);
         parallelTransitionBottom.setDelay(Duration.seconds(5));
         parallelTransitionBottom.setCycleCount(Animation.INDEFINITE);
+        
+        clipPane(animationPane);
     }
-            
+    
+    /**
+     * Makes the animation stay inside the rectangle, cutting its borders
+     * @param animationPane
+     */
+    public void clipPane(Pane animationPane) {
+        int rectangleWidth = 1049; 
+        int rectangleHeight = 704; 
+        Rectangle clipRectangle = new Rectangle();
+        clipRectangle.setWidth(rectangleWidth);
+        clipRectangle.setHeight(rectangleHeight);
+        animationPane.setClip(clipRectangle);
+
+        animationPane.layoutBoundsProperty().addListener((ov, oldValue, newValue) -> {
+            clipRectangle.setWidth(newValue.getWidth());
+            clipRectangle.setHeight(newValue.getHeight());
+        });
+    }
+    
     public InterEngine() {
     }
 

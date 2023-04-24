@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import javafx.beans.value.ChangeListener;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.shape.Rectangle;
 
 /**
  *
@@ -69,10 +70,11 @@ public class InterController extends Stage{
         backgroundPane.getChildren().addAll(imageFaucetTop, imageFaucetBottom);
         btnStartTop.toFront();
         btnStartBottom.toFront();
-        
+       
         engine.setAnimation(animationPane);
         handleSldAmp();
         handleSldFreq();
+        engine.setAnimationArc(animationPane);
     }
 
     public InterController() {

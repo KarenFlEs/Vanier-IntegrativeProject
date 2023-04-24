@@ -67,10 +67,9 @@ public class SlitsController extends Stage {
 
     @FXML
     public void initialize() {
-        
-        sldWidth.setMin(150);
-        sldWidth.setMax(300);
 
+        //sldWidth.setMin(150);
+        //sldWidth.setMax(300);
         sldSeperation.setMin(10);
         sldSeperation.setMax(100);
 
@@ -81,6 +80,8 @@ public class SlitsController extends Stage {
         sldFrequency.setMax(100);
 
         slit.startSlit(paneAnimation, btn1Slit, sldSeperation);
+        
+        
         slit.handleSliderWidth(sldWidth, sldSeperation, labelSlitSeperation, labelSlitWidth);
         slit.handleSliderSeperation(sldWidth, sldSeperation, labelSlitSeperation, labelSlitWidth);
 
@@ -99,42 +100,58 @@ public class SlitsController extends Stage {
     }
 
     public SlitsController() {
+        
     }
 
     @FXML
     public void handle1Slit() {
-        arcDisappearance(slit.arc4, slit.arc5, slit.arc6);
+        arcDisappearance(slit.getArc4(), slit.getArc5(), slit.getArc6());
+
+        slit.getArc1().setLayoutY(150);
+        slit.getArc2().setLayoutY(150);
+        slit.getArc3().setLayoutY(150);
+        
+        sldWidth.setMin(150);
+        sldWidth.setMax(300);
+        
+        //slit.handleSliderWidth(sldWidth, sldSeperation, labelSlitSeperation, labelSlitWidth);
+        
         if (btn2Slit.isSelected()) {
             btn2Slit.setSelected(false);
 
             sldWidth.setMin(150);
-            sldWidth.setMax(400);
+            sldWidth.setMax(300);
 
             slit.getSlitSeperationTop().setVisible(false);
             slit.getSlitSeperationBottom().setVisible(false);
             sldSeperation.setDisable(true);
         }
     }
-    
+
     //TODO: Incorporate 2 slits with Arcs' Animation
     @FXML
     public void handle2Slit() {
-        arcAppearance(slit.arc4, slit.arc5, slit.arc6);
+        arcAppearance(slit.getArc4(), slit.getArc5(), slit.getArc6());
+        System.out.println(slit.getSlitSeperationTop().getLayoutY() - slit.getSlitTopWall().getHeight());
+        slit.getArc1().setLayoutY(slit.getSlitTopWall().getLayoutY());
+        slit.getArc1().setRadiusY(slit.getSlitSeperationTop().getLayoutY() - slit.getSlitTopWall().getHeight());
+        slit.getArc2().setLayoutY(slit.getSlitTopWall().getLayoutY());
+        slit.getArc2().setRadiusY(slit.getSlitSeperationTop().getLayoutY() - slit.getSlitTopWall().getHeight());
+        slit.getArc3().setLayoutY(slit.getSlitTopWall().getLayoutY());
+        slit.getArc3().setRadiusY(slit.getSlitSeperationTop().getLayoutY() - slit.getSlitTopWall().getHeight());
         
-        /*slit.arc1.setLayoutY(100);
-        slit.arc1.setRadiusY(50);
-        slit.arc2.setRadiusY(50);
-        slit.arc3.setRadiusY(50);
-        slit.arc2.setLayoutY(100);
-        slit.arc3.setLayoutY(100);
-        */
+        sldWidth.setMin(350);
+        sldWidth.setMax(425);
         
+        slit.handleSliderWidth(sldWidth, sldSeperation, labelSlitSeperation, labelSlitWidth);
+        
+
         if (btn1Slit.isSelected()) {
             btn1Slit.setSelected(false);
             btn2Slit.setSelected(true);
 
-            sldWidth.setMin(150);
-            sldWidth.setMax(300);
+            //sldWidth.setMin(150);
+            //sldWidth.setMax(300);
 
             slit.getSlitSeperationTop().setVisible(true);
             slit.getSlitSeperationBottom().setVisible(true);

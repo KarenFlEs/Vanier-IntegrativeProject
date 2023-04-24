@@ -85,7 +85,7 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <Slider fx:id="sldSeperation" layoutX="68.0" layoutY="836.0" prefHeight="59.0" prefWidth="276.0" />
+            <Slider fx:id="sldSeperation" layoutX="68.0" layoutY="712.0" prefHeight="59.0" prefWidth="276.0" />
             <Label fx:id="labelSlitWidth" layoutX="176.0" layoutY="655.0" prefHeight="38.0" prefWidth="92.0">
                <font>
                   <Font name="Times New Roman" size="20.0" />
@@ -96,6 +96,7 @@
                   <Font name="Times New Roman" size="20.0" />
                </font>
             </Label>
+            <Button layoutX="263.0" layoutY="138.0" mnemonicParsing="false" style="-fx-background-radius: 5em; -fx-min-height: 3px; -fx-min-width: 3px;" styleClass="a" text="Button" />
          </children>
       </Pane>
    </right>

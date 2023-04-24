@@ -1,4 +1,3 @@
-
 package WavesSimulation.Interference;
 
 import javafx.animation.Animation;
@@ -21,82 +20,97 @@ import javafx.util.Duration;
  * @author Darina
  */
 public class InterEngine {
-    
+
     private int frequency;
     private int amplitude;
     private int slitSep;
-    
+
     private Circle topCirc = new Circle(30);
     private Circle bottomCirc = new Circle(30);
-   
-    
-    private Arc topArc = new Arc(400,300,240,240,-90,180);
-    private Arc bottomArc = new Arc(400,300,240,240, -90, 180);
-    
-    
+
+    private Arc topArc = new Arc(400, 300, 240, 240, -90, 180);
+    private Arc bottomArc = new Arc(400, 300, 240, 240, -90, 180);
+
     private ScaleTransition scaleTopCirc = new ScaleTransition(Duration.seconds(5), topCirc);
     private ScaleTransition scaleBottomCirc = new ScaleTransition(Duration.seconds(5), bottomCirc);
-    
-    
+
     private TranslateTransition translateTopArc = new TranslateTransition(Duration.seconds(5), topArc);
     private TranslateTransition translateBottomArc = new TranslateTransition(Duration.seconds(5), bottomArc);
-    
+
     private ScaleTransition scaleTopArc = new ScaleTransition(Duration.seconds(5), topArc);
     private ScaleTransition scaleBottomArc = new ScaleTransition(Duration.seconds(5), bottomArc);
-    
-    
+
     private ParallelTransition parallelTransitionTop = new ParallelTransition(translateTopArc, scaleTopArc);
     private ParallelTransition parallelTransitionBottom = new ParallelTransition(translateBottomArc, scaleBottomArc);
-    
+
     private BoxBlur blurCircle = new BoxBlur(10, 10, 1);
     private BoxBlur blurArc = new BoxBlur(10, 10, 1);
-    
-    private InterController interController; 
-    
-    public void playTopAnimation(){
+
+    private InterController interController;
+
+    /**
+     * Play the top faucet's animations
+     */
+    public void playTopAnimation() {
         topCirc.fillProperty().set(null);
-        scaleTopCirc.play();   
+        scaleTopCirc.play();
         topArc.setVisible(true);
         parallelTransitionTop.play();
         parallelTransitionTop.setDelay(scaleTopCirc.getCycleDuration());
     }
-    
-     public void playBottomAnimation(){
+
+    /**
+     * Play the bottom faucet's animations
+     */
+    public void playBottomAnimation() {
         bottomCirc.fillProperty().set(null);
         scaleBottomCirc.play();
         bottomArc.setVisible(true);
         parallelTransitionBottom.play();
         parallelTransitionBottom.setDelay(scaleBottomCirc.getCycleDuration());
     }
-    
-    public void setAnimation(Pane animationPane){
+
+    /**
+     * Set the animation with the correct data for the circles
+     *
+     * @param animationPane
+     */
+    public void setAnimation(Pane animationPane) {
         topCirc.setFill(Color.BLUE);
         topCirc.setStrokeWidth(5);
         topCirc.setStroke(Color.BLUE);
         topCirc.setLayoutX(40);
         topCirc.setLayoutY(270);
-      //  topCirc.setEffect(blurCircle);
+        //  topCirc.setEffect(blurCircle);
         animationPane.getChildren().addAll(topCirc);
-      
+
         scaleTopCirc.setByX(8f);
         scaleTopCirc.setByY(8f);
         scaleTopCirc.setCycleCount(Animation.INDEFINITE);
-        
+
         bottomCirc.setFill(Color.BLUE);
         bottomCirc.setStrokeWidth(5);
         bottomCirc.setStroke(Color.BLUE);
         bottomCirc.setLayoutX(40);
         bottomCirc.setLayoutY(490);
-        
-      //  bottomCirc.setEffect(blurCircle);
+
+        //  bottomCirc.setEffect(blurCircle);
         animationPane.getChildren().addAll(bottomCirc);
-       
+
         scaleBottomCirc.setByX(8f);
         scaleBottomCirc.setByY(8f);
         scaleBottomCirc.setCycleCount(Animation.INDEFINITE);
-        
+
     }
-    public void setAnimationArc(Pane animationPane){
+
+    /**
+     * Set the animation with the correct data for the arcs
+     *
+     * @param animationPane
+     */
+
+    public void setAnimationArc(Pane animationPane) {
+        //the arc at the top
         topArc.setLayoutX(-320);
         topArc.setLayoutY(-40);
         topArc.setStrokeWidth(15);
@@ -105,7 +119,8 @@ public class InterEngine {
         topArc.setEffect(blurArc);
         topArc.setVisible(false);
         animationPane.getChildren().add(topArc);
-        
+
+        //the arc at the bottom
         bottomArc.setLayoutX(-320);
         bottomArc.setLayoutY(200);
         bottomArc.setStrokeWidth(15);
@@ -114,31 +129,34 @@ public class InterEngine {
         bottomArc.setEffect(blurArc);
         bottomArc.setVisible(false);
         animationPane.getChildren().add(bottomArc);
-        
+
+        //properties of top arc animations
         scaleTopArc.setByX(2f);
         scaleTopArc.setByY(2f);
         translateTopArc.setByX(400);
         translateTopArc.setInterpolator(Interpolator.LINEAR);
         parallelTransitionTop.setDelay(Duration.seconds(5));
         parallelTransitionTop.setCycleCount(Animation.INDEFINITE);
-        
+
+        //properties of bottom arc animations
         scaleBottomArc.setByX(2f);
         scaleBottomArc.setByY(2f);
         translateBottomArc.setByX(400);
         translateBottomArc.setInterpolator(Interpolator.LINEAR);
         parallelTransitionBottom.setDelay(Duration.seconds(5));
         parallelTransitionBottom.setCycleCount(Animation.INDEFINITE);
-        
+
         clipPane(animationPane);
     }
-    
+
     /**
      * Makes the animation stay inside the rectangle, cutting its borders
+     *
      * @param animationPane
      */
     public void clipPane(Pane animationPane) {
-        int rectangleWidth = 1049; 
-        int rectangleHeight = 704; 
+        int rectangleWidth = 1049;
+        int rectangleHeight = 704;
         Rectangle clipRectangle = new Rectangle();
         clipRectangle.setWidth(rectangleWidth);
         clipRectangle.setHeight(rectangleHeight);
@@ -149,7 +167,7 @@ public class InterEngine {
             clipRectangle.setHeight(newValue.getHeight());
         });
     }
-    
+
     public InterEngine() {
     }
 
@@ -158,17 +176,17 @@ public class InterEngine {
         this.amplitude = amplitude;
         this.slitSep = slitSep;
     }
-      
-    public void addWaves(int frequency, int amplitude){     
+
+    public void addWaves(int frequency, int amplitude) {
     }
-    
-    public void adjustSeparation(int slitSep){  
+
+    public void adjustSeparation(int slitSep) {
     }
-    
-    public void motion(){     
+
+    public void motion() {
     }
-    
-    public boolean isInside(){
+
+    public boolean isInside() {
         return true; //for now
     }
 
@@ -227,7 +245,5 @@ public class InterEngine {
     public void setBottomArc(Arc bottomArc) {
         this.bottomArc = bottomArc;
     }
-    
-    
-}
 
+}

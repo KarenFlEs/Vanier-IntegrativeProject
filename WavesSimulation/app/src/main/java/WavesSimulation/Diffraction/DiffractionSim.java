@@ -2,15 +2,13 @@
 package WavesSimulation.Diffraction;
 
 /**
- *
+ * The math part of Diffraction
  * @author KarenFl
  */
 public class DiffractionSim {
     
-   // private final int ORDER_NUM = 1; 
     private double diffractionAngle; 
     private double diffractionRadius; 
-    //private final double slitDistance = 0.001; 
     private final double LENGTH_TO_SCREEN = 5.0; 
 
     public double getDiffractionAngle() {
@@ -29,8 +27,15 @@ public class DiffractionSim {
         this.diffractionRadius = diffractionRadius;
     }
     
+    /**
+     * calculates the angle according to the equation: 
+     * dsin(angle)= (orderNum)(wavelength)
+     * @param wavelength
+     * @param slitDistance
+     * @param orderNum
+     * @return angle
+     */
     protected double calculationAngle (int wavelength, double slitDistance, int orderNum){
-       //dsin(angle)= m(wavelength)
        double sinOfAngle = (Math.pow(10, -4)*wavelength*orderNum)/slitDistance; 
        double angle = Math.toDegrees(Math.asin(sinOfAngle)); 
        setDiffractionAngle(angle); 
@@ -38,8 +43,12 @@ public class DiffractionSim {
        return getDiffractionAngle(); 
    }
     
+    /**
+     * Calculates the radius according to the equation:
+     * y=Ltan(angle)
+     * @return radius
+     */
     protected double calculationDiffractionRadius (){
-       //y=Ltan(angle)
        double height = LENGTH_TO_SCREEN*Math.tan(getDiffractionAngle()); 
        setDiffractionRadius(height); 
        

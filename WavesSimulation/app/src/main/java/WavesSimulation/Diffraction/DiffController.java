@@ -3,11 +3,9 @@ package WavesSimulation.Diffraction;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -19,7 +17,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 /**
- *
+ * The main controller for Diffraction
  * @author KarenFl
  */
 public class DiffController extends Stage{
@@ -57,6 +55,7 @@ public class DiffController extends Stage{
     private Label labelEcc; 
     
     DiffEngine diffEngine = new DiffEngine(); 
+    
     int wavelength = 380; 
     double slitDistance = 20; 
     double eccentricity = 1.0; 
@@ -67,13 +66,14 @@ public class DiffController extends Stage{
     @FXML
     public void initialize() {
         
-        //The circle in the left pane (in the left black square) 
+        //The circle in the left pane (the left black square) 
         Circle circle = new Circle();
         circle.setTranslateX(280);
         circle.setTranslateY(230);
         circle.setFill(Color.WHITE);
         circle.setRadius(10);
         
+        //Diameter
         labelDiameter.setText("0.1 mm");
         
         sliderDiameter.setMin(20);
@@ -92,6 +92,7 @@ public class DiffController extends Stage{
             }
         });
         
+        //Eccentricity
         labelEcc.setText("0.0 mm");
         
         sliderEcc.setMax(0.7);
@@ -125,6 +126,8 @@ public class DiffController extends Stage{
         LinearGradient linearGradient = new LinearGradient(0,0,1,0, true, CycleMethod.NO_CYCLE, stops); 
         rectangleWave.setFill(linearGradient);
         
+        labelWave.setText("380 nm");
+        
         sliderWave.setMax(780);
         sliderWave.setMin(380);
         
@@ -138,27 +141,6 @@ public class DiffController extends Stage{
                 diffEngine.addDiffraction(paneAnimation, wavelength, eccentricity, slitDistance);
             }
         });
-        
-        /*
-        sliderWave.setOnMouseReleased(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                paneAnimation.getChildren().clear();
-                diffEngine.addDiffraction(paneAnimation, wavelength, eccentricity, slitDistance);
-            }
-        });
-        
-        
-        sliderEcc.setOnMouseDragged(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                paneAnimation.getChildren().clear();
-                diffEngine.addDiffraction(paneAnimation, wavelength, eccentricity);
-            }
-        });
-        */
-        
-        
         
     }
 }

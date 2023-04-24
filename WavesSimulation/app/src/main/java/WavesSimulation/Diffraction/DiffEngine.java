@@ -7,7 +7,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
 /**
- *
+ * The animation part of Diffraction 
  * @author KarenFl
  */
 public class DiffEngine {
@@ -23,7 +23,13 @@ public class DiffEngine {
     public DiffEngine() {
     }
     
-    
+    /**
+     * Add the circles into the scene according to the selected data
+     * @param paneAnimation
+     * @param wavelength
+     * @param eccentricity
+     * @param slitDistance 
+     */
     public void addDiffraction(Pane paneAnimation, int wavelength, double eccentricity, double slitDistance){
         
         Color color = addColor(wavelength); 
@@ -77,6 +83,11 @@ public class DiffEngine {
         paneAnimation.getChildren().addAll(arcCircle3, arcCircle2, arcCircle1, rightCircle); 
     }
     
+    /**
+     * Add the color according to the selected wavelength
+     * @param wavelength
+     * @return color
+     */
     public Color addColor(int wavelength){
         Color color = Color.WHITE; 
        
@@ -108,28 +119,34 @@ public class DiffEngine {
         return color; 
     }
     
-    // Intergrate the math calculations in the animation
+    /**
+     * Integrate the math calculations in the animation
+     * @param wavelength
+     * @param slitDistance
+     * @param orderNum
+     * @return the calculated radius
+     */
     public double adjustRadius(int wavelength, double slitDistance, int orderNum){
         DiffractionSim diffSim = new DiffractionSim();
         diffSim.calculationAngle(wavelength, slitDistance, orderNum);
         double circleRadius = diffSim.calculationDiffractionRadius(); 
         return circleRadius; 
     }
-    
-    /*
-    public double diffractionRadius(boolean isWavelengthChanged, boolean isDiameterChanged, int wavelength){
-        double diffractionRadius; 
-                
-        if (isWavelengthChanged){
-            diffractionRadius = adjustRadius(wavelength); 
-        }
-        if (isDiameterChanged)
-                
-    }
+ 
+   /**
+    * TODO: Make the animation stay inside the black rectangle
+    * @return 
     */
-    
-   
     public boolean isInside(){
         return true; //for now
     }
+    
+    /**
+     * TODO: (OPTIONAL) add the laser into the scene
+     */
+    public void addLaser (){
+    }
+    
 }
+
+

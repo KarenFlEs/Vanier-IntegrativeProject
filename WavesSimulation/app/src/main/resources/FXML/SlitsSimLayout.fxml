@@ -96,7 +96,30 @@
                   <Font name="Times New Roman" size="20.0" />
                </font>
             </Label>
-            <Button layoutX="263.0" layoutY="138.0" mnemonicParsing="false" style="-fx-background-radius: 5em; -fx-min-height: 3px; -fx-min-width: 3px;" styleClass="a" text="Button" />
+            <Button fx:id="buttonInfoFrequency" layoutX="263.0" layoutY="138.0" mnemonicParsing="false" onMouseEntered="#enteredFrequency" onMouseExited="#exitedFrequency" prefHeight="27.0" prefWidth="27.0" style="-fx-background-radius: 5em; -fx-min-height: 3px; -fx-min-width: 3px;" styleClass="a" text="i">
+               <font>
+                  <Font name="Calisto MT" size="12.0" />
+               </font></Button>
+            <Button fx:id="buttonInfoAmplitude" layoutX="263.0" layoutY="296.0" mnemonicParsing="false" onMouseEntered="#enteredAmplitude" onMouseExited="#exitedAmplitude" prefHeight="27.0" prefWidth="27.0" style="-fx-background-radius: 5em; -fx-min-height: 3px; -fx-min-width: 3px;" styleClass="a" text="i">
+               <font>
+                  <Font name="Calisto MT" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="buttonInfoSlits" layoutX="239.0" layoutY="438.0" mnemonicParsing="false" onMouseEntered="#enteredSlits" onMouseExited="#exitedSlits" prefHeight="27.0" prefWidth="27.0" style="-fx-background-radius: 5em; -fx-min-height: 3px; -fx-min-width: 3px;" styleClass="a" text="i">
+               <font>
+                  <Font name="Calisto MT" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="buttonInfoWidth" layoutX="262.0" layoutY="609.0" mnemonicParsing="false" onMouseEntered="#enteredWidth" onMouseExited="#exitedWidth" prefHeight="27.0" prefWidth="27.0" style="-fx-background-radius: 5em; -fx-min-height: 3px; -fx-min-width: 3px;" styleClass="a" text="i">
+               <font>
+                  <Font name="Calisto MT" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="buttonInfoSeperation" layoutX="295.0" layoutY="766.0" mnemonicParsing="false" onMouseEntered="#enteredSeperation" onMouseExited="#exitedSeperation" prefHeight="27.0" prefWidth="27.0" style="-fx-background-radius: 5em; -fx-min-height: 3px; -fx-min-width: 3px;" styleClass="a" text="i">
+               <font>
+                  <Font name="Calisto MT" size="12.0" />
+               </font>
+            </Button>
          </children>
       </Pane>
    </right>

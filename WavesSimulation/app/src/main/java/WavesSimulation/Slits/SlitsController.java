@@ -1,5 +1,7 @@
 package WavesSimulation.Slits;
 
+import java.io.IOException;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -60,6 +62,21 @@ public class SlitsController extends Stage {
     @FXML
     private Label labelSlitSeperation;
 
+    @FXML
+    private Button buttonInfoFrequency;
+    
+    @FXML
+    private Button buttonInfoAmplitude;
+    
+    @FXML
+    private Button buttonInfoSlits;
+    
+    @FXML
+    private Button buttonInfoWidth;
+
+    @FXML
+    private Button buttonInfoSeperation;
+
     //Variables for the seperation of the Waves
     Arc arc = new Arc(400, 300, 40, 40, -90, 180);
 
@@ -80,8 +97,7 @@ public class SlitsController extends Stage {
         sldFrequency.setMax(100);
 
         slit.startSlit(paneAnimation, btn1Slit, sldSeperation);
-        
-        
+
         slit.handleSliderWidth(sldWidth, sldSeperation, labelSlitSeperation, labelSlitWidth);
         slit.handleSliderSeperation(sldWidth, sldSeperation, labelSlitSeperation, labelSlitWidth);
 
@@ -100,7 +116,7 @@ public class SlitsController extends Stage {
     }
 
     public SlitsController() {
-        
+
     }
 
     @FXML
@@ -110,12 +126,11 @@ public class SlitsController extends Stage {
         slit.getArc1().setLayoutY(150);
         slit.getArc2().setLayoutY(150);
         slit.getArc3().setLayoutY(150);
-        
+
         sldWidth.setMin(150);
         sldWidth.setMax(300);
-        
+
         //slit.handleSliderWidth(sldWidth, sldSeperation, labelSlitSeperation, labelSlitWidth);
-        
         if (btn2Slit.isSelected()) {
             btn2Slit.setSelected(false);
 
@@ -139,12 +154,11 @@ public class SlitsController extends Stage {
         slit.getArc2().setRadiusY(slit.getSlitSeperationTop().getLayoutY() - slit.getSlitTopWall().getHeight());
         slit.getArc3().setLayoutY(slit.getSlitTopWall().getLayoutY());
         slit.getArc3().setRadiusY(slit.getSlitSeperationTop().getLayoutY() - slit.getSlitTopWall().getHeight());
-        
+
         sldWidth.setMin(350);
         sldWidth.setMax(425);
-        
+
         slit.handleSliderWidth(sldWidth, sldSeperation, labelSlitSeperation, labelSlitWidth);
-        
 
         if (btn1Slit.isSelected()) {
             btn1Slit.setSelected(false);
@@ -152,7 +166,6 @@ public class SlitsController extends Stage {
 
             //sldWidth.setMin(150);
             //sldWidth.setMax(300);
-
             slit.getSlitSeperationTop().setVisible(true);
             slit.getSlitSeperationBottom().setVisible(true);
             sldSeperation.setDisable(false);
@@ -174,9 +187,62 @@ public class SlitsController extends Stage {
             slit.pauseAnimation();
         }
     }
-
+    SlitsGuide slitsGuide;
+    @FXML
+    public void enteredFrequency() throws IOException{
+        slitsGuide = new SlitsGuide();
+        slitsGuide.show();
+        
+    }
+    
+    @FXML
+    public void exitedFrequency() throws IOException{
+        
+        slitsGuide.close();
+       
+    }
+    
+    FrequencyGuide frequencyGuide;
+    @FXML
+    public void enteredAmplitude(){
+        System.out.println("entered");
+    }
+    
+    @FXML
+    public void exitedAmplitude(){
+        System.out.println("exited");
+    }
+    
+    @FXML
+    public void enteredSlits(){
+        System.out.println("entered");
+    }
+    
+    @FXML
+    public void exitedSlits(){
+        System.out.println("exited");
+    }
+    
+    @FXML
+    public void enteredWidth(){
+        System.out.println("entered");
+    }
+    
+    @FXML
+    public void exitedWidth(){
+        System.out.println("exited");
+    }
+    
+    @FXML
+    public void enteredSeperation(){
+        System.out.println("entered");
+    }
+    
+    @FXML
+    public void exitedSeperation(){
+        System.out.println("exited");
+    }
     public void arcAppearance(Arc arc1, Arc arc2, Arc arc3) {
-
         arc1.setVisible(true);
         arc2.setVisible(true);
         arc3.setVisible(true);
@@ -184,7 +250,6 @@ public class SlitsController extends Stage {
     }
 
     public void arcDisappearance(Arc arc1, Arc arc2, Arc arc3) {
-
         arc1.setVisible(false);
         arc2.setVisible(false);
         arc3.setVisible(false);

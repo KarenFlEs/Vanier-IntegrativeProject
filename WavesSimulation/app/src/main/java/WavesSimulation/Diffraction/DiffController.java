@@ -56,12 +56,20 @@ public class DiffController extends Stage {
     private Label labelEcc;
 
     DiffEngine diffEngine = new DiffEngine();
+    
+    ImageView imvLaser= new ImageView("/images/laser.png");
 
+    private final int LASER_POSITION_Y = 350;
+    private final int LASER_HEIGHT = 180;
+    private final int LASER_WIDTH = 200;
+    private final int LCIRCLE_POSITION_X = 280;
+    private final int LCIRCLE_POSITION_Y = 230;
+    
+    int circleRadius = 10; 
     int wavelength = 380;
     double slitDistance = 10.0;
     double eccentricity = 1.0;
-
-    ImageView imvLaser= new ImageView("/images/laser.png");
+    
     
     /**
      * This is the initialize method which runs when the DiffractionWindow opens
@@ -70,21 +78,17 @@ public class DiffController extends Stage {
     public void initialize() {
 
         //Laser
-        imvLaser.setTranslateY(350);
-        imvLaser.setFitHeight(180);
-        imvLaser.setFitWidth(200); 
-        
+        imvLaser.setTranslateY(LASER_POSITION_Y);
+        imvLaser.setFitHeight(LASER_HEIGHT);
+        imvLaser.setFitWidth(LASER_WIDTH); 
         diffScreen.getChildren().add(imvLaser); 
-        
-        diffEngine.addLaser(diffScreen);
-        //paneSquare.toFront();
         
         //The circle in the left pane (the left black square) 
         Circle circle = new Circle();
-        circle.setTranslateX(280);
-        circle.setTranslateY(230);
+        circle.setTranslateX(LCIRCLE_POSITION_X);
+        circle.setTranslateY(LCIRCLE_POSITION_Y);
         circle.setFill(Color.WHITE);
-        circle.setRadius(10);
+        circle.setRadius(circleRadius);
 
         //Diameter
         sliderDiameter.setMin(10);
@@ -93,13 +97,13 @@ public class DiffController extends Stage {
         sliderDiameter.valueProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                double circleRadius = (int) sliderDiameter.getValue() / 2;
+                circleRadius = (int) sliderDiameter.getValue() / 2;
                 circle.setRadius(circleRadius);
                 labelDiameter.setText(circleRadius / 100 + " mm");
 
                 slitDistance = sliderDiameter.getValue();
                 paneAnimation.getChildren().clear();
-                diffEngine.addDiffraction(paneAnimation, wavelength, eccentricity, slitDistance);
+                diffEngine.addDiffraction(diffScreen, paneAnimation, wavelength, eccentricity, slitDistance);
             }
         });
 
@@ -115,7 +119,7 @@ public class DiffController extends Stage {
                 labelEcc.setText(eccentricityLabel + " mm");
 
                 paneAnimation.getChildren().clear();
-                diffEngine.addDiffraction(paneAnimation, wavelength, eccentricity, slitDistance);
+                diffEngine.addDiffraction(diffScreen, paneAnimation, wavelength, eccentricity, slitDistance);
             }
         });
 
@@ -145,7 +149,7 @@ public class DiffController extends Stage {
                 labelWave.setText(wavelength + " nm");
 
                 paneAnimation.getChildren().clear();
-                diffEngine.addDiffraction(paneAnimation, wavelength, eccentricity, slitDistance);
+                diffEngine.addDiffraction(diffScreen, paneAnimation, wavelength, eccentricity, slitDistance);
             }
         });
 

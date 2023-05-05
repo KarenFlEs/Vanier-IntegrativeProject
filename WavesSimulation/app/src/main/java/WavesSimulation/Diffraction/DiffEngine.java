@@ -20,8 +20,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class DiffEngine {
 
-    private final int POSITION_X = 340;
-    private final int POSITION_Y = 300;
+    private final int CIRCLE_POSITION_X = 340;
+    private final int CIRCLE_POSITION_Y = 300;
+    private final int RECT_LASER_HEIGHT = 10;
+    private final int RECT_LASER_WIDTH = 115;
+    private final int RECT_LASER_LAYOUT_X = 164;
+    private final int RECT_LASER_LAYOUT_Y = 425;
+    private final int POLY_LASER_LAYOUT_X = 880;
+    private final int POLY_LASER_LAYOUT_Y = 433;
     
     private final double OPACITY_1 = 0.7;
     private final double OPACITY_2 = 0.5;
@@ -35,12 +41,13 @@ public class DiffEngine {
     /**
      * Add the circles into the scene according to the selected data
      *
+     * @param diffScreen
      * @param paneAnimation
      * @param wavelength
      * @param eccentricity
      * @param slitDistance
      */
-    public void addDiffraction(Pane paneAnimation, int wavelength, double eccentricity, double slitDistance) {
+    public void addDiffraction(AnchorPane diffScreen, Pane paneAnimation, int wavelength, double eccentricity, double slitDistance) {
 
         Color color = selectColor(wavelength);
         double newRadius1 = adjustRadius(wavelength, slitDistance, 1);
@@ -48,10 +55,13 @@ public class DiffEngine {
         double newRadius3 = adjustRadius(wavelength, slitDistance, 3);
         double newRadius4 = adjustRadius(wavelength, slitDistance, 4);
 
+        //Laser
+        addLaser(diffScreen, color, newRadius1 * 130); 
+        
         //The circles on the right
         Circle rightCircle = new Circle();
-        rightCircle.setTranslateX(POSITION_X);
-        rightCircle.setTranslateY(POSITION_Y);
+        rightCircle.setTranslateX(CIRCLE_POSITION_X);
+        rightCircle.setTranslateY(CIRCLE_POSITION_Y);
         rightCircle.setFill(color);
         rightCircle.setRadius(newRadius1 * 130);
         rightCircle.setEffect(circleBoxBlur);
@@ -62,7 +72,7 @@ public class DiffEngine {
         Circle arcCircle3 = createArcCircle(newRadius3, newRadius4, eccentricity, OPACITY_3, color, arc3BoxBlur); 
         
         paneAnimation.getChildren().addAll(arcCircle3, arcCircle2, arcCircle1, rightCircle);
-
+        
         clipPane(paneAnimation);
     }
 
@@ -79,8 +89,8 @@ public class DiffEngine {
      */
     public Circle createArcCircle(double previousRadius, double currentRadius, double eccentricity, double opacity, Color color, BoxBlur blur){
         Circle arcCircle = new Circle(); 
-        arcCircle.setTranslateX(POSITION_X);
-        arcCircle.setTranslateY(POSITION_Y);
+        arcCircle.setTranslateX(CIRCLE_POSITION_X);
+        arcCircle.setTranslateY(CIRCLE_POSITION_Y);
         arcCircle.setRadius(currentRadius * 100);
         arcCircle.setStrokeWidth((currentRadius - previousRadius) * 50);
         arcCircle.setStroke(color);
@@ -155,38 +165,38 @@ public class DiffEngine {
     }
 
     /**
-     * TODO: (OPTIONAL) add the laser into the scene
+     * TODO: fix the laser height
      * @param diffPane
+     * @param laserColor
+     * @param laserRadius
      */
-    public void addLaser(AnchorPane diffPane) {
-        
+    public void addLaser(AnchorPane diffPane, Color laserColor, double laserRadius) {
         Rectangle rectLaser =  new Rectangle(); 
-        rectLaser.setHeight(10);
-        rectLaser.setWidth(115);
-        rectLaser.setLayoutX(164);
-        rectLaser.setLayoutY(425);
-        rectLaser.setFill(Color.GREENYELLOW);
+        rectLaser.setHeight(RECT_LASER_HEIGHT);
+        rectLaser.setWidth(RECT_LASER_WIDTH);
+        rectLaser.setLayoutX(RECT_LASER_LAYOUT_X);
+        rectLaser.setLayoutY(RECT_LASER_LAYOUT_Y);
+        rectLaser.setFill(laserColor);
         
         Polygon polyLaser = new Polygon(); 
-        polyLaser.setLayoutX(880);
-        polyLaser.setLayoutY(433);
-        polyLaser.setFill(Color.GREENYELLOW);
+        polyLaser.setLayoutX(POLY_LASER_LAYOUT_X);
+        polyLaser.setLayoutY(POLY_LASER_LAYOUT_Y);
         
         polyLaser.getPoints().addAll(new Double [] {
             -50.0, 0.0, 
-            286.0, 20.0, 
-            286.0, -20.0 }); 
+            286.0, laserRadius, 
+            286.0, -laserRadius }); 
         
         Stop[] gradientStops = new Stop[]{new Stop(0, Color.WHITE),
-            new Stop(0.5, Color.BLACK),
+            new Stop(0.5, laserColor),
             new Stop(1, Color.WHITE)
         };
 
         LinearGradient linearGradient = new LinearGradient(0, 0, 0, 1, true, CycleMethod.NO_CYCLE, gradientStops);
         polyLaser.setFill(linearGradient);
         
+        diffPane.getChildren().remove(polyLaser); 
         diffPane.getChildren().addAll(rectLaser, polyLaser); 
-        
     }
 
 }

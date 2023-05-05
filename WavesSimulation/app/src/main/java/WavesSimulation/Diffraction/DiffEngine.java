@@ -1,9 +1,14 @@
 package WavesSimulation.Diffraction;
 
 import javafx.scene.effect.BoxBlur;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.CycleMethod;
+import javafx.scene.paint.LinearGradient;
+import javafx.scene.paint.Stop;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import lombok.NoArgsConstructor;
 
@@ -151,9 +156,37 @@ public class DiffEngine {
 
     /**
      * TODO: (OPTIONAL) add the laser into the scene
+     * @param diffPane
      */
-    public void addLaser() {
+    public void addLaser(AnchorPane diffPane) {
+        
+        Rectangle rectLaser =  new Rectangle(); 
+        rectLaser.setHeight(10);
+        rectLaser.setWidth(115);
+        rectLaser.setLayoutX(164);
+        rectLaser.setLayoutY(425);
+        rectLaser.setFill(Color.GREENYELLOW);
+        
+        Polygon polyLaser = new Polygon(); 
+        polyLaser.setLayoutX(880);
+        polyLaser.setLayoutY(433);
+        polyLaser.setFill(Color.GREENYELLOW);
+        
+        polyLaser.getPoints().addAll(new Double [] {
+            -50.0, 0.0, 
+            286.0, 20.0, 
+            286.0, -20.0 }); 
+        
+        Stop[] gradientStops = new Stop[]{new Stop(0, Color.WHITE),
+            new Stop(0.5, Color.BLACK),
+            new Stop(1, Color.WHITE)
+        };
 
+        LinearGradient linearGradient = new LinearGradient(0, 0, 0, 1, true, CycleMethod.NO_CYCLE, gradientStops);
+        polyLaser.setFill(linearGradient);
+        
+        diffPane.getChildren().addAll(rectLaser, polyLaser); 
+        
     }
 
 }

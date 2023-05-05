@@ -5,6 +5,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -60,12 +61,24 @@ public class DiffController extends Stage {
     double slitDistance = 10.0;
     double eccentricity = 1.0;
 
+    ImageView imvLaser= new ImageView("/images/laser.png");
+    
     /**
      * This is the initialize method which runs when the DiffractionWindow opens
      */
     @FXML
     public void initialize() {
 
+        //Laser
+        imvLaser.setTranslateY(350);
+        imvLaser.setFitHeight(180);
+        imvLaser.setFitWidth(200); 
+        
+        diffScreen.getChildren().add(imvLaser); 
+        
+        diffEngine.addLaser(diffScreen);
+        //paneSquare.toFront();
+        
         //The circle in the left pane (the left black square) 
         Circle circle = new Circle();
         circle.setTranslateX(280);

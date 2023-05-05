@@ -10,7 +10,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="diffScreen" prefHeight="1056.0" prefWidth="1936.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="diffScreen" prefHeight="1056.0" prefWidth="1936.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="1986.0">
         <menus>
@@ -31,6 +31,7 @@
           </Menu>
         </menus>
       </MenuBar>
+      <Pane fx:id="paneLaser" layoutX="-28.0" layoutY="108.0" prefHeight="676.0" prefWidth="1196.0" />
       <Pane layoutX="-2.0" layoutY="774.0" prefHeight="280.0" prefWidth="1988.0" style="-fx-background-color: ALICEBLUE;">
          <children>
             <Label layoutX="904.0" layoutY="28.0" prefHeight="47.0" prefWidth="132.0" text="Settings">

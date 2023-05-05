@@ -29,6 +29,9 @@ public class DiffController extends Stage {
     private AnchorPane diffScreen;
 
     @FXML
+    private Pane paneLaser;
+    
+    @FXML
     private Pane paneSquare;
 
     @FXML
@@ -70,7 +73,6 @@ public class DiffController extends Stage {
     double slitDistance = 10.0;
     double eccentricity = 1.0;
     
-    
     /**
      * This is the initialize method which runs when the DiffractionWindow opens
      */
@@ -103,7 +105,8 @@ public class DiffController extends Stage {
 
                 slitDistance = sliderDiameter.getValue();
                 paneAnimation.getChildren().clear();
-                diffEngine.addDiffraction(diffScreen, paneAnimation, wavelength, eccentricity, slitDistance);
+                paneLaser.getChildren().clear();
+                diffEngine.addDiffraction(paneLaser, paneAnimation, wavelength, eccentricity, slitDistance);
             }
         });
 
@@ -119,7 +122,8 @@ public class DiffController extends Stage {
                 labelEcc.setText(eccentricityLabel + " mm");
 
                 paneAnimation.getChildren().clear();
-                diffEngine.addDiffraction(diffScreen, paneAnimation, wavelength, eccentricity, slitDistance);
+                paneLaser.getChildren().clear();
+                diffEngine.addDiffraction(paneLaser, paneAnimation, wavelength, eccentricity, slitDistance);
             }
         });
 
@@ -149,7 +153,8 @@ public class DiffController extends Stage {
                 labelWave.setText(wavelength + " nm");
 
                 paneAnimation.getChildren().clear();
-                diffEngine.addDiffraction(diffScreen, paneAnimation, wavelength, eccentricity, slitDistance);
+                paneLaser.getChildren().clear();
+                diffEngine.addDiffraction(paneLaser, paneAnimation, wavelength, eccentricity, slitDistance);
             }
         });
 

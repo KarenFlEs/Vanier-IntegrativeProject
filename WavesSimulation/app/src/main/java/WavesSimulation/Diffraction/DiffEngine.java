@@ -23,11 +23,11 @@ public class DiffEngine {
     private final int CIRCLE_POSITION_X = 340;
     private final int CIRCLE_POSITION_Y = 300;
     private final int RECT_LASER_HEIGHT = 10;
-    private final int RECT_LASER_WIDTH = 115;
-    private final int RECT_LASER_LAYOUT_X = 164;
-    private final int RECT_LASER_LAYOUT_Y = 425;
-    private final int POLY_LASER_LAYOUT_X = 880;
-    private final int POLY_LASER_LAYOUT_Y = 433;
+    private final int RECT_LASER_WIDTH = 129;
+    private final int RECT_LASER_LAYOUT_X = 179;
+    private final int RECT_LASER_LAYOUT_Y = 318;
+    private final int POLY_LASER_LAYOUT_X = 908;
+    private final int POLY_LASER_LAYOUT_Y = 320;
     
     private final double OPACITY_1 = 0.7;
     private final double OPACITY_2 = 0.5;
@@ -41,13 +41,13 @@ public class DiffEngine {
     /**
      * Add the circles into the scene according to the selected data
      *
-     * @param diffScreen
+     * @param paneLaser
      * @param paneAnimation
      * @param wavelength
      * @param eccentricity
      * @param slitDistance
      */
-    public void addDiffraction(AnchorPane diffScreen, Pane paneAnimation, int wavelength, double eccentricity, double slitDistance) {
+    public void addDiffraction(Pane paneLaser, Pane paneAnimation, int wavelength, double eccentricity, double slitDistance) {
 
         Color color = selectColor(wavelength);
         double newRadius1 = adjustRadius(wavelength, slitDistance, 1);
@@ -56,7 +56,7 @@ public class DiffEngine {
         double newRadius4 = adjustRadius(wavelength, slitDistance, 4);
 
         //Laser
-        addLaser(diffScreen, color, newRadius1 * 130); 
+        addLaser(paneLaser, color, newRadius1 * 130); 
         
         //The circles on the right
         Circle rightCircle = new Circle();
@@ -166,11 +166,11 @@ public class DiffEngine {
 
     /**
      * TODO: fix the laser height
-     * @param diffPane
+     * @param paneLaser
      * @param laserColor
      * @param laserRadius
      */
-    public void addLaser(AnchorPane diffPane, Color laserColor, double laserRadius) {
+    public void addLaser(Pane paneLaser, Color laserColor, double laserRadius) {
         Rectangle rectLaser =  new Rectangle(); 
         rectLaser.setHeight(RECT_LASER_HEIGHT);
         rectLaser.setWidth(RECT_LASER_WIDTH);
@@ -195,8 +195,7 @@ public class DiffEngine {
         LinearGradient linearGradient = new LinearGradient(0, 0, 0, 1, true, CycleMethod.NO_CYCLE, gradientStops);
         polyLaser.setFill(linearGradient);
         
-        diffPane.getChildren().remove(polyLaser); 
-        diffPane.getChildren().addAll(rectLaser, polyLaser); 
+        paneLaser.getChildren().addAll(rectLaser, polyLaser); 
     }
 
 }

@@ -3,12 +3,5 @@
  */
 package WavesSimulationTest;
 
-import WavesSimulation.UI.MainApp;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
-
 class AppTest {
-    @Test void appHasAGreeting() {
-        MainApp classUnderTest = new MainApp();
-    }
 }

@@ -26,6 +26,7 @@ import javafx.util.Duration;
  * @author StevenDy
  */
 public class SlitsEngine {
+
     private Rectangle slitTopWall;
     private Rectangle slitBottomWall;
 
@@ -73,6 +74,10 @@ public class SlitsEngine {
     private ArrayList<Arc> listArc = new ArrayList<>(Arrays.asList(arc1, arc2, arc3));
     private ArrayList<Arc> listArc2 = new ArrayList<>(Arrays.asList(arc4, arc5, arc6));
 
+    private ArrayList<TranslateTransition> listTranslateRectangle = new ArrayList<>(Arrays.asList(translateRectangle1, translateRectangle2, translateRectangle3));
+    private ArrayList<ParallelTransition> listParallelTransitions = new ArrayList<>(Arrays.asList(parallelTransition1, parallelTransition2, parallelTransition3,
+            parallelTransition4, parallelTransition5, parallelTransition6));
+
     private int nbSlits;
     private int slitWidth;
 
@@ -83,58 +88,58 @@ public class SlitsEngine {
 
     }
 
+    /**
+     * Plays the animation whenever the button is clicked
+     */
     public void playAnimation() {
-        translateRectangle1.play();
-        translateRectangle2.play();
-        translateRectangle3.play();
-
-        parallelTransition1.play();
-        parallelTransition2.play();
-        parallelTransition3.play();
-        parallelTransition4.play();
-        parallelTransition5.play();
-        parallelTransition6.play();
+        for (TranslateTransition translateTransition : listTranslateRectangle) {
+            translateTransition.play();
+        }
+        for (ParallelTransition parallelTransition : listParallelTransitions) {
+            parallelTransition.play();
+        }
     }
 
+    /**
+     * Pauses the animation whenever the button is clicked
+     */
     public void pauseAnimation() {
-        translateRectangle1.pause();
-        translateRectangle2.pause();
-        translateRectangle3.pause();
-
-        parallelTransition1.pause();
-        parallelTransition2.pause();
-        parallelTransition3.pause();
-        parallelTransition4.pause();
-        parallelTransition5.pause();
-        parallelTransition6.pause();
+        for (TranslateTransition translateTransition : listTranslateRectangle) {
+            translateTransition.pause();
+        }
+        for (ParallelTransition parallelTransition : listParallelTransitions) {
+            parallelTransition.pause();
+        }
     }
 
+    /**
+     * Sets up the properties of the rectangles and also their animation
+     *
+     * @param paneAnimation
+     */
     public void setUpRectangle(Pane paneAnimation) {
-
         for (Rectangle rectangle : listRectangle) {
             rectangle.setFill(Color.WHITE);
             paneAnimation.getChildren().add(rectangle);
             rectangle.setEffect(blurRectangle);
         }
 
-        translateRectangle1.setByX(240);
-        translateRectangle1.setByX(450);
-        translateRectangle1.setInterpolator(Interpolator.LINEAR);
-        translateRectangle1.setCycleCount(Animation.INDEFINITE);
+        for (TranslateTransition translateTransition : listTranslateRectangle) {
+            translateTransition.setByX(450);
+            translateTransition.setInterpolator(Interpolator.LINEAR);
+            translateTransition.setCycleCount(Animation.INDEFINITE);
+        }
 
-        translateRectangle2.setByX(240);
-        translateRectangle2.setByX(450);
-        translateRectangle2.setInterpolator(Interpolator.LINEAR);
-        translateRectangle2.setCycleCount(Animation.INDEFINITE);
         translateRectangle2.setDelay(Duration.seconds(2));
 
-        translateRectangle3.setByX(240);
-        translateRectangle3.setByX(450);
-        translateRectangle3.setInterpolator(Interpolator.LINEAR);
-        translateRectangle3.setCycleCount(Animation.INDEFINITE);
         translateRectangle3.setDelay(Duration.seconds(4));
     }
 
+    /**
+     * Sets up the properties of the arcs and their animation
+     *
+     * @param paneAnimation
+     */
     public void setUpArc(Pane paneAnimation) {
 
         for (Arc arc : listArc) {
@@ -210,7 +215,15 @@ public class SlitsEngine {
         parallelTransition6.setCycleCount(Animation.INDEFINITE);
     }
 
-    //TODO: Adjust arcs' radius in accordance to the slits
+    
+    /**
+     * Handles the change of the width of the slits
+     * TODO:  Fix the placement of the waves whenever the slit width is changed
+     * @param sldWidth
+     * @param sldSeperation
+     * @param labelSlitSeperation
+     * @param labelSlitWidth 
+     */
     public void handleSliderWidth(Slider sldWidth, Slider sldSeperation, Label labelSlitSeperation, Label labelSlitWidth) {
         if (sldWidth.getMin() == 0 && sldWidth.getMax() == 100) {
             sldWidth.setMin(150);
@@ -256,7 +269,15 @@ public class SlitsEngine {
             }
         });
     }
-
+    
+    /**
+     * Handles the changes of the properties and the animation of the waves
+     * TODO: Fix the placements of the waves when the seperation between the slits is changed
+     * @param sldWidth
+     * @param sldSeperation
+     * @param labelSlitSeperation
+     * @param labelSlitWidth 
+     */
     public void handleSliderSeperation(Slider sldWidth, Slider sldSeperation, Label labelSlitSeperation, Label labelSlitWidth) {
         sldSeperation.valueProperty().addListener(new ChangeListener<Number>() {
             @Override
@@ -279,7 +300,11 @@ public class SlitsEngine {
             }
         });
     }
-
+    /**
+     * Handles the brightness of the waves when the amplitude is changed
+     * 
+     * @param slitAmplitude 
+     */
     public void handleSliderAmplitude(Slider slitAmplitude) {
 
         slitAmplitude.valueProperty().addListener(new ChangeListener<Number>() {
@@ -291,7 +316,12 @@ public class SlitsEngine {
             }
         });
     }
-
+    
+    /**
+     * Handles the speed and the length of the waves when the frequency is changed
+     * TODO: Fix the width of the rectangles when both frequency and amplitude are modified
+     * @param slitFrequency 
+     */
     public void hadnleSliderFrequency(Slider slitFrequency) {
         slitFrequency.valueProperty().addListener(new ChangeListener<Number>() {
             @Override
@@ -310,7 +340,13 @@ public class SlitsEngine {
             }
         });
     }
-
+    
+    /**
+     * Sets up the slits into their places
+     * @param paneAnimation
+     * @param btn
+     * @param sldSeperation 
+     */
     public void startSlit(Pane paneAnimation, CheckBox btn, Slider sldSeperation) {
         slitTopWall = new Rectangle(15, 300, Color.GAINSBORO);
         slitTopWall.setLayoutX(500);
@@ -333,6 +369,23 @@ public class SlitsEngine {
 
         btn.setSelected(true);
         sldSeperation.setDisable(true);
+    }
+    /**
+     * Handles the boundaries when the animation is out of bound
+     * @param paneAnimation 
+     */
+    public void clipPane(Pane paneAnimation) {
+        int rectangleWidth = 682;
+        int rectangleHeight = 612;
+        Rectangle clipRectangle = new Rectangle();
+        clipRectangle.setWidth(rectangleWidth);
+        clipRectangle.setHeight(rectangleHeight);
+        paneAnimation.setClip(clipRectangle);
+
+        paneAnimation.layoutBoundsProperty().addListener((ov, oldValue, newValue) -> {
+            clipRectangle.setWidth(newValue.getWidth());
+            clipRectangle.setHeight(newValue.getHeight());
+        });
     }
 
     public int getSlitWidth() {

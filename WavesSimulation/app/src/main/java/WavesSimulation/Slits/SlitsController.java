@@ -64,13 +64,13 @@ public class SlitsController extends Stage {
 
     @FXML
     private Button buttonInfoFrequency;
-    
+
     @FXML
     private Button buttonInfoAmplitude;
-    
+
     @FXML
     private Button buttonInfoSlits;
-    
+
     @FXML
     private Button buttonInfoWidth;
 
@@ -85,6 +85,7 @@ public class SlitsController extends Stage {
     @FXML
     public void initialize() {
 
+        slit.clipPane(paneAnimation);
         //sldWidth.setMin(150);
         //sldWidth.setMax(300);
         sldSeperation.setMin(10);
@@ -118,7 +119,11 @@ public class SlitsController extends Stage {
     public SlitsController() {
 
     }
-
+    
+    /**
+     * Handles the modifications in the animation when the checkbox of 1 slit
+     * is selected
+     */
     @FXML
     public void handle1Slit() {
         arcDisappearance(slit.getArc4(), slit.getArc5(), slit.getArc6());
@@ -142,8 +147,12 @@ public class SlitsController extends Stage {
             sldSeperation.setDisable(true);
         }
     }
-
-    //TODO: Incorporate 2 slits with Arcs' Animation
+    
+    /**
+     * Handles the modifications in the animation when the checkbox of 2 slits
+     * is selected
+     * TODO: Incorporate 2 slits with Arcs' Animation
+     */
     @FXML
     public void handle2Slit() {
         arcAppearance(slit.getArc4(), slit.getArc5(), slit.getArc6());
@@ -176,7 +185,10 @@ public class SlitsController extends Stage {
     public void handle3Slit() {
 
     }
-
+    
+    /**
+     * Handles the play/pause of the animation when the button is clicked
+     */
     @FXML
     public void handlePlayAnimation() {
         if (btnPlayAnimation.getText().equals("Play")) {
@@ -187,61 +199,75 @@ public class SlitsController extends Stage {
             slit.pauseAnimation();
         }
     }
-    SlitsGuide slitsGuide;
+
+    FrequencyGuide frequencyGuide;
+
     @FXML
-    public void enteredFrequency() throws IOException{
+    public void enteredFrequency() throws IOException {
+        frequencyGuide = new FrequencyGuide();
+        frequencyGuide.show();
+
+    }
+
+    @FXML
+    public void exitedFrequency() throws IOException {
+
+        frequencyGuide.close();
+
+    }
+
+    AmplitudeGuide amplitudeGuide;
+
+    @FXML
+    public void enteredAmplitude() throws IOException {
+        amplitudeGuide = new AmplitudeGuide();
+        amplitudeGuide.show();
+    }
+
+    @FXML
+    public void exitedAmplitude() {
+        amplitudeGuide.close();
+    }
+
+    SlitsGuide slitsGuide;
+
+    @FXML
+    public void enteredSlits() throws IOException {
         slitsGuide = new SlitsGuide();
         slitsGuide.show();
-        
     }
-    
+
     @FXML
-    public void exitedFrequency() throws IOException{
-        
+    public void exitedSlits() {
         slitsGuide.close();
-       
     }
-    
-    FrequencyGuide frequencyGuide;
+
+    WidthGuide widthGuide;
+
     @FXML
-    public void enteredAmplitude(){
-        System.out.println("entered");
+    public void enteredWidth() throws IOException {
+        widthGuide = new WidthGuide();
+        widthGuide.show();
     }
-    
+
     @FXML
-    public void exitedAmplitude(){
-        System.out.println("exited");
+    public void exitedWidth() {
+        widthGuide.close();
     }
-    
+
+    SeperationGuide seperationGuide;
+
     @FXML
-    public void enteredSlits(){
-        System.out.println("entered");
+    public void enteredSeperation() throws IOException {
+        seperationGuide = new SeperationGuide();
+        seperationGuide.show();
     }
-    
+
     @FXML
-    public void exitedSlits(){
-        System.out.println("exited");
+    public void exitedSeperation() {
+        seperationGuide.close();
     }
-    
-    @FXML
-    public void enteredWidth(){
-        System.out.println("entered");
-    }
-    
-    @FXML
-    public void exitedWidth(){
-        System.out.println("exited");
-    }
-    
-    @FXML
-    public void enteredSeperation(){
-        System.out.println("entered");
-    }
-    
-    @FXML
-    public void exitedSeperation(){
-        System.out.println("exited");
-    }
+
     public void arcAppearance(Arc arc1, Arc arc2, Arc arc3) {
         arc1.setVisible(true);
         arc2.setVisible(true);

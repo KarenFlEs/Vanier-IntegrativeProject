@@ -28,24 +28,81 @@ public class SlitsGuide extends Stage {
         //loader.setController(mainController);
         Parent root = loader.load();
 
-        Scene scene = new Scene(root, 100, 100);
+        Scene scene = new Scene(root);
         this.setScene(scene);
         this.show();
     }
 }
 
-class FrequencyGuide {
+class FrequencyGuide extends Stage {
+public FrequencyGuide() throws IOException {
+        loadComponents();
+    }
+
+    private void loadComponents() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/FrequencyGuidelayout.fxml"));
+
+        //SlitsController mainController = new SlitsController(this);
+        //loader.setController(mainController);
+        Parent root = loader.load();
+
+        Scene scene = new Scene(root);
+        this.setScene(scene);
+        this.show();
+    }
+}
+
+class AmplitudeGuide extends Stage {
+   public AmplitudeGuide() throws IOException {
+        loadComponents();
+    }
+
+    private void loadComponents() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/AmplitudeGuideLayout.fxml"));
+
+        //SlitsController mainController = new SlitsController(this);
+        //loader.setController(mainController);
+        Parent root = loader.load();
+
+        Scene scene = new Scene(root);
+        this.setScene(scene);
+        this.show();
+    }
+}
+
+class WidthGuide extends Stage {
+    public WidthGuide() throws IOException {
+        loadComponents();
+    }
+
+    private void loadComponents() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/WidthGuidelayout.fxml"));
+
+        //SlitsController mainController = new SlitsController(this);
+        //loader.setController(mainController);
+        Parent root = loader.load();
+
+        Scene scene = new Scene(root);
+        this.setScene(scene);
+        this.show();
+    }
 
 }
 
-class amplitudeGuide {
+class SeperationGuide extends Stage {
+public SeperationGuide() throws IOException {
+        loadComponents();
+    }
 
-}
+    private void loadComponents() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/SeperationGuidelayout.fxml"));
 
-class widthGuide {
+        //SlitsController mainController = new SlitsController(this);
+        //loader.setController(mainController);
+        Parent root = loader.load();
 
-}
-
-class seperationGuide {
-
+        Scene scene = new Scene(root);
+        this.setScene(scene);
+        this.show();
+    }
 }

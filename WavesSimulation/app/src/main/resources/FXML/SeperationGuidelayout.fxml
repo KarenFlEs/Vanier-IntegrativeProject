@@ -6,9 +6,9 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Text layoutX="7.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number slits will divide the  waves into  the selected number, which creates waves that interfere to one another" wrappingWidth="187.0">
+      <Text layoutX="26.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="When changing the length of the seperation between the slits, the waves will be divided by the number of slits and can be differed depending on width of the slits." wrappingWidth="148.0">
          <font>
-            <Font name="Times New Roman" size="18.0" />
+            <Font name="Times New Roman" size="15.0" />
          </font></Text>
    </children>
 </Pane>

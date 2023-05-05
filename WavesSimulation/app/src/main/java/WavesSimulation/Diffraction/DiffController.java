@@ -3,7 +3,9 @@ package WavesSimulation.Diffraction;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.Slider;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -58,15 +60,32 @@ public class DiffController extends Stage {
     @FXML
     private Label labelEcc;
 
+    @FXML
+    private Button btnInfoWavelength; 
+    
+    @FXML
+    private Button btnInfoDiameter; 
+    
+    @FXML
+    private Button btnInfoEccentricity; 
+    
+    @FXML
+    private MenuItem menuItemAbout;         
+    
     DiffEngine diffEngine = new DiffEngine();
     
-    ImageView imvLaser= new ImageView("/images/laser.png");
+    ImageView imvLaser = new ImageView("/images/laser.png");
 
-    private final int LASER_POSITION_Y = 350;
+    private final int LASER_POSITION_Y = 355;
     private final int LASER_HEIGHT = 180;
     private final int LASER_WIDTH = 200;
-    private final int LCIRCLE_POSITION_X = 280;
-    private final int LCIRCLE_POSITION_Y = 230;
+    private final int LCIRCLE_POSITION_X = 278;
+    private final int LCIRCLE_POSITION_Y = 235;
+    private final int SLIDER_DIAMETER_MIN = 10; 
+    private final int SLIDER_DIAMETER_MAX = 130; 
+    private final int SLIDER_WAVE_MIN = 380; 
+    private final int SLIDER_WAVE_MAX = 780; 
+    private final double SLIDER_ECC_MAX = 0.7; 
     
     int circleRadius = 10; 
     int wavelength = 380;
@@ -93,15 +112,15 @@ public class DiffController extends Stage {
         circle.setRadius(circleRadius);
 
         //Diameter
-        sliderDiameter.setMin(10);
-        sliderDiameter.setMax(130);
+        sliderDiameter.setMin(SLIDER_DIAMETER_MIN);
+        sliderDiameter.setMax(SLIDER_DIAMETER_MAX);
 
         sliderDiameter.valueProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
                 circleRadius = (int) sliderDiameter.getValue() / 2;
                 circle.setRadius(circleRadius);
-                labelDiameter.setText(circleRadius / 100 + " mm");
+                labelDiameter.setText(circleRadius / 100.0 + " mm");
 
                 slitDistance = sliderDiameter.getValue();
                 paneAnimation.getChildren().clear();
@@ -111,7 +130,7 @@ public class DiffController extends Stage {
         });
 
         //Eccentricity
-        sliderEcc.setMax(0.7);
+        sliderEcc.setMax(SLIDER_ECC_MAX);
 
         sliderEcc.valueProperty().addListener(new ChangeListener<Number>() {
             @Override
@@ -143,8 +162,8 @@ public class DiffController extends Stage {
         LinearGradient linearGradient = new LinearGradient(0, 0, 1, 0, true, CycleMethod.NO_CYCLE, stops);
         rectangleWave.setFill(linearGradient);
 
-        sliderWave.setMax(780);
-        sliderWave.setMin(380);
+        sliderWave.setMax(SLIDER_WAVE_MAX);
+        sliderWave.setMin(SLIDER_WAVE_MIN);
 
         sliderWave.valueProperty().addListener(new ChangeListener<Number>() {
             @Override
@@ -157,6 +176,13 @@ public class DiffController extends Stage {
                 diffEngine.addDiffraction(paneLaser, paneAnimation, wavelength, eccentricity, slitDistance);
             }
         });
-
     }
+    
+    /**
+     * TODO: Add the about window
+     */
+    @FXML
+    public void handleAbout (){ 
+    }
+    
 }

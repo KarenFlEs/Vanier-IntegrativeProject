@@ -1,7 +1,6 @@
 package WavesSimulation.Diffraction;
 
 import javafx.scene.effect.BoxBlur;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.CycleMethod;
@@ -21,13 +20,13 @@ import lombok.NoArgsConstructor;
 public class DiffEngine {
 
     private final int CIRCLE_POSITION_X = 340;
-    private final int CIRCLE_POSITION_Y = 300;
+    private final int CIRCLE_POSITION_Y = 310;
     private final int RECT_LASER_HEIGHT = 10;
     private final int RECT_LASER_WIDTH = 129;
     private final int RECT_LASER_LAYOUT_X = 179;
-    private final int RECT_LASER_LAYOUT_Y = 318;
+    private final int RECT_LASER_LAYOUT_Y = 323;
     private final int POLY_LASER_LAYOUT_X = 908;
-    private final int POLY_LASER_LAYOUT_Y = 320;
+    private final int POLY_LASER_LAYOUT_Y = 328;
     
     private final double OPACITY_1 = 0.7;
     private final double OPACITY_2 = 0.5;
@@ -165,7 +164,6 @@ public class DiffEngine {
     }
 
     /**
-     * TODO: fix the laser height
      * @param paneLaser
      * @param laserColor
      * @param laserRadius

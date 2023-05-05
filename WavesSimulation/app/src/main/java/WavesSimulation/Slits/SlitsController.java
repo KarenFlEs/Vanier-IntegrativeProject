@@ -119,10 +119,10 @@ public class SlitsController extends Stage {
     public SlitsController() {
 
     }
-    
+
     /**
-     * Handles the modifications in the animation when the checkbox of 1 slit
-     * is selected
+     * Handles the modifications in the animation when the checkbox of 1 slit is
+     * selected
      */
     @FXML
     public void handle1Slit() {
@@ -142,30 +142,35 @@ public class SlitsController extends Stage {
             sldWidth.setMin(150);
             sldWidth.setMax(300);
 
-            slit.getSlitSeperationTop().setVisible(false);
             slit.getSlitSeperationBottom().setVisible(false);
             sldSeperation.setDisable(true);
         }
     }
-    
+
     /**
      * Handles the modifications in the animation when the checkbox of 2 slits
-     * is selected
-     * TODO: Incorporate 2 slits with Arcs' Animation
+     * is selected TODO: Incorporate 2 slits with Arcs' Animation
      */
     @FXML
     public void handle2Slit() {
         arcAppearance(slit.getArc4(), slit.getArc5(), slit.getArc6());
-        System.out.println(slit.getSlitSeperationTop().getLayoutY() - slit.getSlitTopWall().getHeight());
+        //System.out.println(slit.getSlitSeperationTop().getLayoutY() - slit.getSlitTopWall().getHeight());
         slit.getArc1().setLayoutY(slit.getSlitTopWall().getLayoutY());
-        slit.getArc1().setRadiusY(slit.getSlitSeperationTop().getLayoutY() - slit.getSlitTopWall().getHeight());
+        slit.getArc1().setRadiusY(slit.getSlitSeperationBottom().getLayoutY() - slit.getSlitTopWall().getHeight());
         slit.getArc2().setLayoutY(slit.getSlitTopWall().getLayoutY());
-        slit.getArc2().setRadiusY(slit.getSlitSeperationTop().getLayoutY() - slit.getSlitTopWall().getHeight());
+        slit.getArc2().setRadiusY(slit.getSlitSeperationBottom().getLayoutY() - slit.getSlitTopWall().getHeight());
         slit.getArc3().setLayoutY(slit.getSlitTopWall().getLayoutY());
-        slit.getArc3().setRadiusY(slit.getSlitSeperationTop().getLayoutY() - slit.getSlitTopWall().getHeight());
+        slit.getArc3().setRadiusY(slit.getSlitSeperationBottom().getLayoutY() - slit.getSlitTopWall().getHeight());
+
+        slit.getArc4().setLayoutY(slit.getSlitSeperationBottom().getLayoutY());
+        slit.getArc4().setRadiusY(slit.getSlitSeperationBottom().getLayoutY() - slit.getSlitTopWall().getHeight());
+        slit.getArc5().setLayoutY(slit.getSlitSeperationBottom().getLayoutY());
+        slit.getArc5().setRadiusY(slit.getSlitSeperationBottom().getLayoutY() - slit.getSlitTopWall().getHeight());
+        slit.getArc6().setLayoutY(slit.getSlitSeperationBottom().getLayoutY());
+        slit.getArc6().setRadiusY(slit.getSlitSeperationBottom().getLayoutY() - slit.getSlitTopWall().getHeight());
 
         sldWidth.setMin(350);
-        sldWidth.setMax(425);
+        sldWidth.setMax(500);
 
         slit.handleSliderWidth(sldWidth, sldSeperation, labelSlitSeperation, labelSlitWidth);
 
@@ -175,7 +180,6 @@ public class SlitsController extends Stage {
 
             //sldWidth.setMin(150);
             //sldWidth.setMax(300);
-            slit.getSlitSeperationTop().setVisible(true);
             slit.getSlitSeperationBottom().setVisible(true);
             sldSeperation.setDisable(false);
         }
@@ -185,7 +189,7 @@ public class SlitsController extends Stage {
     public void handle3Slit() {
 
     }
-    
+
     /**
      * Handles the play/pause of the animation when the button is clicked
      */

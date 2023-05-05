@@ -30,7 +30,7 @@ public class SlitsEngine {
     private Rectangle slitTopWall;
     private Rectangle slitBottomWall;
 
-    private Rectangle slitSeperationTop;
+    
     private Rectangle slitSeperationBottom;
 
     private Rectangle straightWave1 = new Rectangle(100, 900);
@@ -245,7 +245,7 @@ public class SlitsEngine {
                     arc1.setRadiusY(450 - slitHeight);
                     arc2.setRadiusY(450 - slitHeight);
                     arc3.setRadiusY(450 - slitHeight);
-                } else if (sldWidth.getMin() == 350 && sldWidth.getMax() == 425) {
+                } else if (sldWidth.getMin() == 350 && sldWidth.getMax() == 500) {
                     int slitHeight = (int) sldWidth.getValue();
                     slitTopWall.setHeight(slitHeight - 275);
                     slitBottomWall.setHeight(slitHeight - 275);
@@ -256,12 +256,15 @@ public class SlitsEngine {
                     slitHeight = slitHeight - 50;
 
                     for (Arc arc : listArc) {
-                        arc.setRadiusY(450 - slitHeight);
-                        arc.setLayoutY(slitTopWall.getHeight() - 200);
+                        System.out.println(slitTopWall.getHeight());
+                        arc.setLayoutY(slitTopWall.getHeight() - 275/*+ ((slitSeperationTop.getLayoutY() - slitSeperationTop.getHeight()))*/);
+                        arc.setRadiusY( slitSeperationBottom.getHeight() - slitTopWall.getHeight());
+                        //arc.setRadiusY(450 - slitHeight);
+                        //arc.setLayoutY(slitTopWall.getHeight() - 200);
                     }
                     for (Arc arc : listArc2) {
                         arc.setRadiusY(450 - slitHeight);
-                        System.out.println(slitSeperationBottom.getLayoutY());
+                        //System.out.println(slitSeperationBottom.getLayoutY());
                         arc.setLayoutY(slitBottomWall.getLayoutY() - 400);
                     }
 
@@ -283,14 +286,16 @@ public class SlitsEngine {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
                 int seperationHeight = (int) sldSeperation.getValue();
-                slitSeperationTop.setHeight(seperationHeight);
-                slitSeperationTop.setLayoutY(425 - seperationHeight);
-                slitSeperationBottom.setHeight(seperationHeight + 50);
+                slitSeperationBottom.setHeight(seperationHeight);
+                slitSeperationBottom.setLayoutY(450 - seperationHeight/2);
                 labelSlitSeperation.setText(Integer.toString(seperationHeight) + " cm");
 
                 for (Arc arc : listArc) {
-                    arc.setRadiusY(550 - (int) sldWidth.getValue() - seperationHeight);
-                    arc.setLayoutY(slitSeperationTop.getLayoutY() - 450);
+                    
+                    arc.setRadiusY( - slitSeperationBottom.getHeight() - slitTopWall.getHeight());
+                    //arc.setLayoutY(slitSeperationTop.getLayoutY() - 450);
+                    arc.setCenterY(slitTopWall.getHeight());
+                    
                 }
 
                 for (Arc arc : listArc2) {
@@ -355,17 +360,12 @@ public class SlitsEngine {
         slitBottomWall.setLayoutX(500);
         slitBottomWall.setLayoutY(600);
 
-        slitSeperationTop = new Rectangle(15, 150, Color.GAINSBORO);
-        slitSeperationTop.setLayoutX(500);
-        slitSeperationTop.setLayoutY(325);
-        slitSeperationTop.setVisible(false);
-
         slitSeperationBottom = new Rectangle(15, 150, Color.GAINSBORO);
         slitSeperationBottom.setLayoutX(500);
         slitSeperationBottom.setLayoutY(425);
         slitSeperationBottom.setVisible(false);
 
-        paneAnimation.getChildren().addAll(slitTopWall, slitBottomWall, slitSeperationTop, slitSeperationBottom);
+        paneAnimation.getChildren().addAll(slitTopWall, slitBottomWall, slitSeperationBottom);
 
         btn.setSelected(true);
         sldSeperation.setDisable(true);
@@ -410,14 +410,6 @@ public class SlitsEngine {
 
     public void setSlitBottomWall(Rectangle slitBottomWall) {
         this.slitBottomWall = slitBottomWall;
-    }
-
-    public Rectangle getSlitSeperationTop() {
-        return slitSeperationTop;
-    }
-
-    public void setSlitSeperationTop(Rectangle slitSeperationTop) {
-        this.slitSeperationTop = slitSeperationTop;
     }
 
     public Rectangle getSlitSeperationBottom() {

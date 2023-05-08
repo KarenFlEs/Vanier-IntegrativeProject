@@ -28,7 +28,7 @@ import javafx.stage.Stage;
  */
 public class DiffController extends Stage {
 
-    Stage Owner = this.Owner;
+    Stage Owner;
     Stage stageWaveInfo = new Stage();
     Stage stageDiamInfo = new Stage();
     Stage stageEccInfo = new Stage();
@@ -194,7 +194,7 @@ public class DiffController extends Stage {
     */
     @FXML
     public void handleClose (){
-        this.close();
+        Owner.close();
     }
     
     @FXML

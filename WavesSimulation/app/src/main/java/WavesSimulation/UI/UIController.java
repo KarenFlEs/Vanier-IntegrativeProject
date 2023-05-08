@@ -59,6 +59,24 @@ public class UIController extends Stage {
         this.owner = owner;
     }
     
+    public void openInterSimulation() throws IOException{
+        IntSimulationWindow interSim = new IntSimulationWindow();
+        interSim.show();
+        owner.close();
+    }
+    
+    public void openSlitsSimulation() throws IOException{
+        SlitsSimulationWindow slitsSim = new SlitsSimulationWindow();
+        slitsSim.show();
+        owner.close();
+    }
+    
+    public void openDiffSimulation() throws IOException{
+        DiffSimulationWindow diffSim = new DiffSimulationWindow();
+        diffSim.show();
+        owner.close();
+    }
+    
     @FXML
     public void handleBtnInt() throws IOException{
         IntSimulationWindow interSim = new IntSimulationWindow();
@@ -86,23 +104,19 @@ public class UIController extends Stage {
     
     @FXML
     public void handleInterSimSelection () throws IOException {
-        IntSimulationWindow interSim = new IntSimulationWindow();
-        interSim.show();
-        owner.close();
+        openInterSimulation(); 
     }
     
     @FXML
     public void handleSlitsSimSelection () throws IOException {
-        SlitsSimulationWindow slitsSim = new SlitsSimulationWindow();
-        slitsSim.show();
-        owner.close();
+        openSlitsSimulation(); 
     }
     
     @FXML
-    public void handleDiffSimSelection () throws IOException {
-        DiffSimulationWindow diffSim = new DiffSimulationWindow();
-        diffSim.show();
-        owner.close();
+    public void handleDiffSimSelection () throws IOException  {
+        openDiffSimulation(); 
     }
+    
+    
 }
 

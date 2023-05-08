@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import javafx.beans.value.ChangeListener;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
@@ -109,9 +110,16 @@ public class InterController extends Stage {
         
         StackPane layout = new StackPane();
         
-        Label label = new Label("information here");
+        TextArea text = new TextArea();
+        text.autosize();
+        text.setText("When increasing the frequency, the velocity of the"
+                + " waves moving increases. When decreasing the frequency,"
+                + " the velocity of the waves moving decreases.");
+        text.setPrefSize(300, 200);
+        text.setWrapText(true);
+        text.setEditable(false);
         
-        layout.getChildren().add(label);
+        layout.getChildren().add(text);
         
         Scene scene = new Scene(layout,300,200);
         
@@ -130,9 +138,16 @@ public class InterController extends Stage {
         
         StackPane layout = new StackPane();
         
-        Label label = new Label("information here");
+        TextArea text = new TextArea();
+        text.autosize();
+        text.setText("When increasing the amplitude, the waves become more bright and"
+                + " sharp in color, while when decreasing the amplitudes, the waves becoming"
+                + " less vibrant in color and more blurry.");
+        text.setPrefSize(300, 200);
+        text.setWrapText(true);
+        text.setEditable(false);
         
-        layout.getChildren().add(label);
+        layout.getChildren().add(text);
         
         Scene scene = new Scene(layout,300,200);
         
@@ -151,9 +166,17 @@ public class InterController extends Stage {
         
         StackPane layout = new StackPane();
         
-        Label label = new Label("information here");
-        
-        layout.getChildren().add(label);
+        TextArea text = new TextArea();
+        text.autosize();
+        text.setText("When increasing the separation, the two faucets"
+                + " get further away from each other which makes the two waves interfere"
+                + " once they meet after the bigger distance. The opposite "
+                + "occurs when decreasing the separation.");
+        text.setPrefSize(300, 200);
+        text.setWrapText(true);
+        text.setEditable(false);
+    
+        layout.getChildren().add(text);
         
         Scene scene = new Scene(layout,300,200);
         

@@ -79,22 +79,16 @@ public class UIController extends Stage {
     
     @FXML
     public void handleBtnInt() throws IOException{
-        IntSimulationWindow interSim = new IntSimulationWindow();
-        interSim.show();
-        owner.close();
+        openInterSimulation(); 
     }
     
     @FXML
     public void handleBtnSlit() throws IOException{
-        SlitsSimulationWindow slitsSim = new SlitsSimulationWindow();
-        slitsSim.show();
-        owner.close();
+        openSlitsSimulation(); 
     }
     @FXML
     public void handleBtnDiff() throws IOException{
-        DiffSimulationWindow diffSim = new DiffSimulationWindow();
-        diffSim.show();
-        owner.close();
+        openDiffSimulation(); 
     }
     
     @FXML

@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="diffScreen" prefHeight="1056.0" prefWidth="1936.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="diffScreen" prefHeight="1056.0" prefWidth="1936.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="1986.0">
         <menus>
@@ -81,7 +81,7 @@
                   <Font name="Calisto MT" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="btnInfoWavelength" layoutX="143.0" layoutY="84.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="27.0" style="-fx-background-radius: 5em; -fx-min-height: 3px; -fx-min-width: 3px;" styleClass="a" text="i">
+            <Button fx:id="btnInfoWavelength" layoutX="143.0" layoutY="84.0" mnemonicParsing="false" onMouseEntered="#enteredMouseWaveInfo" onMouseExited="#exitedMouseWaveInfo" prefHeight="27.0" prefWidth="27.0" style="-fx-background-radius: 5em; -fx-min-height: 3px; -fx-min-width: 3px;" styleClass="a" text="i">
                <font>
                   <Font name="Calisto MT" size="12.0" />
                </font>

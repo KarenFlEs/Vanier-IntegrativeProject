@@ -3,19 +3,23 @@ package WavesSimulation.Diffraction;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Slider;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
@@ -26,6 +30,7 @@ import javafx.stage.Stage;
 public class DiffController extends Stage {
 
     Stage Owner;
+    Stage stageWaveInfo = new Stage();
 
     @FXML
     private AnchorPane diffScreen;
@@ -70,7 +75,7 @@ public class DiffController extends Stage {
     private Button btnInfoEccentricity; 
     
     @FXML
-    private MenuItem menuItemAbout;         
+    private MenuItem menuItemAbout;     
     
     DiffEngine diffEngine = new DiffEngine();
     
@@ -97,7 +102,6 @@ public class DiffController extends Stage {
      */
     @FXML
     public void initialize() {
-
         //Laser
         imvLaser.setTranslateY(LASER_POSITION_Y);
         imvLaser.setFitHeight(LASER_HEIGHT);
@@ -183,6 +187,60 @@ public class DiffController extends Stage {
      */
     @FXML
     public void handleAbout (){ 
+        Stage stageAbout = new Stage();
+        stageAbout.initModality(Modality.NONE);
+        stageAbout.setTitle("Diffraction information");
+        stageAbout.setX(50); 
+        stageAbout.setY(50); 
+        
+        StackPane stakePaneAbout = new StackPane();
+        String strDiffractionDef = "Diffraction is the process of putting a beam light through "
+                + "a narrow aperture in which spreads out the waves"; 
+        
+        TextArea textDiffractionInfo = new TextArea();
+        textDiffractionInfo.autosize();
+        textDiffractionInfo.setText(strDiffractionDef + "\n");
+        textDiffractionInfo.setPrefSize(300, 200);
+        textDiffractionInfo.setWrapText(true);
+        textDiffractionInfo.setEditable(false);
+        
+        stakePaneAbout.getChildren().add(textDiffractionInfo);
+        
+        Scene scene = new Scene(stakePaneAbout,300,600);
+        stageAbout.setScene(scene);
+        stageAbout.show();
+    }
+    
+    /**
+     * TODO: Choose between the pressed version or the handlebtn version
+     */
+    @FXML
+    public void enteredMouseWaveInfo (){
+        stageWaveInfo.setTitle("Wavelength information");
+        stageWaveInfo.setX(200);
+        stageWaveInfo.setY(400);
+        
+        StackPane stackPaneWaveInfo = new StackPane();
+        
+        TextArea textWave = new TextArea();
+        textWave.autosize();
+        textWave.setText("When the wavelength changes, there is a specific color"
+                + " the laser will have. As it increases, the size of the slit"
+                + " hole will be bigger creating a small diffraction pattern.");
+        textWave.setPrefSize(300, 100);
+        textWave.setWrapText(true);
+        textWave.setEditable(false);
+        
+        stackPaneWaveInfo.getChildren().add(textWave);
+        
+        Scene scene = new Scene(stackPaneWaveInfo, 300, 100);
+        stageWaveInfo.setScene(scene);
+        stageWaveInfo.show();
+    }
+    
+    @FXML
+    public void exitedMouseWaveInfo (){
+        stageWaveInfo.close();
     }
     
 }

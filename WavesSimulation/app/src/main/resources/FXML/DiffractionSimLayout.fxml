@@ -11,20 +11,29 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="diffScreen" prefHeight="1056.0" prefWidth="1936.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="diffScreen" prefHeight="1056.0" prefWidth="1936.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="1986.0">
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
+              <MenuItem mnemonicParsing="false" onAction="#handleClose" text="Close" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">
             <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
+              <MenuItem mnemonicParsing="false" onAction="#handleReset" text="Reset" />
             </items>
           </Menu>
+            <Menu mnemonicParsing="false" text="Settings">
+              <items>
+                  <Menu mnemonicParsing="false" text="Preferences">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Action 1" />
+                    </items>
+                  </Menu>
+              </items>
+            </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <items>
               <MenuItem fx:id="menuItemAbout" mnemonicParsing="false" onAction="#handleAbout" text="About" />
@@ -71,12 +80,12 @@
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <Button fx:id="btnInfoDiameter" layoutX="1195.0" layoutY="95.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="27.0" style="-fx-background-radius: 5em; -fx-min-height: 3px; -fx-min-width: 3px;" styleClass="a" text="i">
+            <Button fx:id="btnInfoDiameter" layoutX="1195.0" layoutY="95.0" mnemonicParsing="false" onMouseEntered="#enteredMouseDiamInfo" onMouseExited="#exitedMouseDiamInfo" prefHeight="27.0" prefWidth="27.0" style="-fx-background-radius: 5em; -fx-min-height: 3px; -fx-min-width: 3px;" styleClass="a" text="i">
                <font>
                   <Font name="Calisto MT" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="btnInfoEccentricity" layoutX="1196.0" layoutY="163.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="27.0" style="-fx-background-radius: 5em; -fx-min-height: 3px; -fx-min-width: 3px;" styleClass="a" text="i">
+            <Button fx:id="btnInfoEccentricity" layoutX="1196.0" layoutY="163.0" mnemonicParsing="false" onMouseEntered="#enteredMouseEccInfo" onMouseExited="#exitedMouseEccInfo" prefHeight="27.0" prefWidth="27.0" style="-fx-background-radius: 5em; -fx-min-height: 3px; -fx-min-width: 3px;" styleClass="a" text="i">
                <font>
                   <Font name="Calisto MT" size="12.0" />
                </font>

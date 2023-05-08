@@ -4,9 +4,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
@@ -19,6 +17,7 @@ import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -29,8 +28,10 @@ import javafx.stage.Stage;
  */
 public class DiffController extends Stage {
 
-    Stage Owner;
+    Stage Owner = this.Owner;
     Stage stageWaveInfo = new Stage();
+    Stage stageDiamInfo = new Stage();
+    Stage stageEccInfo = new Stage();
 
     @FXML
     private AnchorPane diffScreen;
@@ -64,23 +65,17 @@ public class DiffController extends Stage {
 
     @FXML
     private Label labelEcc;
-
-    @FXML
-    private Button btnInfoWavelength; 
-    
-    @FXML
-    private Button btnInfoDiameter; 
-    
-    @FXML
-    private Button btnInfoEccentricity; 
-    
-    @FXML
-    private MenuItem menuItemAbout;     
     
     DiffEngine diffEngine = new DiffEngine();
     
     ImageView imvLaser = new ImageView("/images/laser.png");
 
+    private final int WAVE_INFO_POSITION_X = 80; 
+    private final int WAVE_INFO_POSITION_Y = 740;
+    private final int DIAM_INFO_POSITION_X = 860;
+    private final int DIAM_INFO_POSITION_Y = 770;
+    private final int ECC_INFO_POSITION_X = 870;
+    private final int ECC_INFO_POSITION_Y = 900;
     private final int LASER_POSITION_Y = 355;
     private final int LASER_HEIGHT = 180;
     private final int LASER_WIDTH = 200;
@@ -90,12 +85,24 @@ public class DiffController extends Stage {
     private final int SLIDER_DIAMETER_MAX = 130; 
     private final int SLIDER_WAVE_MIN = 380; 
     private final int SLIDER_WAVE_MAX = 780; 
+    private final double SLIDER_ECC_MIN = 0.0; 
     private final double SLIDER_ECC_MAX = 0.7; 
     
     int circleRadius = 10; 
     int wavelength = 380;
     double slitDistance = 10.0;
     double eccentricity = 1.0;
+    
+    String strWaveInfo = "When the wavelength changes, there is a specific color"
+        + " the laser will have. As it increases, the size of the slit"
+        + " hole will be bigger creating a small diffraction pattern."; 
+    
+    String strDiamInfo = "The opening of the slit increases if the diameter"
+        + " increases which will create a smaller diffraction pattern."; 
+    
+    String strEccInfo = "When the eccentricity increases, the width of the"
+                + " slit opening decreases which will affect the diffraction patterned"
+                + " as its height will get smaller."; 
     
     /**
      * This is the initialize method which runs when the DiffractionWindow opens
@@ -182,9 +189,23 @@ public class DiffController extends Stage {
         });
     }
     
-    /**
-     * TODO: Add the about window
-     */
+    /*
+    TODO: fix the functionality
+    */
+    @FXML
+    public void handleClose (){
+        this.close();
+    }
+    
+    @FXML
+    public void handleReset (){
+        sliderWave.setValue(SLIDER_WAVE_MIN);
+        sliderDiameter.setValue(SLIDER_DIAMETER_MIN);
+        sliderEcc.setValue(SLIDER_ECC_MIN);
+        paneAnimation.getChildren().clear(); 
+        paneLaser.getChildren().clear();
+    }
+    
     @FXML
     public void handleAbout (){ 
         Stage stageAbout = new Stage();
@@ -199,7 +220,9 @@ public class DiffController extends Stage {
         
         TextArea textDiffractionInfo = new TextArea();
         textDiffractionInfo.autosize();
-        textDiffractionInfo.setText(strDiffractionDef + "\n");
+        textDiffractionInfo.setText(strDiffractionDef + "\n\nWavelength: " + strWaveInfo 
+                + "\n\nDiameter: " + strDiamInfo + "\n\nEccentricity: " + strEccInfo );
+        textDiffractionInfo.setFont(Font.font("Book Antica", 14));
         textDiffractionInfo.setPrefSize(300, 200);
         textDiffractionInfo.setWrapText(true);
         textDiffractionInfo.setEditable(false);
@@ -210,23 +233,19 @@ public class DiffController extends Stage {
         stageAbout.setScene(scene);
         stageAbout.show();
     }
-    
-    /**
-     * TODO: Choose between the pressed version or the handlebtn version
-     */
+
     @FXML
     public void enteredMouseWaveInfo (){
         stageWaveInfo.setTitle("Wavelength information");
-        stageWaveInfo.setX(200);
-        stageWaveInfo.setY(400);
+        stageWaveInfo.setX(WAVE_INFO_POSITION_X);
+        stageWaveInfo.setY(WAVE_INFO_POSITION_Y);
         
         StackPane stackPaneWaveInfo = new StackPane();
         
         TextArea textWave = new TextArea();
         textWave.autosize();
-        textWave.setText("When the wavelength changes, there is a specific color"
-                + " the laser will have. As it increases, the size of the slit"
-                + " hole will be bigger creating a small diffraction pattern.");
+        textWave.setText(strWaveInfo);
+        textWave.setFont(Font.font("Book Antica", 14));
         textWave.setPrefSize(300, 100);
         textWave.setWrapText(true);
         textWave.setEditable(false);
@@ -241,6 +260,62 @@ public class DiffController extends Stage {
     @FXML
     public void exitedMouseWaveInfo (){
         stageWaveInfo.close();
+    }
+    
+    @FXML
+    public void enteredMouseDiamInfo (){
+        stageDiamInfo.setTitle("Diameter information");
+        stageDiamInfo.setX(DIAM_INFO_POSITION_X);
+        stageDiamInfo.setY(DIAM_INFO_POSITION_Y);
+        
+        StackPane stackPaneDiamInfo = new StackPane();
+        
+        TextArea textDiam = new TextArea();
+        textDiam.autosize();
+        textDiam.setText(strDiamInfo);
+        textDiam.setFont(Font.font("Book Antica", 14));
+        textDiam.setPrefSize(300, 100);
+        textDiam.setWrapText(true);
+        textDiam.setEditable(false);
+        
+        stackPaneDiamInfo.getChildren().add(textDiam);
+        
+        Scene scene = new Scene(stackPaneDiamInfo, 300, 100);
+        stageDiamInfo.setScene(scene);
+        stageDiamInfo.show();
+    }
+    
+    @FXML
+    public void exitedMouseDiamInfo (){
+        stageDiamInfo.close();
+    }
+    
+    @FXML
+    public void enteredMouseEccInfo (){
+        stageEccInfo.setTitle("Eccentricity information");
+        stageEccInfo.setX(ECC_INFO_POSITION_X);
+        stageEccInfo.setY(ECC_INFO_POSITION_Y);
+        
+        StackPane stackPaneEccInfo = new StackPane();
+        
+        TextArea textEcc = new TextArea();
+        textEcc.autosize();
+        textEcc.setText(strEccInfo);
+        textEcc.setFont(Font.font("Book Antica", 14));
+        textEcc.setPrefSize(300, 100);
+        textEcc.setWrapText(true);
+        textEcc.setEditable(false);
+        
+        stackPaneEccInfo.getChildren().add(textEcc);
+        
+        Scene scene = new Scene(stackPaneEccInfo, 300, 100);
+        stageEccInfo.setScene(scene);
+        stageEccInfo.show();
+    }
+    
+    @FXML
+    public void exitedMouseEccInfo (){
+        stageEccInfo.close(); 
     }
     
 }

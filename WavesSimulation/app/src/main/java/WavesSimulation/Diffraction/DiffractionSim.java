@@ -40,7 +40,7 @@ public class DiffractionSim {
     protected double calculationDiffractionRadius() {
         diffractionRadius = LENGTH_TO_SCREEN * Math.tan(getDiffractionAngle());
 
-        return getDiffractionRadius();
+        return diffractionRadius;
     }
 
 }

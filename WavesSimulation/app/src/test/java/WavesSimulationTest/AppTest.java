@@ -3,5 +3,18 @@
  */
 package WavesSimulationTest;
 
+import WavesSimulation.Diffraction.DiffractionSim;
+
 class AppTest {
+    
+    DiffractionSim diffSim = new DiffractionSim(); 
+    
+    public void testDiffAngle (){
+        System.out.println("Angle: ");
+    }
+    
+    public void testDiffRadius (){
+        System.out.println("Angle: ");
+    }
+    
 }

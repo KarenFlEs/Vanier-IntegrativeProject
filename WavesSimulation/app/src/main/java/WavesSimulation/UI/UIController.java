@@ -78,5 +78,31 @@ public class UIController extends Stage {
         diffSim.show();
         owner.close();
     }
-
+    
+    @FXML
+    public void handleCloseFile(){
+        owner.close();
+    }
+    
+    @FXML
+    public void handleInterSimSelection () throws IOException {
+        IntSimulationWindow interSim = new IntSimulationWindow();
+        interSim.show();
+        owner.close();
+    }
+    
+    @FXML
+    public void handleSlitsSimSelection () throws IOException {
+        SlitsSimulationWindow slitsSim = new SlitsSimulationWindow();
+        slitsSim.show();
+        owner.close();
+    }
+    
+    @FXML
+    public void handleDiffSimSelection () throws IOException {
+        DiffSimulationWindow diffSim = new DiffSimulationWindow();
+        diffSim.show();
+        owner.close();
+    }
 }
+

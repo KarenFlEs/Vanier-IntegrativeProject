@@ -8,9 +8,12 @@ import javafx.scene.control.Slider;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.beans.value.ChangeListener;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Modality;
 
 /**
  *
@@ -49,6 +52,15 @@ public class InterController extends Stage {
 
     @FXML
     private Label labelAmp;
+   
+    @FXML
+    private Button btnInfoSep;
+    
+    @FXML
+    private Button btnInfoAmp;
+    
+    @FXML
+    private Button btnInfoFreq;
 
     ImageView imageFaucetBottom = new ImageView("/images/faucet.png");
     ImageView imageFaucetTop = new ImageView("/images/faucet.png");
@@ -78,15 +90,78 @@ public class InterController extends Stage {
         handleSldAmp();
         handleSldFreq();
         engine.setAnimationArc(animationPane);
+        
     }
-
     public InterController() {
     }
 
     public InterController(Stage owner) {
         this.owner = owner;
     }
-
+    
+    @FXML
+    public void handleBtnInfoFreq(ActionEvent event){
+        Stage newStage = new Stage();
+        
+        newStage.initModality(Modality.APPLICATION_MODAL);
+        
+        newStage.setTitle("Frequency information");
+        
+        StackPane layout = new StackPane();
+        
+        Label label = new Label("information here");
+        
+        layout.getChildren().add(label);
+        
+        Scene scene = new Scene(layout,300,200);
+        
+        newStage.setScene(scene);
+        
+        newStage.show();
+    }
+    
+    @FXML 
+    public void handleBtnInfoAmp(ActionEvent event){
+        Stage newStage = new Stage();
+        
+        newStage.initModality(Modality.APPLICATION_MODAL);
+        
+        newStage.setTitle("Amplitude information");
+        
+        StackPane layout = new StackPane();
+        
+        Label label = new Label("information here");
+        
+        layout.getChildren().add(label);
+        
+        Scene scene = new Scene(layout,300,200);
+        
+        newStage.setScene(scene);
+        
+        newStage.show();
+    }
+    
+    @FXML 
+    public void handleBtnInfoSep(ActionEvent event){
+         Stage newStage = new Stage();
+        
+        newStage.initModality(Modality.APPLICATION_MODAL);
+        
+        newStage.setTitle("Separation information");
+        
+        StackPane layout = new StackPane();
+        
+        Label label = new Label("information here");
+        
+        layout.getChildren().add(label);
+        
+        Scene scene = new Scene(layout,300,200);
+        
+        newStage.setScene(scene);
+        
+        newStage.show();
+    }
+    
     @FXML
     public void handleBtnStartTop(ActionEvent event) {
         engine.playTopAnimation();

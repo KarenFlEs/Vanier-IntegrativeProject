@@ -3,10 +3,16 @@ package WavesSimulation.UI;
 
 import java.io.IOException;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
@@ -34,6 +40,9 @@ public class UIController extends Stage {
     
     @FXML
     private Button btnDiff;
+    
+    @FXML
+    private MenuItem menuItemReset; 
 
     Image imvInt = new Image("/images/interference.jpg");
     ImagePattern impInt = new ImagePattern(imvInt);
@@ -53,6 +62,8 @@ public class UIController extends Stage {
         btnSlit.toFront();
         btnInt.toFront();
         btnDiff.toFront();
+        
+        menuItemReset.setDisable(true);
     }
 
     public UIController(Stage owner) {
@@ -112,5 +123,41 @@ public class UIController extends Stage {
     }
     
     
+    @FXML
+    public void handleHelpAbout(){
+        Stage stageHelp = new Stage();
+        stageHelp.initModality(Modality.NONE);
+        stageHelp.setTitle("Project information");
+        stageHelp.setX(50); 
+        stageHelp.setY(50); 
+        
+        StackPane stakePaneHelp = new StackPane();
+       
+        String strIntro = "This project is a simulation regarding the physical concepts: "
+                + "Interference, Slits and Diffraction";
+        
+        String strInterferenceDef = "\n\nInterference "; 
+        
+        String strDiffractionDef = "\n\nDiffraction is the process of putting a beam light through "
+                + "a narrow aperture in which spreads out the waves"; 
+        
+        String strSlitsDef = "\n\nSlits "; 
+        
+        TextArea textInformation = new TextArea();
+        textInformation.autosize();
+        textInformation.setText(strIntro + strInterferenceDef + strDiffractionDef + strSlitsDef);
+        textInformation.setFont(Font.font("Book Antica", 14));
+        textInformation.setPrefSize(300, 200);
+        textInformation.setWrapText(true);
+        textInformation.setEditable(false);
+        
+        stakePaneHelp.getChildren().add(textInformation);
+        
+        Scene scene = new Scene(stakePaneHelp,300,400);
+        stageHelp.setScene(scene);
+        stageHelp.show();
+    }
+    
 }
+
 

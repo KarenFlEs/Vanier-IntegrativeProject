@@ -9,7 +9,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="paneMain" prefHeight="1056.0" prefWidth="1936.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<Pane fx:id="paneMain" prefHeight="1056.0" prefWidth="1936.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Button fx:id="btnInt" layoutX="218.0" layoutY="489.0" mnemonicParsing="false" onAction="#handleBtnInt" prefHeight="300.0" prefWidth="300.0" style="-fx-background-color: TRANSPARENT;" text="Button" textFill="TRANSPARENT" />
       <Button fx:id="btnSlit" layoutX="808.0" layoutY="500.0" mnemonicParsing="false" onAction="#handleBtnSlit" prefHeight="300.0" prefWidth="300.0" style="-fx-background-color: TRANSPARENT;" text="Button" textFill="TRANSPARENT" />
@@ -23,7 +23,7 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">
             <items>
-              <MenuItem mnemonicParsing="false" text="Reset" />
+              <MenuItem fx:id="menuItemReset" mnemonicParsing="false" text="Reset" />
             </items>
           </Menu>
             <Menu mnemonicParsing="false" text="Settings">
@@ -39,7 +39,7 @@
             </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <items>
-              <MenuItem mnemonicParsing="false" text="About" />
+              <MenuItem mnemonicParsing="false" onAction="#handleHelpAbout" text="About" />
             </items>
           </Menu>
         </menus>

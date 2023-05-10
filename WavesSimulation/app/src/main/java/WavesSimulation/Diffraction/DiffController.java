@@ -1,5 +1,7 @@
 package WavesSimulation.Diffraction;
 
+import WavesSimulation.UI.UIController;
+import java.io.IOException;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -28,7 +30,7 @@ import javafx.stage.Stage;
  */
 public class DiffController extends Stage {
 
-    Stage Owner;
+    Stage stageSim;
     Stage stageWaveInfo = new Stage();
     Stage stageDiamInfo = new Stage();
     Stage stageEccInfo = new Stage();
@@ -103,6 +105,10 @@ public class DiffController extends Stage {
     String strEccInfo = "When the eccentricity increases, the width of the"
                 + " slit opening decreases which will affect the diffraction patterned"
                 + " as its height will get smaller."; 
+    
+    public DiffController(Stage stageDiff) {
+        this.stageSim = stageDiff;
+    }
     
     /**
      * This is the initialize method which runs when the DiffractionWindow opens
@@ -187,51 +193,6 @@ public class DiffController extends Stage {
                 diffEngine.addDiffraction(paneLaser, paneAnimation, wavelength, eccentricity, slitDistance);
             }
         });
-    }
-    
-    /*
-    TODO: fix the functionality
-    */
-    @FXML
-    public void handleClose (){
-        Owner.close();
-    }
-    
-    @FXML
-    public void handleReset (){
-        sliderWave.setValue(SLIDER_WAVE_MIN);
-        sliderDiameter.setValue(SLIDER_DIAMETER_MIN);
-        sliderEcc.setValue(SLIDER_ECC_MIN);
-        paneAnimation.getChildren().clear(); 
-        paneLaser.getChildren().clear();
-    }
-    
-    @FXML
-    public void handleAbout (){ 
-        Stage stageAbout = new Stage();
-        stageAbout.initModality(Modality.NONE);
-        stageAbout.setTitle("Diffraction information");
-        stageAbout.setX(50); 
-        stageAbout.setY(50); 
-        
-        StackPane stakePaneAbout = new StackPane();
-        String strDiffractionDef = "Diffraction is the process of putting a beam light through "
-                + "a narrow aperture in which spreads out the waves"; 
-        
-        TextArea textDiffractionInfo = new TextArea();
-        textDiffractionInfo.autosize();
-        textDiffractionInfo.setText(strDiffractionDef + "\n\nWavelength: " + strWaveInfo 
-                + "\n\nDiameter: " + strDiamInfo + "\n\nEccentricity: " + strEccInfo );
-        textDiffractionInfo.setFont(Font.font("Book Antica", 14));
-        textDiffractionInfo.setPrefSize(300, 200);
-        textDiffractionInfo.setWrapText(true);
-        textDiffractionInfo.setEditable(false);
-        
-        stakePaneAbout.getChildren().add(textDiffractionInfo);
-        
-        Scene scene = new Scene(stakePaneAbout,300,600);
-        stageAbout.setScene(scene);
-        stageAbout.show();
     }
 
     @FXML
@@ -318,4 +279,68 @@ public class DiffController extends Stage {
         stageEccInfo.close(); 
     }
     
+    /*
+    TODO: fix the functionality
+    */
+    @FXML
+    public void handleClose (){
+        stageSim.close();
+    }
+    
+    @FXML
+    public void handleReset (){
+        sliderWave.setValue(SLIDER_WAVE_MIN);
+        sliderDiameter.setValue(SLIDER_DIAMETER_MIN);
+        sliderEcc.setValue(SLIDER_ECC_MIN);
+        paneAnimation.getChildren().clear(); 
+        paneLaser.getChildren().clear();
+    }
+    
+    @FXML
+    public void handleOpenInterSim () throws IOException{
+       UIController uiController = new UIController (stageSim); 
+       uiController.openInterSimulation();
+    }
+    
+    @FXML
+    public void handleOpenSlitsSim () throws IOException{
+       UIController uiController = new UIController (stageSim); 
+       uiController.openSlitsSimulation();
+    }
+    
+    /**
+     * TODO
+     */
+    @FXML
+    public void handleOpenMenuPage () {
+    }
+    
+    @FXML
+    public void handleAbout (){ 
+        Stage stageAbout = new Stage();
+        stageAbout.initModality(Modality.NONE);
+        stageAbout.setTitle("Diffraction information");
+        stageAbout.setX(50); 
+        stageAbout.setY(50); 
+        
+        StackPane stakePaneAbout = new StackPane();
+        String strDiffractionDef = "Diffraction is the process of putting a beam light through "
+                + "a narrow aperture in which spreads out the waves"; 
+        
+        TextArea textDiffractionInfo = new TextArea();
+        textDiffractionInfo.autosize();
+        textDiffractionInfo.setText(strDiffractionDef + "\n\nWavelength: " + strWaveInfo 
+                + "\n\nDiameter: " + strDiamInfo + "\n\nEccentricity: " + strEccInfo );
+        textDiffractionInfo.setFont(Font.font("Book Antica", 14));
+        textDiffractionInfo.setPrefSize(300, 200);
+        textDiffractionInfo.setWrapText(true);
+        textDiffractionInfo.setEditable(false);
+        
+        stakePaneAbout.getChildren().add(textDiffractionInfo);
+        
+        Scene scene = new Scene(stakePaneAbout,300,600);
+        stageAbout.setScene(scene);
+        stageAbout.show();
+    }
+
 }

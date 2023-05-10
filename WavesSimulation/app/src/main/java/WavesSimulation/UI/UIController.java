@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author Steven Dy
+ * @author Steven Dy and Karen Florian
  */
 public class UIController extends Stage {
 
@@ -71,21 +71,21 @@ public class UIController extends Stage {
     }
     
     public void openInterSimulation() throws IOException{
+        owner.close();
         IntSimulationWindow interSim = new IntSimulationWindow();
         interSim.show();
-        owner.close();
     }
     
     public void openSlitsSimulation() throws IOException{
+        owner.close();
         SlitsSimulationWindow slitsSim = new SlitsSimulationWindow();
         slitsSim.show();
-        owner.close();
     }
     
     public void openDiffSimulation() throws IOException{
+        owner.close();
         DiffSimulationWindow diffSim = new DiffSimulationWindow();
         diffSim.show();
-        owner.close();
     }
     
     @FXML

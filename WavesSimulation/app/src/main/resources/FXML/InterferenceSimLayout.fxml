@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1056.0" prefWidth="1936.0" style="-fx-background-color: GRAY;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1056.0" prefWidth="1936.0" style="-fx-background-color: GRAY;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
@@ -97,6 +97,11 @@
                </font>
             </Button>
             <Button fx:id="btnStartBottom" layoutX="197.0" layoutY="569.0" mnemonicParsing="false" onAction="#handleBtnStartBottom" prefHeight="25.0" prefWidth="46.0" style="-fx-border-color: BLUE;" text="Play">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnStart" layoutX="152.0" layoutY="460.0" mnemonicParsing="false" onAction="#handleBtnStart" prefHeight="28.0" prefWidth="91.0" style="-fx-border-color: BLUE;" text="Play Both">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>

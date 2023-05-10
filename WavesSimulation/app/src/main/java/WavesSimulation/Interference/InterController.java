@@ -44,6 +44,9 @@ public class InterController extends Stage {
 
     @FXML
     private Button btnStartBottom;
+    
+    @FXML
+    private Button btnStart;
 
     @FXML
     private Label lblTitle;
@@ -62,6 +65,8 @@ public class InterController extends Stage {
     
     @FXML
     private Button btnInfoFreq;
+    
+    private boolean isPlaying = false;
 
     ImageView imageFaucetBottom = new ImageView("/images/faucet.png");
     ImageView imageFaucetTop = new ImageView("/images/faucet.png");
@@ -187,14 +192,49 @@ public class InterController extends Stage {
     
     @FXML
     public void handleBtnStartTop(ActionEvent event) {
-        engine.playTopAnimation();
-        System.out.println("Top Button");
+        if(!isPlaying){
+            isPlaying = true;
+            engine.playTopAnimation();
+            btnStartBottom.setDisable(true);
+            btnStart.setDisable(true);
+        }else{
+            isPlaying = false;
+            engine.stopTopAnimation();
+            btnStartBottom.setDisable(false);
+            btnStart.setDisable(false);
+        }
+    }
+    
+    @FXML
+    public void handleBtnStart(ActionEvent event) {
+        if(!isPlaying){
+            isPlaying = true;
+            engine.playAnimation();
+            btnStartBottom.setDisable(true);
+            btnStartTop.setDisable(true);
+        }else{
+            isPlaying = false;
+            engine.stopAnimation();
+            btnStartBottom.setDisable(false);
+            btnStartTop.setDisable(false);
+        }
+       
     }
 
     @FXML
     public void handleBtnStartBottom(ActionEvent event) {
-        engine.playBottomAnimation();
-        System.out.println("Bottom Button");
+        if(!isPlaying){
+            isPlaying = true;
+            engine.playBottomAnimation();
+            btnStart.setDisable(true);
+            btnStartTop.setDisable(true);
+        }else{
+            isPlaying = false;
+            engine.stopBottomAnimation();
+            btnStart.setDisable(false);
+            btnStartTop.setDisable(false);
+        }
+      
     }
 
     public void getFreq() {

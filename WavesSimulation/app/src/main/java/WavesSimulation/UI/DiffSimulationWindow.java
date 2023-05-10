@@ -21,7 +21,7 @@ public class DiffSimulationWindow extends Stage {
     private void loadComponents() throws IOException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/DiffractionSimLayout.fxml"));
         
-        DiffController mainController = new DiffController();
+        DiffController mainController = new DiffController(this);
         loader.setController(mainController);
 
         Parent root = loader.load();

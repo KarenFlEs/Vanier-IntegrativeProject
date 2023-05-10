@@ -1,5 +1,7 @@
 package WavesSimulation.Slits;
 
+import java.io.IOException;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -60,6 +62,21 @@ public class SlitsController extends Stage {
     @FXML
     private Label labelSlitSeperation;
 
+    @FXML
+    private Button buttonInfoFrequency;
+
+    @FXML
+    private Button buttonInfoAmplitude;
+
+    @FXML
+    private Button buttonInfoSlits;
+
+    @FXML
+    private Button buttonInfoWidth;
+
+    @FXML
+    private Button buttonInfoSeperation;
+
     //Variables for the seperation of the Waves
     Arc arc = new Arc(400, 300, 40, 40, -90, 180);
 
@@ -68,6 +85,7 @@ public class SlitsController extends Stage {
     @FXML
     public void initialize() {
 
+        slit.clipPane(paneAnimation);
         //sldWidth.setMin(150);
         //sldWidth.setMax(300);
         sldSeperation.setMin(10);
@@ -80,8 +98,7 @@ public class SlitsController extends Stage {
         sldFrequency.setMax(100);
 
         slit.startSlit(paneAnimation, btn1Slit, sldSeperation);
-        
-        
+
         slit.handleSliderWidth(sldWidth, sldSeperation, labelSlitSeperation, labelSlitWidth);
         slit.handleSliderSeperation(sldWidth, sldSeperation, labelSlitSeperation, labelSlitWidth);
 
@@ -100,9 +117,13 @@ public class SlitsController extends Stage {
     }
 
     public SlitsController() {
-        
+
     }
 
+    /**
+     * Handles the modifications in the animation when the checkbox of 1 slit is
+     * selected
+     */
     @FXML
     public void handle1Slit() {
         arcDisappearance(slit.getArc4(), slit.getArc5(), slit.getArc6());
@@ -110,41 +131,48 @@ public class SlitsController extends Stage {
         slit.getArc1().setLayoutY(150);
         slit.getArc2().setLayoutY(150);
         slit.getArc3().setLayoutY(150);
-        
+
         sldWidth.setMin(150);
         sldWidth.setMax(300);
-        
+
         //slit.handleSliderWidth(sldWidth, sldSeperation, labelSlitSeperation, labelSlitWidth);
-        
         if (btn2Slit.isSelected()) {
             btn2Slit.setSelected(false);
 
             sldWidth.setMin(150);
             sldWidth.setMax(300);
 
-            slit.getSlitSeperationTop().setVisible(false);
             slit.getSlitSeperationBottom().setVisible(false);
             sldSeperation.setDisable(true);
         }
     }
 
-    //TODO: Incorporate 2 slits with Arcs' Animation
+    /**
+     * Handles the modifications in the animation when the checkbox of 2 slits
+     * is selected TODO: Incorporate 2 slits with Arcs' Animation
+     */
     @FXML
     public void handle2Slit() {
         arcAppearance(slit.getArc4(), slit.getArc5(), slit.getArc6());
-        System.out.println(slit.getSlitSeperationTop().getLayoutY() - slit.getSlitTopWall().getHeight());
+        //System.out.println(slit.getSlitSeperationTop().getLayoutY() - slit.getSlitTopWall().getHeight());
         slit.getArc1().setLayoutY(slit.getSlitTopWall().getLayoutY());
-        slit.getArc1().setRadiusY(slit.getSlitSeperationTop().getLayoutY() - slit.getSlitTopWall().getHeight());
+        slit.getArc1().setRadiusY(slit.getSlitSeperationBottom().getLayoutY() - slit.getSlitTopWall().getHeight());
         slit.getArc2().setLayoutY(slit.getSlitTopWall().getLayoutY());
-        slit.getArc2().setRadiusY(slit.getSlitSeperationTop().getLayoutY() - slit.getSlitTopWall().getHeight());
+        slit.getArc2().setRadiusY(slit.getSlitSeperationBottom().getLayoutY() - slit.getSlitTopWall().getHeight());
         slit.getArc3().setLayoutY(slit.getSlitTopWall().getLayoutY());
-        slit.getArc3().setRadiusY(slit.getSlitSeperationTop().getLayoutY() - slit.getSlitTopWall().getHeight());
-        
+        slit.getArc3().setRadiusY(slit.getSlitSeperationBottom().getLayoutY() - slit.getSlitTopWall().getHeight());
+
+        slit.getArc4().setLayoutY(slit.getSlitSeperationBottom().getLayoutY());
+        slit.getArc4().setRadiusY(slit.getSlitSeperationBottom().getLayoutY() - slit.getSlitTopWall().getHeight());
+        slit.getArc5().setLayoutY(slit.getSlitSeperationBottom().getLayoutY());
+        slit.getArc5().setRadiusY(slit.getSlitSeperationBottom().getLayoutY() - slit.getSlitTopWall().getHeight());
+        slit.getArc6().setLayoutY(slit.getSlitSeperationBottom().getLayoutY());
+        slit.getArc6().setRadiusY(slit.getSlitSeperationBottom().getLayoutY() - slit.getSlitTopWall().getHeight());
+
         sldWidth.setMin(350);
-        sldWidth.setMax(425);
-        
+        sldWidth.setMax(500);
+
         slit.handleSliderWidth(sldWidth, sldSeperation, labelSlitSeperation, labelSlitWidth);
-        
 
         if (btn1Slit.isSelected()) {
             btn1Slit.setSelected(false);
@@ -152,8 +180,6 @@ public class SlitsController extends Stage {
 
             //sldWidth.setMin(150);
             //sldWidth.setMax(300);
-
-            slit.getSlitSeperationTop().setVisible(true);
             slit.getSlitSeperationBottom().setVisible(true);
             sldSeperation.setDisable(false);
         }
@@ -164,6 +190,9 @@ public class SlitsController extends Stage {
 
     }
 
+    /**
+     * Handles the play/pause of the animation when the button is clicked
+     */
     @FXML
     public void handlePlayAnimation() {
         if (btnPlayAnimation.getText().equals("Play")) {
@@ -175,8 +204,75 @@ public class SlitsController extends Stage {
         }
     }
 
-    public void arcAppearance(Arc arc1, Arc arc2, Arc arc3) {
+    FrequencyGuide frequencyGuide;
 
+    @FXML
+    public void enteredFrequency() throws IOException {
+        frequencyGuide = new FrequencyGuide();
+        frequencyGuide.show();
+
+    }
+
+    @FXML
+    public void exitedFrequency() throws IOException {
+
+        frequencyGuide.close();
+
+    }
+
+    AmplitudeGuide amplitudeGuide;
+
+    @FXML
+    public void enteredAmplitude() throws IOException {
+        amplitudeGuide = new AmplitudeGuide();
+        amplitudeGuide.show();
+    }
+
+    @FXML
+    public void exitedAmplitude() {
+        amplitudeGuide.close();
+    }
+
+    SlitsGuide slitsGuide;
+
+    @FXML
+    public void enteredSlits() throws IOException {
+        slitsGuide = new SlitsGuide();
+        slitsGuide.show();
+    }
+
+    @FXML
+    public void exitedSlits() {
+        slitsGuide.close();
+    }
+
+    WidthGuide widthGuide;
+
+    @FXML
+    public void enteredWidth() throws IOException {
+        widthGuide = new WidthGuide();
+        widthGuide.show();
+    }
+
+    @FXML
+    public void exitedWidth() {
+        widthGuide.close();
+    }
+
+    SeperationGuide seperationGuide;
+
+    @FXML
+    public void enteredSeperation() throws IOException {
+        seperationGuide = new SeperationGuide();
+        seperationGuide.show();
+    }
+
+    @FXML
+    public void exitedSeperation() {
+        seperationGuide.close();
+    }
+
+    public void arcAppearance(Arc arc1, Arc arc2, Arc arc3) {
         arc1.setVisible(true);
         arc2.setVisible(true);
         arc3.setVisible(true);
@@ -184,7 +280,6 @@ public class SlitsController extends Stage {
     }
 
     public void arcDisappearance(Arc arc1, Arc arc2, Arc arc3) {
-
         arc1.setVisible(false);
         arc2.setVisible(false);
         arc3.setVisible(false);

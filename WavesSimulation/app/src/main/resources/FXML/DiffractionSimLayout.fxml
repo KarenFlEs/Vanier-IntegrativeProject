@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -10,40 +11,52 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="1056.0" prefWidth="1936.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="diffScreen" prefHeight="1056.0" prefWidth="1936.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="1986.0">
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
+              <MenuItem mnemonicParsing="false" onAction="#handleClose" text="Close" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">
             <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
+              <MenuItem mnemonicParsing="false" onAction="#handleReset" text="Reset" />
             </items>
           </Menu>
+            <Menu mnemonicParsing="false" text="Settings">
+              <items>
+                  <Menu mnemonicParsing="false" text="Preferences">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#handleOpenMenuPage" text="Open Menu Page" />
+                      <MenuItem mnemonicParsing="false" onAction="#handleOpenInterSim" text="Open Interference Sim" />
+                        <MenuItem mnemonicParsing="false" onAction="#handleOpenSlitsSim" text="Open Slits Sim" />
+                    </items>
+                  </Menu>
+              </items>
+            </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <items>
-              <MenuItem mnemonicParsing="false" text="About" />
+              <MenuItem fx:id="menuItemAbout" mnemonicParsing="false" onAction="#handleAbout" text="About" />
             </items>
           </Menu>
         </menus>
       </MenuBar>
+      <Pane fx:id="paneLaser" layoutX="-28.0" layoutY="108.0" prefHeight="676.0" prefWidth="1196.0" />
       <Pane layoutX="-2.0" layoutY="774.0" prefHeight="280.0" prefWidth="1988.0" style="-fx-background-color: ALICEBLUE;">
          <children>
-            <Label layoutX="904.0" layoutY="28.0" prefHeight="47.0" prefWidth="132.0" text="Settings">
+            <Label layoutX="926.0" layoutY="29.0" prefHeight="47.0" prefWidth="132.0" text="Settings">
                <font>
                   <Font name="Book Antiqua Bold" size="32.0" />
                </font>
             </Label>
-            <Label layoutX="1117.0" layoutY="92.0" prefHeight="37.0" prefWidth="138.0" text="Diameter:">
+            <Label layoutX="1244.0" layoutY="88.0" prefHeight="37.0" prefWidth="138.0" text="Diameter:">
                <font>
                   <Font name="Bookman Old Style" size="24.0" />
                </font>
             </Label>
-            <Label layoutX="1119.0" layoutY="166.0" prefHeight="37.0" prefWidth="190.0" text="Eccentricity:">
+            <Label layoutX="1244.0" layoutY="158.0" prefHeight="37.0" prefWidth="190.0" text="Eccentricity:">
                <font>
                   <Font name="Bookman Old Style" size="24.0" />
                </font>
@@ -53,13 +66,13 @@
                   <Font name="Bookman Old Style" size="24.0" />
                </font>
             </Label>
-            <Slider fx:id="sliderEcc" layoutX="1327.0" layoutY="159.0" prefHeight="57.0" prefWidth="246.0" />
-            <Slider fx:id="sliderDiameter" layoutX="1321.0" layoutY="89.0" prefHeight="57.0" prefWidth="246.0" />
-            <Label fx:id="labelDiameter" layoutX="1603.0" layoutY="95.0" prefHeight="57.0" prefWidth="113.0">
+            <Slider fx:id="sliderEcc" layoutX="1418.0" layoutY="149.0" prefHeight="57.0" prefWidth="246.0" />
+            <Slider fx:id="sliderDiameter" layoutX="1416.0" layoutY="83.0" prefHeight="57.0" prefWidth="246.0" />
+            <Label fx:id="labelDiameter" layoutX="1676.0" layoutY="83.0" prefHeight="57.0" prefWidth="113.0">
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <Label fx:id="labelEcc" layoutX="1585.0" layoutY="163.0" prefHeight="57.0" prefWidth="113.0">
+            <Label fx:id="labelEcc" layoutX="1679.0" layoutY="148.0" prefHeight="57.0" prefWidth="113.0">
                <font>
                   <Font size="14.0" />
                </font></Label>
@@ -69,9 +82,24 @@
                <font>
                   <Font size="14.0" />
                </font></Label>
+            <Button fx:id="btnInfoDiameter" layoutX="1195.0" layoutY="95.0" mnemonicParsing="false" onMouseEntered="#enteredMouseDiamInfo" onMouseExited="#exitedMouseDiamInfo" prefHeight="27.0" prefWidth="27.0" style="-fx-background-radius: 5em; -fx-min-height: 3px; -fx-min-width: 3px;" styleClass="a" text="i">
+               <font>
+                  <Font name="Calisto MT" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnInfoEccentricity" layoutX="1196.0" layoutY="163.0" mnemonicParsing="false" onMouseEntered="#enteredMouseEccInfo" onMouseExited="#exitedMouseEccInfo" prefHeight="27.0" prefWidth="27.0" style="-fx-background-radius: 5em; -fx-min-height: 3px; -fx-min-width: 3px;" styleClass="a" text="i">
+               <font>
+                  <Font name="Calisto MT" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnInfoWavelength" layoutX="143.0" layoutY="84.0" mnemonicParsing="false" onMouseEntered="#enteredMouseWaveInfo" onMouseExited="#exitedMouseWaveInfo" prefHeight="27.0" prefWidth="27.0" style="-fx-background-radius: 5em; -fx-min-height: 3px; -fx-min-width: 3px;" styleClass="a" text="i">
+               <font>
+                  <Font name="Calisto MT" size="12.0" />
+               </font>
+            </Button>
          </children>
       </Pane>
-      <Pane fx:id="paneAnimation" layoutX="1166.0" layoutY="147.0" prefHeight="612.0" prefWidth="682.0" style="-fx-background-color: BLACK;" />
+      <Pane fx:id="paneAnimation" layoutX="1166.0" layoutY="129.0" prefHeight="612.0" prefWidth="682.0" style="-fx-background-color: BLACK;" />
       <Pane fx:id="paneSquare" layoutX="279.0" layoutY="200.0" prefHeight="492.0" prefWidth="552.0" style="-fx-background-color: BLACK;" />
       <Label layoutX="812.0" layoutY="65.0" prefHeight="73.0" prefWidth="428.0" text="DIFFRACTION">
          <font>

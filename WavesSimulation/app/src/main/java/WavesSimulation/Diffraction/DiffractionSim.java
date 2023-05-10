@@ -1,50 +1,48 @@
-
 package WavesSimulation.Diffraction;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 /**
+ * The math part of Diffraction
  *
  * @author KarenFl
  */
+@NoArgsConstructor
+@Getter
+@Setter
 public class DiffractionSim {
-    
-   // private final int ORDER_NUM = 1; 
-    private double diffractionAngle; 
-    private double diffractionRadius; 
-    //private final double slitDistance = 0.001; 
-    private final double LENGTH_TO_SCREEN = 5.0; 
+    private static final double LENGTH_TO_SCREEN = 5.0;
 
-    public double getDiffractionAngle() {
+    private double diffractionAngle;
+    private double diffractionRadius;
+
+    /**
+     * calculates the angle according to the equation: dsin(angle)=
+     * (orderNum)(wavelength)
+     *
+     * @param wavelength
+     * @param slitDistance
+     * @param orderNum
+     * @return angle
+     */
+    public double calculationAngle(int wavelength, double slitDistance, int orderNum) {
+        double sinOfAngle = (Math.pow(10, -4) * wavelength * orderNum) / slitDistance;
+        diffractionAngle = Math.toDegrees(Math.asin(sinOfAngle));
+
         return diffractionAngle;
     }
 
-    public void setDiffractionAngle(double diffractionAngle) {
-        this.diffractionAngle = diffractionAngle;
-    }
+    /**
+     * Calculates the radius according to the equation: y=Ltan(angle)
+     *
+     * @return radius
+     */
+    public double calculationDiffractionRadius() {
+        diffractionRadius = LENGTH_TO_SCREEN * Math.tan(getDiffractionAngle());
 
-    public double getDiffractionRadius() {
         return diffractionRadius;
     }
 
-    public void setDiffractionRadius(double diffractionRadius) {
-        this.diffractionRadius = diffractionRadius;
-    }
-    
-    protected double calculationAngle (int wavelength, double slitDistance, int orderNum){
-       //dsin(angle)= m(wavelength)
-       double sinOfAngle = (Math.pow(10, -4)*wavelength*orderNum)/slitDistance; 
-       double angle = Math.toDegrees(Math.asin(sinOfAngle)); 
-       setDiffractionAngle(angle); 
-       
-       return getDiffractionAngle(); 
-   }
-    
-    protected double calculationDiffractionRadius (){
-       //y=Ltan(angle)
-       double height = LENGTH_TO_SCREEN*Math.tan(getDiffractionAngle()); 
-       setDiffractionRadius(height); 
-       
-       return getDiffractionRadius(); 
-   }
-    
 }
-

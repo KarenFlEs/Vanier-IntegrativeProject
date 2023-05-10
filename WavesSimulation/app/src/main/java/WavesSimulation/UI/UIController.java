@@ -14,7 +14,9 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
 /**
  *
  * @author Steven Dy and Karen Florian
@@ -88,6 +90,13 @@ public class UIController extends Stage {
         diffSim.show();
     }
     
+    /**
+     * TODO: open menu 
+     */
+    public void openScene (){
+        owner.getScene(); 
+    }
+    
     @FXML
     public void handleBtnInt() throws IOException{
         openInterSimulation(); 
@@ -121,7 +130,6 @@ public class UIController extends Stage {
     public void handleDiffSimSelection () throws IOException  {
         openDiffSimulation(); 
     }
-    
     
     @FXML
     public void handleHelpAbout(){

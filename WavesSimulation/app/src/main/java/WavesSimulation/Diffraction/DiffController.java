@@ -1,5 +1,6 @@
 package WavesSimulation.Diffraction;
 
+import WavesSimulation.UI.MainApp;
 import WavesSimulation.UI.UIController;
 import java.io.IOException;
 import javafx.beans.value.ChangeListener;

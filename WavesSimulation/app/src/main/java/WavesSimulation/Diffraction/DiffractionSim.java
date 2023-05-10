@@ -1,6 +1,7 @@
 package WavesSimulation.Diffraction;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
@@ -8,6 +9,7 @@ import lombok.Setter;
  *
  * @author KarenFl
  */
+@NoArgsConstructor
 @Getter
 @Setter
 public class DiffractionSim {
@@ -25,7 +27,7 @@ public class DiffractionSim {
      * @param orderNum
      * @return angle
      */
-    protected double calculationAngle(int wavelength, double slitDistance, int orderNum) {
+    public double calculationAngle(int wavelength, double slitDistance, int orderNum) {
         double sinOfAngle = (Math.pow(10, -4) * wavelength * orderNum) / slitDistance;
         diffractionAngle = Math.toDegrees(Math.asin(sinOfAngle));
 
@@ -37,7 +39,7 @@ public class DiffractionSim {
      *
      * @return radius
      */
-    protected double calculationDiffractionRadius() {
+    public double calculationDiffractionRadius() {
         diffractionRadius = LENGTH_TO_SCREEN * Math.tan(getDiffractionAngle());
 
         return diffractionRadius;

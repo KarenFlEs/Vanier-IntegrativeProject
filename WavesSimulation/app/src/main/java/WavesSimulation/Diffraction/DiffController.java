@@ -246,6 +246,30 @@ public class DiffController extends Stage {
         stageAbout.show();
     }
     
+    @FXML
+    public void handleBtnInfoWave () {
+        Stage stageInfoWave = new Stage (); 
+        stageInfoWave.setTitle("Wavelength Information");
+        stageInfoWave.setX(80);
+        stageInfoWave.setY(20);
+        
+        StackPane stackPaneWaveInfo = new StackPane (); 
+        
+        TextArea textInfoWave = new TextArea(); 
+        textInfoWave.autosize();
+        textInfoWave.setText(strWaveInfo);
+        textInfoWave.setFont(Font.font("Book Antica", 14));
+        textInfoWave.setPrefSize(300, 100);
+        textInfoWave.setWrapText(true);
+        textInfoWave.setEditable(false);
+        
+        stackPaneWaveInfo.getChildren().add(textInfoWave); 
+        
+        Scene scene = new Scene (stackPaneWaveInfo, 300, 100); 
+        stageInfoWave.setScene(scene);
+        stageInfoWave.show();
+    }
+    
     
     /*
     @FXML

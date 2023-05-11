@@ -82,7 +82,7 @@
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <Button layoutX="144.0" layoutY="82.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="27.0" style="-fx-background-radius: 5em; -fx-min-height: 3px; -fx-min-width: 3px;" styleClass="a" text="i">
+            <Button layoutX="144.0" layoutY="82.0" mnemonicParsing="false" onAction="#handleBtnInfoWave" prefHeight="27.0" prefWidth="27.0" style="-fx-background-radius: 5em; -fx-min-height: 3px; -fx-min-width: 3px;" styleClass="a" text="i">
                <font>
                   <Font name="Calisto MT" size="12.0" />
                </font>

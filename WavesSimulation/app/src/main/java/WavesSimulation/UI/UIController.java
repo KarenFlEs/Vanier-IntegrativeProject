@@ -90,13 +90,6 @@ public class UIController extends Stage {
         diffSim.show();
     }
     
-    /**
-     * TODO: open menu 
-     */
-    public void openScene (){
-        owner.getScene(); 
-    }
-    
     @FXML
     public void handleBtnInt() throws IOException{
         openInterSimulation(); 

@@ -102,7 +102,7 @@ public class DiffEngine {
     }
     
     /**
-     * Add the color according to the selected wavelength
+     * Selects the color according to the selected wavelength
      *
      * @param wavelength
      * @return color

@@ -8,8 +8,9 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
- *
- * @author 2045287
+ * IMPORTANT: In order to see the whole simulation, 
+ * the user's computer screen must have a dimension of at least 1295 X 687 
+ * @author KarenFlorian & Steven Dy
  */
 public class MainApp extends Application {
     

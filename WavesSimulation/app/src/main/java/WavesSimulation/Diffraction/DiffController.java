@@ -1,6 +1,5 @@
 package WavesSimulation.Diffraction;
 
-import WavesSimulation.UI.MainApp;
 import WavesSimulation.UI.UIController;
 import java.io.IOException;
 import javafx.beans.value.ChangeListener;
@@ -79,6 +78,7 @@ public class DiffController extends Stage {
     private final int DIAM_INFO_POSITION_Y = 770;
     private final int ECC_INFO_POSITION_X = 870;
     private final int ECC_INFO_POSITION_Y = 900;
+    private final int HELP_INFO_POSITION = 50;
     private final int LASER_POSITION_Y = 355;
     private final int LASER_HEIGHT = 180;
     private final int LASER_WIDTH = 200;
@@ -97,8 +97,8 @@ public class DiffController extends Stage {
     double eccentricity = 1.0;
     
     String strWaveInfo = "When the wavelength changes, there is a specific color"
-        + " the laser will have. As it increases, the size of the slit"
-        + " hole will be bigger creating a small diffraction pattern."; 
+        + " the laser will have. As the wavelength increases, the diffraction pattern"
+        + " gets bigger"; 
     
     String strDiamInfo = "The opening of the slit increases if the diameter"
         + " increases which will create a smaller diffraction pattern."; 
@@ -196,6 +196,10 @@ public class DiffController extends Stage {
         });
     }
 
+    /**
+     * This allows for the wave information pop-out to show 
+     * when the mouse is placed on top of the button i next to the wavelength setting
+     */
     @FXML
     public void enteredMouseWaveInfo (){
         stageWaveInfo.setTitle("Wavelength information");
@@ -219,11 +223,19 @@ public class DiffController extends Stage {
         stageWaveInfo.show();
     }
     
+    /**
+     * This allows for the wave information to close when the mouse is not 
+     * on top of the button i next to the wavelength setting
+     */
     @FXML
     public void exitedMouseWaveInfo (){
         stageWaveInfo.close();
     }
     
+    /**
+     * This allows for the diameter information pop-out to show 
+     * when the mouse is placed on top of the button i next to the diameter setting
+     */
     @FXML
     public void enteredMouseDiamInfo (){
         stageDiamInfo.setTitle("Diameter information");
@@ -247,11 +259,19 @@ public class DiffController extends Stage {
         stageDiamInfo.show();
     }
     
+    /**
+     * This allows for the diameter information to close when the mouse is not 
+     * on top of the button i next to the diameter setting
+     */
     @FXML
     public void exitedMouseDiamInfo (){
         stageDiamInfo.close();
     }
     
+    /**
+     * This allows for the eccentricity information pop-out to show 
+     * when the mouse is placed on top of the button i next to the eccentricity setting
+     */
     @FXML
     public void enteredMouseEccInfo (){
         stageEccInfo.setTitle("Eccentricity information");
@@ -275,16 +295,26 @@ public class DiffController extends Stage {
         stageEccInfo.show();
     }
     
+    /**
+     * This allows for the eccentricity information to close when the mouse is not 
+     * on top of the button i next to the eccentricity setting
+     */
     @FXML
     public void exitedMouseEccInfo (){
         stageEccInfo.close(); 
     }
     
+    /**
+     * Closes the simulation when pressing the File Close option
+     */
     @FXML
     public void handleClose (){
         stageSim.close();
     }
     
+    /**
+     * Resets the simulation when pressing the Edit Reset option
+     */
     @FXML
     public void handleReset (){
         sliderWave.setValue(SLIDER_WAVE_MIN);
@@ -294,12 +324,18 @@ public class DiffController extends Stage {
         paneLaser.getChildren().clear();
     }
     
+    /**
+     * Opens the Interference simulation from the menu bar
+     */
     @FXML
     public void handleOpenInterSim () throws IOException{
        UIController uiController = new UIController (stageSim); 
        uiController.openInterSimulation();
     }
     
+    /**
+     * Opens the Slits simulation from the menu bar
+     */
     @FXML
     public void handleOpenSlitsSim () throws IOException{
        UIController uiController = new UIController (stageSim); 
@@ -313,13 +349,16 @@ public class DiffController extends Stage {
     public void handleOpenMenuPage () {
     }
     
+    /**
+     * Opens the description of the simulation which is found in the menu bar
+     */
     @FXML
     public void handleAbout (){ 
         Stage stageAbout = new Stage();
         stageAbout.initModality(Modality.NONE);
         stageAbout.setTitle("Diffraction information");
-        stageAbout.setX(50); 
-        stageAbout.setY(50); 
+        stageAbout.setX(HELP_INFO_POSITION); 
+        stageAbout.setY(HELP_INFO_POSITION); 
         
         StackPane stakePaneAbout = new StackPane();
         String strDiffractionDef = "Diffraction is the process of putting a beam light through "
@@ -336,7 +375,7 @@ public class DiffController extends Stage {
         
         stakePaneAbout.getChildren().add(textDiffractionInfo);
         
-        Scene scene = new Scene(stakePaneAbout,300,600);
+        Scene scene = new Scene(stakePaneAbout, 300, 400);
         stageAbout.setScene(scene);
         stageAbout.show();
     }

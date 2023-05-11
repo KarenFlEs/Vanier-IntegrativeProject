@@ -29,7 +29,7 @@
               <items>
                   <Menu mnemonicParsing="false" text="Preferences">
                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#handleOpenMenuPage" text="Open Menu Page" />
+                        <MenuItem mnemonicParsing="false" text="Open Menu Page" />
                       <MenuItem mnemonicParsing="false" onAction="#handleOpenInterSim" text="Open Interference Sim" />
                         <MenuItem mnemonicParsing="false" onAction="#handleOpenSlitsSim" text="Open Slits Sim" />
                     </items>

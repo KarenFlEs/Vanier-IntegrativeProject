@@ -280,9 +280,6 @@ public class DiffController extends Stage {
         stageEccInfo.close(); 
     }
     
-    /*
-    TODO: fix the functionality
-    */
     @FXML
     public void handleClose (){
         stageSim.close();
@@ -312,7 +309,7 @@ public class DiffController extends Stage {
     /**
      * TODO
      */
-    @FXML
+    //@FXML
     public void handleOpenMenuPage () {
     }
     

@@ -154,20 +154,20 @@ public class SlitsController extends Stage {
     @FXML
     public void handle2Slit() {
         arcAppearance(slit.getArc4(), slit.getArc5(), slit.getArc6());
-        //System.out.println(slit.getSlitSeperationTop().getLayoutY() - slit.getSlitTopWall().getHeight());
-        slit.getArc1().setLayoutY(slit.getSlitTopWall().getLayoutY());
-        slit.getArc1().setRadiusY(slit.getSlitSeperationBottom().getLayoutY() - slit.getSlitTopWall().getHeight());
-        slit.getArc2().setLayoutY(slit.getSlitTopWall().getLayoutY());
-        slit.getArc2().setRadiusY(slit.getSlitSeperationBottom().getLayoutY() - slit.getSlitTopWall().getHeight());
-        slit.getArc3().setLayoutY(slit.getSlitTopWall().getLayoutY());
-        slit.getArc3().setRadiusY(slit.getSlitSeperationBottom().getLayoutY() - slit.getSlitTopWall().getHeight());
-
-        slit.getArc4().setLayoutY(slit.getSlitSeperationBottom().getLayoutY());
-        slit.getArc4().setRadiusY(slit.getSlitSeperationBottom().getLayoutY() - slit.getSlitTopWall().getHeight());
-        slit.getArc5().setLayoutY(slit.getSlitSeperationBottom().getLayoutY());
-        slit.getArc5().setRadiusY(slit.getSlitSeperationBottom().getLayoutY() - slit.getSlitTopWall().getHeight());
-        slit.getArc6().setLayoutY(slit.getSlitSeperationBottom().getLayoutY());
-        slit.getArc6().setRadiusY(slit.getSlitSeperationBottom().getLayoutY() - slit.getSlitTopWall().getHeight());
+        
+        slit.getSlitSeperationBottom().setLayoutY(450 - slit.getSlitSeperationBottom().getHeight()/2);
+        
+        for (Arc arc1 : slit.getListArc()) {
+            arc1.setRadiusY(425 - slit.getSlitTopWall().getHeight() - slit.getSlitSeperationBottom().getHeight()/2);
+            arc1.setLayoutY(((slit.getSlitSeperationBottom().getHeight() / 2 + arc.getRadiusY() / 2) * -1) + 150);
+        }
+        
+        for (Arc arc2 : slit.getListArc2()) {
+            arc2.setRadiusY(425 - slit.getSlitTopWall().getHeight() - slit.getSlitSeperationBottom().getHeight()/2);
+            arc2.setLayoutY(slit.getSlitSeperationBottom().getHeight() / 2 + arc.getRadiusY() / 2 + 150);
+        }
+        
+        
 
         sldWidth.setMin(350);
         sldWidth.setMax(500);

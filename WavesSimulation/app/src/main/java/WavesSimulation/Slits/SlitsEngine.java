@@ -26,11 +26,14 @@ import javafx.util.Duration;
  * @author StevenDy
  */
 public class SlitsEngine {
+    
+    private final int HALF_HEIGHT_PANE_ANIMATION = 450;
+    private final int HEIGHT_ADJUSTMENT_PANE = 100;
+    
 
     private Rectangle slitTopWall;
     private Rectangle slitBottomWall;
 
-    
     private Rectangle slitSeperationBottom;
 
     private Rectangle straightWave1 = new Rectangle(100, 900);
@@ -75,8 +78,10 @@ public class SlitsEngine {
     private ArrayList<Arc> listArc2 = new ArrayList<>(Arrays.asList(arc4, arc5, arc6));
 
     private ArrayList<TranslateTransition> listTranslateRectangle = new ArrayList<>(Arrays.asList(translateRectangle1, translateRectangle2, translateRectangle3));
+    private ArrayList<TranslateTransition> listTranslateArc = new ArrayList<>(Arrays.asList(translateArc, translateArc2, translateArc3, translateArc4, translateArc5, translateArc6 ));
     private ArrayList<ParallelTransition> listParallelTransitions = new ArrayList<>(Arrays.asList(parallelTransition1, parallelTransition2, parallelTransition3,
             parallelTransition4, parallelTransition5, parallelTransition6));
+    private ArrayList<ScaleTransition> listScaleArc = new ArrayList<>(Arrays.asList(scaleArc1, scaleArc2, scaleArc3, scaleArc4, scaleArc5, scaleArc6));
 
     private int nbSlits;
     private int slitWidth;
@@ -154,29 +159,6 @@ public class SlitsEngine {
             paneAnimation.getChildren().add(arc);
         }
 
-        translateArc.setByX(450);
-        translateArc.setByX(500);
-        translateArc.setInterpolator(Interpolator.LINEAR);
-        //scale.setToX(15.0);
-        scaleArc1.setToY(5.0);
-        parallelTransition1.setDelay(Duration.seconds(5.5));
-        parallelTransition1.setCycleCount(Animation.INDEFINITE);
-
-        translateArc2.setByX(450);
-        translateArc2.setByX(500);
-        translateArc2.setInterpolator(Interpolator.LINEAR);
-        //scale.setToX(15.0);
-        scaleArc2.setToY(5.0);
-        parallelTransition2.setDelay(Duration.seconds(7.5));
-        parallelTransition2.setCycleCount(Animation.INDEFINITE);
-
-        translateArc3.setByX(450);
-        translateArc3.setByX(500);
-        translateArc3.setInterpolator(Interpolator.LINEAR);
-        scaleArc3.setToY(5.0);
-        parallelTransition3.setDelay(Duration.seconds(9.5));
-        parallelTransition3.setCycleCount(Animation.INDEFINITE);
-
         for (Arc arc : listArc2) {
             arc.setVisible(false);
             arc.setLayoutY(175);
@@ -189,40 +171,41 @@ public class SlitsEngine {
             arc.setFill(null);
             paneAnimation.getChildren().add(arc);
         }
+        
+        for (TranslateTransition translateArc : listTranslateArc) {
+            translateArc.setByX(450);
+            translateArc.setInterpolator(Interpolator.LINEAR);
+        }
+        
+        for (ScaleTransition scaleArc : listScaleArc) {
+            scaleArc.setToY(5.0);
+        }
+        
+        for (ParallelTransition parallelTransition : listParallelTransitions) {
+            parallelTransition.setCycleCount(Animation.INDEFINITE);
+        }
+        
+        parallelTransition1.setDelay(Duration.seconds(5.5));
 
-        translateArc4.setByX(450);
-        translateArc4.setByX(500);
-        translateArc4.setInterpolator(Interpolator.LINEAR);
-        //scale.setToX(15.0);
-        scaleArc4.setToY(5.0);
+        parallelTransition2.setDelay(Duration.seconds(7.5));
+
+        parallelTransition3.setDelay(Duration.seconds(9.5));
+
         parallelTransition4.setDelay(Duration.seconds(5.5));
-        parallelTransition4.setCycleCount(Animation.INDEFINITE);
 
-        translateArc5.setByX(450);
-        translateArc5.setByX(500);
-        translateArc5.setInterpolator(Interpolator.LINEAR);
-        //scale.setToX(15.0);
-        scaleArc5.setToY(5.0);
         parallelTransition5.setDelay(Duration.seconds(7.5));
-        parallelTransition5.setCycleCount(Animation.INDEFINITE);
 
-        translateArc6.setByX(450);
-        translateArc6.setByX(500);
-        translateArc6.setInterpolator(Interpolator.LINEAR);
-        //scale.setX(15.0);
-        scaleArc6.setToY(5.0);
         parallelTransition6.setDelay(Duration.seconds(9.5));
-        parallelTransition6.setCycleCount(Animation.INDEFINITE);
     }
 
-    
     /**
-     * Handles the change of the width of the slits
-     * TODO:  Fix the placement of the waves whenever the slit width is changed
+     * Handles the change of the width of the slits TODO: Fix the placement of
+     * the waves whenever the slit width is changed
+     *
      * @param sldWidth
      * @param sldSeperation
      * @param labelSlitSeperation
-     * @param labelSlitWidth 
+     * @param labelSlitWidth
      */
     public void handleSliderWidth(Slider sldWidth, Slider sldSeperation, Label labelSlitSeperation, Label labelSlitWidth) {
         if (sldWidth.getMin() == 0 && sldWidth.getMax() == 100) {
@@ -238,48 +221,50 @@ public class SlitsEngine {
 
                     slitTopWall.setHeight(slitHeight);
                     slitBottomWall.setHeight(slitHeight);
-                    slitBottomWall.setLayoutY(900 - slitHeight);
+                    slitBottomWall.setLayoutY((HALF_HEIGHT_PANE_ANIMATION * 2) - slitHeight);
 
                     labelSlitWidth.setText(Integer.toString(slitHeight) + " cm");
+                    
+                    for (Arc arc : listArc) {
+                        arc.setRadiusY(HALF_HEIGHT_PANE_ANIMATION - slitHeight);
+                    }
 
-                    arc1.setRadiusY(450 - slitHeight);
-                    arc2.setRadiusY(450 - slitHeight);
-                    arc3.setRadiusY(450 - slitHeight);
+
                 } else if (sldWidth.getMin() == 350 && sldWidth.getMax() == 500) {
                     int slitHeight = (int) sldWidth.getValue();
                     slitTopWall.setHeight(slitHeight - 275);
                     slitBottomWall.setHeight(slitHeight - 275);
                     slitBottomWall.setLayoutY(1175 - slitHeight);
 
-                    labelSlitWidth.setText(Integer.toString(slitHeight - 200) + " cm");
-
-                    slitHeight = slitHeight - 50;
-
+                    labelSlitWidth.setText(Integer.toString(slitHeight) + " cm");
+                    
                     for (Arc arc : listArc) {
-                        System.out.println(slitTopWall.getHeight());
-                        arc.setLayoutY(slitTopWall.getHeight() - 275/*+ ((slitSeperationTop.getLayoutY() - slitSeperationTop.getHeight()))*/);
-                        arc.setRadiusY( slitSeperationBottom.getHeight() - slitTopWall.getHeight());
+                        arc.setRadiusY(HALF_HEIGHT_PANE_ANIMATION - slitTopWall.getHeight() - slitSeperationBottom.getHeight() / 2 - HEIGHT_ADJUSTMENT_PANE);
+                        arc.setLayoutY(((slitSeperationBottom.getHeight() / 2 + arc.getRadiusY() / 2) * -1) + HEIGHT_ADJUSTMENT_PANE);
+
                         //arc.setRadiusY(450 - slitHeight);
                         //arc.setLayoutY(slitTopWall.getHeight() - 200);
                     }
                     for (Arc arc : listArc2) {
-                        arc.setRadiusY(450 - slitHeight);
+                        arc.setRadiusY(HALF_HEIGHT_PANE_ANIMATION - slitTopWall.getHeight() - slitSeperationBottom.getHeight() / 2 - HEIGHT_ADJUSTMENT_PANE);
                         //System.out.println(slitSeperationBottom.getLayoutY());
-                        arc.setLayoutY(slitBottomWall.getLayoutY() - 400);
+                        arc.setLayoutY(slitSeperationBottom.getHeight() / 2 + arc.getRadiusY() + HEIGHT_ADJUSTMENT_PANE);
                     }
 
                 }
             }
         });
     }
-    
+
     /**
      * Handles the changes of the properties and the animation of the waves
-     * TODO: Fix the placements of the waves when the seperation between the slits is changed
+     * TODO: Fix the placements of the waves when the seperation between the
+     * slits is changed
+     *
      * @param sldWidth
      * @param sldSeperation
      * @param labelSlitSeperation
-     * @param labelSlitWidth 
+     * @param labelSlitWidth
      */
     public void handleSliderSeperation(Slider sldWidth, Slider sldSeperation, Label labelSlitSeperation, Label labelSlitWidth) {
         sldSeperation.valueProperty().addListener(new ChangeListener<Number>() {
@@ -287,28 +272,29 @@ public class SlitsEngine {
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
                 int seperationHeight = (int) sldSeperation.getValue();
                 slitSeperationBottom.setHeight(seperationHeight);
-                slitSeperationBottom.setLayoutY(450 - seperationHeight/2);
+                slitSeperationBottom.setLayoutY(HALF_HEIGHT_PANE_ANIMATION - seperationHeight / 2);
                 labelSlitSeperation.setText(Integer.toString(seperationHeight) + " cm");
 
                 for (Arc arc : listArc) {
-                    
-                    arc.setRadiusY( - slitSeperationBottom.getHeight() - slitTopWall.getHeight());
-                    //arc.setLayoutY(slitSeperationTop.getLayoutY() - 450);
-                    arc.setCenterY(slitTopWall.getHeight());
-                    
+
+                    arc.setRadiusY(HALF_HEIGHT_PANE_ANIMATION - slitTopWall.getHeight() - slitSeperationBottom.getHeight() / 2 - HEIGHT_ADJUSTMENT_PANE);
+                    arc.setLayoutY(((slitSeperationBottom.getHeight() / 2 + arc.getRadiusY() / 2) * -1) + HEIGHT_ADJUSTMENT_PANE);
+
                 }
 
                 for (Arc arc : listArc2) {
-                    arc.setRadiusY(550 - (int) sldWidth.getValue() - seperationHeight);
-                    arc.setLayoutY(800 - slitSeperationBottom.getLayoutY());
+                    arc.setRadiusY(HALF_HEIGHT_PANE_ANIMATION - slitTopWall.getHeight() - slitSeperationBottom.getHeight() / 2 - HEIGHT_ADJUSTMENT_PANE);
+                    arc.setLayoutY(slitSeperationBottom.getHeight() / 2 + arc.getRadiusY() + HEIGHT_ADJUSTMENT_PANE);
+
                 }
             }
         });
     }
+
     /**
      * Handles the brightness of the waves when the amplitude is changed
-     * 
-     * @param slitAmplitude 
+     *
+     * @param slitAmplitude
      */
     public void handleSliderAmplitude(Slider slitAmplitude) {
 
@@ -321,11 +307,13 @@ public class SlitsEngine {
             }
         });
     }
-    
+
     /**
-     * Handles the speed and the length of the waves when the frequency is changed
-     * TODO: Fix the width of the rectangles when both frequency and amplitude are modified
-     * @param slitFrequency 
+     * Handles the speed and the length of the waves when the frequency is
+     * changed TODO: Fix the width of the rectangles when both frequency and
+     * amplitude are modified
+     *
+     * @param slitFrequency
      */
     public void hadnleSliderFrequency(Slider slitFrequency) {
         slitFrequency.valueProperty().addListener(new ChangeListener<Number>() {
@@ -345,12 +333,13 @@ public class SlitsEngine {
             }
         });
     }
-    
+
     /**
      * Sets up the slits into their places
+     *
      * @param paneAnimation
      * @param btn
-     * @param sldSeperation 
+     * @param sldSeperation
      */
     public void startSlit(Pane paneAnimation, CheckBox btn, Slider sldSeperation) {
         slitTopWall = new Rectangle(15, 300, Color.GAINSBORO);
@@ -370,9 +359,11 @@ public class SlitsEngine {
         btn.setSelected(true);
         sldSeperation.setDisable(true);
     }
+
     /**
      * Handles the boundaries when the animation is out of bound
-     * @param paneAnimation 
+     *
+     * @param paneAnimation
      */
     public void clipPane(Pane paneAnimation) {
         int rectangleWidth = 682;
@@ -387,6 +378,8 @@ public class SlitsEngine {
             clipRectangle.setHeight(newValue.getHeight());
         });
     }
+    
+    
 
     public int getSlitWidth() {
         return this.slitWidth;
@@ -500,4 +493,21 @@ public class SlitsEngine {
         this.arc6 = arc6;
     }
 
+    public ArrayList<Arc> getListArc() {
+        return listArc;
+    }
+
+    public void setListArc(ArrayList<Arc> listArc) {
+        this.listArc = listArc;
+    }
+
+    public ArrayList<Arc> getListArc2() {
+        return listArc2;
+    }
+
+    public void setListArc2(ArrayList<Arc> listArc2) {
+        this.listArc2 = listArc2;
+    }
+
+    
 }

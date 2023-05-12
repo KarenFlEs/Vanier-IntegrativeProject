@@ -42,7 +42,6 @@
             </Label>
             <Slider fx:id="sldFreq" blockIncrement="200.0" layoutX="81.0" layoutY="201.0" majorTickUnit="40.0" max="2000.0" min="20.0" prefHeight="66.0" prefWidth="230.0" showTickMarks="true" />
             <Slider fx:id="sldAmp" layoutX="81.0" layoutY="317.0" prefHeight="92.0" prefWidth="230.0" showTickMarks="true" />
-            <Slider fx:id="sldSep" layoutX="80.0" layoutY="476.0" majorTickUnit="1.0" max="3.0" min="1.0" minorTickCount="0" prefHeight="99.0" prefWidth="232.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
             <Label layoutX="156.0" layoutY="174.0" text="Frequency">
                <font>
                   <Font size="18.0" />
@@ -79,6 +78,9 @@
                   <Font size="11.0" />
                </font>
             </Button>
+            <Button fx:id="btnSep0" layoutX="142.0" layoutY="503.0" mnemonicParsing="false" onAction="#handleBtnSep0" text="0" />
+            <Button fx:id="btnSep1" layoutX="185.0" layoutY="503.0" mnemonicParsing="false" onAction="#handleBtnSep1" text="1" />
+            <Button fx:id="btnSep2" layoutX="226.0" layoutY="503.0" mnemonicParsing="false" onAction="#handleBtnSep2" text="2" />
          </children>
       </Pane>
    </right>

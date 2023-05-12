@@ -31,7 +31,13 @@ public class InterController extends Stage {
     private Slider sldAmp;
 
     @FXML
-    private Slider sldSep;
+    private Button btnSep0;
+    
+    @FXML
+    private Button btnSep1;
+     
+    @FXML
+    private Button btnSep2;
 
     @FXML
     private Pane animationPane;
@@ -236,7 +242,32 @@ public class InterController extends Stage {
         }
       
     }
-
+    
+    @FXML
+    public void handleBtnSep0(ActionEvent event) {
+      if(!isPlaying){
+            isPlaying = true;
+            engine.playAnimation();
+            btnStart.setVisible(false);
+            btnStartBottom.setVisible(false);
+            imageFaucetBottom.setVisible(false);
+            btnStartBottom.setDisable(true);
+            btnStartTop.setDisable(true);
+        }else{
+            isPlaying = false;
+            engine.stopAnimation();
+            btnStartBottom.setDisable(false);
+            btnStartTop.setDisable(false);
+        }
+    }
+    @FXML
+    public void handleBtnSep1(ActionEvent event) {
+      
+    }
+    @FXML
+    public void handleBtnSep2(ActionEvent event) {
+      
+    }
     public void getFreq() {
         sldFreq.valueProperty().addListener(new ChangeListener<Number>() {
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
@@ -246,6 +277,8 @@ public class InterController extends Stage {
             }
         });
     }
+    
+    
 
     public void getAmp() {
         sldAmp.valueProperty().addListener(new ChangeListener<Number>() {
@@ -257,15 +290,6 @@ public class InterController extends Stage {
         });
     }
 
-    public void getSep() {
-        sldSep.valueProperty().addListener(new ChangeListener<Number>() {
-            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                int sep;
-                sep = (int) sldSep.getValue();
-                System.out.println(sep);
-            }
-        });
-    }
 
     public void handleSldAmp() {
         sldAmp.valueProperty().addListener(new ChangeListener<Number>() {

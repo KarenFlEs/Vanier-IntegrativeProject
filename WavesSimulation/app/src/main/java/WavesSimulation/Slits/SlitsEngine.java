@@ -126,7 +126,6 @@ public class SlitsEngine {
 
     /**
      * Sets up the properties of the rectangles and also their animation
-     *
      * @param paneAnimation
      */
     public void setUpRectangle(Pane paneAnimation) {
@@ -148,7 +147,6 @@ public class SlitsEngine {
 
     /**
      * Sets up the properties of the arcs and their animation
-     *
      * @param paneAnimation
      */
     public void setUpArc(Pane paneAnimation) {
@@ -203,7 +201,6 @@ public class SlitsEngine {
     /**
      * Handles the change of the width of the slits TODO: Fix the placement of
      * the waves whenever the slit width is changed
-     *
      * @param sldWidth
      * @param sldSeperation
      * @param labelSlitSeperation
@@ -242,9 +239,6 @@ public class SlitsEngine {
                     for (Arc arc : listArc) {
                         arc.setRadiusY(HALF_HEIGHT_PANE_ANIMATION - slitTopWall.getHeight() - slitSeperationBottom.getHeight() / 2 - HEIGHT_ADJUSTMENT_PANE);
                         arc.setLayoutY(((slitSeperationBottom.getHeight() / 2 + arc.getRadiusY() / 2) * -1) + HEIGHT_ADJUSTMENT_PANE);
-
-                        //arc.setRadiusY(450 - slitHeight);
-                        //arc.setLayoutY(slitTopWall.getHeight() - 200);
                     }
                     for (Arc arc : listArc2) {
                         arc.setRadiusY(HALF_HEIGHT_PANE_ANIMATION - slitTopWall.getHeight() - slitSeperationBottom.getHeight() / 2 - HEIGHT_ADJUSTMENT_PANE);
@@ -259,8 +253,6 @@ public class SlitsEngine {
 
     /**
      * Handles the changes of the properties and the animation of the waves
-     * TODO: Fix the placements of the waves when the seperation between the
-     * slits is changed
      *
      * @param sldWidth
      * @param sldSeperation
@@ -277,16 +269,12 @@ public class SlitsEngine {
                 labelSlitSeperation.setText(Integer.toString(seperationHeight) + " cm");
 
                 for (Arc arc : listArc) {
-
                     arc.setRadiusY(HALF_HEIGHT_PANE_ANIMATION - slitTopWall.getHeight() - slitSeperationBottom.getHeight() / 2 - HEIGHT_ADJUSTMENT_PANE);
                     arc.setLayoutY(((slitSeperationBottom.getHeight() / 2 + arc.getRadiusY() / 2) * -1) + HEIGHT_ADJUSTMENT_PANE);
-
                 }
-
                 for (Arc arc : listArc2) {
                     arc.setRadiusY(HALF_HEIGHT_PANE_ANIMATION - slitTopWall.getHeight() - slitSeperationBottom.getHeight() / 2 - HEIGHT_ADJUSTMENT_PANE);
                     arc.setLayoutY(slitSeperationBottom.getHeight() + arc.getRadiusY() + HEIGHT_ADJUSTMENT_PANE);
-
                 }
             }
         });
@@ -311,8 +299,7 @@ public class SlitsEngine {
 
     /**
      * Handles the speed and the length of the waves when the frequency is
-     * changed TODO: Fix the width of the rectangles when both frequency and
-     * amplitude are modified
+     * changed
      *
      * @param slitFrequency
      */
@@ -380,6 +367,9 @@ public class SlitsEngine {
         });
     }
 
+    /**
+     * Delays the start of the second animation
+     */
     public void simpleTimer() {
         timer = new Timer(1000, new ActionListener() {
             @Override
@@ -483,5 +473,4 @@ public class SlitsEngine {
         this.listArc2 = listArc2;
     }
 
-   
 }

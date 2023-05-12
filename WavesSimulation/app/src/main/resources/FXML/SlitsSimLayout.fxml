@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.Cylinder?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1056.0" prefWidth="1936.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1056.0" prefWidth="1936.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
@@ -28,7 +28,7 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <items>
-              <MenuItem mnemonicParsing="false" text="About" />
+              <MenuItem mnemonicParsing="false" onAction="#handleAboutSlits" text="About" />
             </items>
           </Menu>
             <Menu mnemonicParsing="false" text="Settings">
@@ -139,7 +139,7 @@
                </children></Pane>
             <Button layoutX="41.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleBtnMenuArrow" style="-fx-background-color: transparent;" text="&lt;">
                <font>
-                  <Font size="58.0" />
+                  <Font name="Wide Latin" size="58.0" />
                </font>
             </Button>
          </children></Pane>

@@ -98,9 +98,17 @@ public class InterController extends Stage {
         btnStartTop.toFront();
         btnStartBottom.toFront();
         //engine.setAnimation(animationPane);
-        handleSldAmp();
-        handleSldFreq();
+       
         //engine.setAnimationArc(animationPane);
+        
+        sldAmp.valueProperty().addListener(new ChangeListener<Number>() {
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                int amp;
+                amp = (int) sldAmp.getValue() / 10;
+                System.out.println(amp);
+                engine.setBlur(amp);        
+            }
+        });
         
     }
     public InterController() {
@@ -274,6 +282,10 @@ public class InterController extends Stage {
     public void handleBtnSep2(ActionEvent event) {
       
     }
+    
+    /**
+     
+    
     public void getFreq() {
         sldFreq.valueProperty().addListener(new ChangeListener<Number>() {
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
@@ -294,8 +306,10 @@ public class InterController extends Stage {
                 System.out.println(amp);
             }
         });
+        
     }
 
+* *  */
 
     public void handleSldAmp() {
         sldAmp.valueProperty().addListener(new ChangeListener<Number>() {
@@ -315,6 +329,6 @@ public class InterController extends Stage {
                 labelFreq.setText(Integer.toString(freq));
             }
         });
-    }
+    }    
 
 }

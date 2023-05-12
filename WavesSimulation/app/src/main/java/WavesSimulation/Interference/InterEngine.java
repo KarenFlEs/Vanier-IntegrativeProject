@@ -95,10 +95,11 @@ public class InterEngine {
     private ArrayList<ScaleTransition> listScaleBottomArc = new ArrayList<>(Arrays.asList(scaleBottomArc, scaleBottomArc2, scaleBottomArc3));
     private ArrayList<ParallelTransition> listParBottomArc = new ArrayList<>(Arrays.asList(parallelTransitionBottom, parallelTransitionBottom2, parallelTransitionBottom3));
     
-    final int initialBlur = 10;
-    
-    private BoxBlur blurCircle = new BoxBlur(initialBlur, initialBlur, 1);
-    private BoxBlur blurArc = new BoxBlur(initialBlur, initialBlur, 1);
+    final int initialArcBlur = 10;
+    final int initialCircleBlur = 4;
+   
+    private BoxBlur blurCircle = new BoxBlur(initialCircleBlur, initialCircleBlur, 1);
+    private BoxBlur blurArc = new BoxBlur(initialArcBlur, initialArcBlur, 1);
 
     private InterController interController;
     
@@ -187,7 +188,28 @@ public class InterEngine {
         parallelTransitionBottom.stop();
     }      
     
+    public void setBlur (int blur){
+        blurCircle.setHeight(initialCircleBlur + blur);
+        blurCircle.setWidth(initialCircleBlur + blur);
+        blurArc.setHeight(initialArcBlur + blur);
+        blurArc.setWidth(initialArcBlur + blur);
+        
+        for(Circle topCircs : listCircles){
+            topCircs.setEffect(blurCircle);
+        }
+        for(Circle bottomCircs : listBottomCircles){
+            bottomCircs.setEffect(blurCircle);
+        }
+        for(Arc topArcs : listTopArcs){
+            topArcs.setEffect(blurArc);
+        }
+        for(Arc topArcs : listTopArcs){
+            topArcs.setEffect(blurArc);
+        }
+        
+    }
     public void setAnimationTopCircles(Pane animationPane){
+        
         for (Circle circle : listCircles) {
             circle.setFill(Color.BLUE);
             circle.setStrokeWidth(5);
@@ -243,6 +265,7 @@ public class InterEngine {
             circle.setStroke(Color.BLUE);
             circle.setLayoutX(40);
             circle.setLayoutY(270);
+            circle.setEffect(blurCircle);
             animationPane.getChildren().add(circle);
         }
         
@@ -252,6 +275,7 @@ public class InterEngine {
             circle.setStroke(Color.BLUE);
             circle.setLayoutX(40);
             circle.setLayoutY(490);
+            circle.setEffect(blurCircle);
             animationPane.getChildren().add(circle);
         }
         

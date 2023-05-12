@@ -1,5 +1,9 @@
 package WavesSimulation.Slits;
 
+import WavesSimulation.UI.MainApp;
+import WavesSimulation.UI.UIController;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -11,6 +15,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.shape.Arc;
 import javafx.scene.shape.Cylinder;
 import javafx.stage.Stage;
+import javax.swing.Timer;
 
 /**
  *
@@ -27,25 +32,22 @@ public class SlitsController extends Stage {
     private Pane paneSettings;
 
     @FXML
-    private CheckBox btn1Slit;
+    private CheckBox checkBox1Slit;
 
     @FXML
-    private CheckBox btn2Slit;
+    private CheckBox checkBox2Slit;
 
     @FXML
-    private CheckBox btn3Slit;
+    private Slider sliderAmplitude;
 
     @FXML
-    private Slider sldAmplitude;
+    private Slider sliderFrequency;
 
     @FXML
-    private Slider sldFrequency;
+    private Slider sliderWidth;
 
     @FXML
-    private Slider sldWidth;
-
-    @FXML
-    private Slider sldSeperation;
+    private Slider sliderSeperation;
 
     @FXML
     private Pane paneAnimation;
@@ -86,27 +88,28 @@ public class SlitsController extends Stage {
     public void initialize() {
 
         slit.clipPane(paneAnimation);
+        slit.simpleTimer();
         //sldWidth.setMin(150);
         //sldWidth.setMax(300);
-        sldSeperation.setMin(10);
-        sldSeperation.setMax(100);
+        sliderSeperation.setMin(10);
+        sliderSeperation.setMax(100);
 
-        sldAmplitude.setMin(15);
-        sldAmplitude.setMax(150);
+        sliderAmplitude.setMin(15);
+        sliderAmplitude.setMax(150);
 
-        sldFrequency.setMin(10);
-        sldFrequency.setMax(100);
+        sliderFrequency.setMin(10);
+        sliderFrequency.setMax(100);
 
-        slit.startSlit(paneAnimation, btn1Slit, sldSeperation);
+        slit.startSlit(paneAnimation, checkBox1Slit, sliderSeperation);
 
-        slit.handleSliderWidth(sldWidth, sldSeperation, labelSlitSeperation, labelSlitWidth);
-        slit.handleSliderSeperation(sldWidth, sldSeperation, labelSlitSeperation, labelSlitWidth);
+        slit.handleSliderWidth(sliderWidth, sliderSeperation, labelSlitSeperation, labelSlitWidth);
+        slit.handleSliderSeperation(sliderWidth, sliderSeperation, labelSlitSeperation, labelSlitWidth);
 
         slit.setUpRectangle(paneAnimation);
 
         slit.setUpArc(paneAnimation);
-        slit.handleSliderAmplitude(sldAmplitude);
-        slit.hadnleSliderFrequency(sldFrequency);
+        slit.handleSliderAmplitude(sliderAmplitude);
+        slit.hadnleSliderFrequency(sliderFrequency);
 
         cylinderWaveGenerator.toFront();
         btnPlayAnimation.toFront();
@@ -118,6 +121,13 @@ public class SlitsController extends Stage {
 
     public SlitsController() {
 
+    }
+
+    public void openMenu() throws IOException {
+        owner.close();
+        Stage stageMenu = new Stage();
+        MainApp mainApp = new MainApp();
+        mainApp.menuPage(stageMenu);
     }
 
     /**
@@ -132,18 +142,18 @@ public class SlitsController extends Stage {
         slit.getArc2().setLayoutY(150);
         slit.getArc3().setLayoutY(150);
 
-        sldWidth.setMin(150);
-        sldWidth.setMax(300);
+        sliderWidth.setMin(150);
+        sliderWidth.setMax(300);
 
         //slit.handleSliderWidth(sldWidth, sldSeperation, labelSlitSeperation, labelSlitWidth);
-        if (btn2Slit.isSelected()) {
-            btn2Slit.setSelected(false);
+        if (checkBox2Slit.isSelected()) {
+            checkBox2Slit.setSelected(false);
 
-            sldWidth.setMin(150);
-            sldWidth.setMax(300);
+            sliderWidth.setMin(150);
+            sliderWidth.setMax(300);
 
             slit.getSlitSeperationBottom().setVisible(false);
-            sldSeperation.setDisable(true);
+            sliderSeperation.setDisable(true);
         }
     }
 
@@ -154,40 +164,31 @@ public class SlitsController extends Stage {
     @FXML
     public void handle2Slit() {
         arcAppearance(slit.getArc4(), slit.getArc5(), slit.getArc6());
-        
-        slit.getSlitSeperationBottom().setLayoutY(450 - slit.getSlitSeperationBottom().getHeight()/2);
-        
+
+        slit.getSlitSeperationBottom().setLayoutY(450 - slit.getSlitSeperationBottom().getHeight() / 2);
+
         for (Arc arc1 : slit.getListArc()) {
-            arc1.setRadiusY(425 - slit.getSlitTopWall().getHeight() - slit.getSlitSeperationBottom().getHeight()/2);
-            arc1.setLayoutY(((slit.getSlitSeperationBottom().getHeight() / 2 + arc.getRadiusY() / 2) * -1) + 150);
+            arc1.setRadiusY(450 - slit.getSlitTopWall().getHeight() - slit.getSlitSeperationBottom().getHeight() / 2);
+            arc1.setLayoutY(((slit.getSlitSeperationBottom().getHeight() / 2 + arc.getRadiusY() / 2) * -1) + 100);
         }
-        
+
         for (Arc arc2 : slit.getListArc2()) {
-            arc2.setRadiusY(425 - slit.getSlitTopWall().getHeight() - slit.getSlitSeperationBottom().getHeight()/2);
-            arc2.setLayoutY(slit.getSlitSeperationBottom().getHeight() / 2 + arc.getRadiusY() / 2 + 150);
+            arc2.setRadiusY(450 - slit.getSlitTopWall().getHeight() - slit.getSlitSeperationBottom().getHeight() / 2);
+            arc2.setLayoutY(slit.getSlitSeperationBottom().getHeight() + arc.getRadiusY() + 100);
         }
-        
-        
 
-        sldWidth.setMin(350);
-        sldWidth.setMax(500);
+        sliderWidth.setMin(350);
+        sliderWidth.setMax(500);
 
-        slit.handleSliderWidth(sldWidth, sldSeperation, labelSlitSeperation, labelSlitWidth);
+        slit.handleSliderWidth(sliderWidth, sliderSeperation, labelSlitSeperation, labelSlitWidth);
 
-        if (btn1Slit.isSelected()) {
-            btn1Slit.setSelected(false);
-            btn2Slit.setSelected(true);
+        if (checkBox1Slit.isSelected()) {
+            checkBox1Slit.setSelected(false);
+            checkBox2Slit.setSelected(true);
 
-            //sldWidth.setMin(150);
-            //sldWidth.setMax(300);
             slit.getSlitSeperationBottom().setVisible(true);
-            sldSeperation.setDisable(false);
+            sliderSeperation.setDisable(false);
         }
-    }
-
-    @FXML
-    public void handle3Slit() {
-
     }
 
     /**
@@ -204,6 +205,28 @@ public class SlitsController extends Stage {
         }
     }
 
+    @FXML
+    public void handleOpenMenuPage() throws IOException {
+        openMenu();
+    }
+
+    @FXML
+    public void handleOpenInterSim() throws IOException {
+        UIController uiController = new UIController(owner);
+        uiController.openInterSimulation();
+    }
+
+    @FXML
+    public void handleOpenDiffSim() throws IOException {
+        UIController uiController = new UIController(owner);
+        uiController.openDiffSimulation();
+    }
+    
+    @FXML
+    public void handleBtnMenuArrow() throws IOException{
+        openMenu();
+    }
+
     FrequencyGuide frequencyGuide;
 
     @FXML
@@ -215,9 +238,7 @@ public class SlitsController extends Stage {
 
     @FXML
     public void exitedFrequency() throws IOException {
-
         frequencyGuide.close();
-
     }
 
     AmplitudeGuide amplitudeGuide;
@@ -287,11 +308,11 @@ public class SlitsController extends Stage {
     }
 
     public CheckBox getBtn2Slit() {
-        return btn2Slit;
+        return checkBox2Slit;
     }
 
     public void setBtn2Slit(CheckBox btn2Slit) {
-        this.btn2Slit = btn2Slit;
+        this.checkBox2Slit = btn2Slit;
     }
 
 }

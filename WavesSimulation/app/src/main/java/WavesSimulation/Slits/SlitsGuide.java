@@ -30,6 +30,8 @@ public class SlitsGuide extends Stage {
 
         Scene scene = new Scene(root);
         this.setScene(scene);
+        this.setY(450);
+        this.setX(1300);
         this.show();
     }
 }
@@ -48,6 +50,8 @@ public FrequencyGuide() throws IOException {
 
         Scene scene = new Scene(root);
         this.setScene(scene);
+        this.setY(100);
+        this.setX(1300);
         this.show();
     }
 }
@@ -66,6 +70,8 @@ class AmplitudeGuide extends Stage {
 
         Scene scene = new Scene(root);
         this.setScene(scene);
+        this.setY(300);
+        this.setX(1300);
         this.show();
     }
 }
@@ -84,6 +90,8 @@ class WidthGuide extends Stage {
 
         Scene scene = new Scene(root);
         this.setScene(scene);
+        this.setY(600);
+        this.setX(1300);
         this.show();
     }
 
@@ -103,6 +111,8 @@ public SeperationGuide() throws IOException {
 
         Scene scene = new Scene(root);
         this.setScene(scene);
+        this.setY(750);
+        this.setX(1300);
         this.show();
     }
 }

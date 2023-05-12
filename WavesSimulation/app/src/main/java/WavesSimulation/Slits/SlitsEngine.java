@@ -1,5 +1,7 @@
 package WavesSimulation.Slits;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 import javafx.animation.Animation;
@@ -12,6 +14,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.control.Tooltip;
 import javafx.scene.effect.BoxBlur;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -20,6 +23,7 @@ import javafx.scene.shape.ArcType;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.StrokeType;
 import javafx.util.Duration;
+import javax.swing.Timer;
 
 /**
  *
@@ -29,7 +33,7 @@ public class SlitsEngine {
     
     private final int HALF_HEIGHT_PANE_ANIMATION = 450;
     private final int HEIGHT_ADJUSTMENT_PANE = 100;
-    
+    private final int POSITION_X_ARC = 75;
 
     private Rectangle slitTopWall;
     private Rectangle slitBottomWall;
@@ -88,6 +92,9 @@ public class SlitsEngine {
 
     private BoxBlur blurRectangle = new BoxBlur(75, 75, 3);
     private BoxBlur blurArc = new BoxBlur(30, 30, 3);
+    Timer timer;
+    int seconds = 0;
+    //Tooltip tooltip = new Tooltip("A tooltip");
 
     public SlitsEngine() {
 
@@ -103,6 +110,7 @@ public class SlitsEngine {
         for (ParallelTransition parallelTransition : listParallelTransitions) {
             parallelTransition.play();
         }
+        timer.start();
     }
 
     /**
@@ -115,6 +123,7 @@ public class SlitsEngine {
         for (ParallelTransition parallelTransition : listParallelTransitions) {
             parallelTransition.pause();
         }
+        timer.stop();
     }
 
     /**
@@ -136,7 +145,6 @@ public class SlitsEngine {
         }
 
         translateRectangle2.setDelay(Duration.seconds(2));
-
         translateRectangle3.setDelay(Duration.seconds(4));
     }
 
@@ -149,7 +157,7 @@ public class SlitsEngine {
 
         for (Arc arc : listArc) {
             arc.setLayoutY(150);
-            arc.setLayoutX(75);
+            arc.setLayoutX(POSITION_X_ARC);
             arc.setEffect(blurArc);
             arc.setType(ArcType.OPEN);
             arc.setStrokeWidth(25);
@@ -157,12 +165,15 @@ public class SlitsEngine {
             arc.setStrokeType(StrokeType.INSIDE);
             arc.setFill(null);
             paneAnimation.getChildren().add(arc);
+            arc.setVisible(false);
+            
+           
         }
 
         for (Arc arc : listArc2) {
             arc.setVisible(false);
             arc.setLayoutY(175);
-            arc.setLayoutX(75);
+            arc.setLayoutX(POSITION_X_ARC);
             arc.setEffect(blurArc);
             arc.setType(ArcType.OPEN);
             arc.setStrokeWidth(25);
@@ -173,8 +184,9 @@ public class SlitsEngine {
         }
         
         for (TranslateTransition translateArc : listTranslateArc) {
-            translateArc.setByX(450);
+            translateArc.setByX(HALF_HEIGHT_PANE_ANIMATION);
             translateArc.setInterpolator(Interpolator.LINEAR);
+            
         }
         
         for (ScaleTransition scaleArc : listScaleArc) {
@@ -186,15 +198,10 @@ public class SlitsEngine {
         }
         
         parallelTransition1.setDelay(Duration.seconds(5.5));
-
         parallelTransition2.setDelay(Duration.seconds(7.5));
-
         parallelTransition3.setDelay(Duration.seconds(9.5));
-
         parallelTransition4.setDelay(Duration.seconds(5.5));
-
         parallelTransition5.setDelay(Duration.seconds(7.5));
-
         parallelTransition6.setDelay(Duration.seconds(9.5));
     }
 
@@ -248,7 +255,7 @@ public class SlitsEngine {
                     for (Arc arc : listArc2) {
                         arc.setRadiusY(HALF_HEIGHT_PANE_ANIMATION - slitTopWall.getHeight() - slitSeperationBottom.getHeight() / 2 - HEIGHT_ADJUSTMENT_PANE);
                         //System.out.println(slitSeperationBottom.getLayoutY());
-                        arc.setLayoutY(slitSeperationBottom.getHeight() / 2 + arc.getRadiusY() + HEIGHT_ADJUSTMENT_PANE);
+                        arc.setLayoutY(slitSeperationBottom.getHeight() + arc.getRadiusY() + HEIGHT_ADJUSTMENT_PANE);
                     }
 
                 }
@@ -284,7 +291,7 @@ public class SlitsEngine {
 
                 for (Arc arc : listArc2) {
                     arc.setRadiusY(HALF_HEIGHT_PANE_ANIMATION - slitTopWall.getHeight() - slitSeperationBottom.getHeight() / 2 - HEIGHT_ADJUSTMENT_PANE);
-                    arc.setLayoutY(slitSeperationBottom.getHeight() / 2 + arc.getRadiusY() + HEIGHT_ADJUSTMENT_PANE);
+                    arc.setLayoutY(slitSeperationBottom.getHeight() + arc.getRadiusY() + HEIGHT_ADJUSTMENT_PANE);
 
                 }
             }
@@ -379,7 +386,25 @@ public class SlitsEngine {
         });
     }
     
-    
+    public void simpleTimer() {
+        
+        
+        
+        timer = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                seconds++;
+                
+                if(seconds == 5){
+                    for (Arc arc : listArc) {
+                        arc.setVisible(true);
+                    }
+                }
+
+            }
+        });
+    }
+
 
     public int getSlitWidth() {
         return this.slitWidth;

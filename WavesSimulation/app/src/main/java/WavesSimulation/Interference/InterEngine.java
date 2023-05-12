@@ -96,7 +96,7 @@ public class InterEngine {
     private ArrayList<ParallelTransition> listParBottomArc = new ArrayList<>(Arrays.asList(parallelTransitionBottom, parallelTransitionBottom2, parallelTransitionBottom3));
     
     final int initialArcBlur = 10;
-    final int initialCircleBlur = 4;
+    final int initialCircleBlur = 2;
    
     private BoxBlur blurCircle = new BoxBlur(initialCircleBlur, initialCircleBlur, 1);
     private BoxBlur blurArc = new BoxBlur(initialArcBlur, initialArcBlur, 1);
@@ -124,6 +124,9 @@ public class InterEngine {
     public void stopTopAnimation() {
         for (ScaleTransition scale : listScaleTopCirc) {
             scale.stop();
+        }
+        for(Circle topCircs: listCircles){
+           
         }
     }
 
@@ -192,11 +195,44 @@ public class InterEngine {
         }
     }      
     
+    public void setSpeed(int speed){
+        for(ScaleTransition scaleTopCircs: listScaleTopCirc){
+            scaleTopCircs.setDuration(Duration.seconds(animationDuration - speed));
+        }
+        for(ScaleTransition scaleBotCircs: listScaleBottomCirc){
+            scaleBotCircs.setDuration(Duration.seconds(animationDuration - speed));
+        }
+        for(ScaleTransition scaleTopArcs: listScaleTopArc){
+            scaleTopArcs.setDuration(Duration.seconds(animationDuration - speed));
+        }
+        for(ScaleTransition scaleBotArcs: listScaleBottomArc){
+            scaleBotArcs.setDuration(Duration.seconds(animationDuration - speed));
+        }
+        for(TranslateTransition transTopArc : listTransTopArc){
+            transTopArc.setDuration(Duration.seconds(animationDuration - speed));
+        }
+        for(TranslateTransition transBotArc : listTransBottomArc){
+            transBotArc.setDuration(Duration.seconds(animationDuration - speed));
+        }
+        
+        scaleTopCirc2.setDelay(Duration.seconds((animationDuration-speed)/3));
+        scaleTopCirc3.setDelay(Duration.seconds((animationDuration-speed)/1.5));
+        
+        scaleBottomCirc2.setDelay(Duration.seconds((animationDuration-speed)/3));
+        scaleBottomCirc3.setDelay(Duration.seconds((animationDuration-speed)/1.5));
+        
+        parallelTransitionTop2.setDelay(Duration.seconds((animationDuration-speed)/3));
+        parallelTransitionTop3.setDelay(Duration.seconds((animationDuration-speed)/1.5));
+        
+        parallelTransitionBottom2.setDelay(Duration.seconds((animationDuration-speed)/3));
+        parallelTransitionBottom3.setDelay(Duration.seconds((animationDuration-speed)/1.5));
+        
+    }
     public void setBlur (int blur){
         blurCircle.setHeight(initialCircleBlur + blur);
         blurCircle.setWidth(initialCircleBlur + blur);
-        blurArc.setHeight(initialArcBlur + blur);
-        blurArc.setWidth(initialArcBlur + blur);
+        blurArc.setHeight(initialArcBlur + blur*2);
+        blurArc.setWidth(initialArcBlur + blur*2);
         
         for(Circle topCircs : listCircles){
             topCircs.setEffect(blurCircle);
@@ -343,8 +379,7 @@ public class InterEngine {
         
         //animations top arcs
         for(ScaleTransition scale : listScaleTopArc){
-            //scale.setByX(2f);
-            scale.setByY(2f);
+            scale.setByY(5f);
         }
         
         for(TranslateTransition translate : listTransTopArc){
@@ -361,8 +396,7 @@ public class InterEngine {
         
         //animations bottom arcs
         for(ScaleTransition scale : listScaleBottomArc){
-            //scale.setByX(2f);
-            scale.setByY(2f);
+            scale.setByY(5f);
         }
         
         for(TranslateTransition translate : listTransBottomArc){

@@ -106,6 +106,14 @@ public class InterController extends Stage {
                 engine.setBlur(amp);        
             }
         });
+        
+        sldFreq.valueProperty().addListener(new ChangeListener<Number>() {
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                int freq;
+                freq = (int) sldFreq.getValue() / 50;
+                engine.setSpeed(freq);
+            }
+        });
           
     }
     public InterController() {

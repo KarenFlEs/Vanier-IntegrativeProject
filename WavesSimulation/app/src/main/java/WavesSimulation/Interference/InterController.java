@@ -122,6 +122,11 @@ public class InterController extends Stage {
         this.owner = owner;
     }
     
+    /**
+     * This method handles the info button for the frequency explaining the 
+     * changes that will be made when modifying it
+     * @param event
+     */
     @FXML
     public void handleBtnInfoFreq(ActionEvent event){
         Stage newStage = new Stage();
@@ -150,6 +155,11 @@ public class InterController extends Stage {
         newStage.show();
     }
     
+    /**
+     * This methods handles the info button for the Amplitude explaining the
+     * changes that will be made when modifying it
+     * @param event
+     */
     @FXML 
     public void handleBtnInfoAmp(ActionEvent event){
         Stage newStage = new Stage();
@@ -178,6 +188,11 @@ public class InterController extends Stage {
         newStage.show();
     }
     
+    /**
+     * This method handles the info button for the Separation explaining the 
+     * changes that will be made when modifying it
+     * @param event
+     */
     @FXML 
     public void handleBtnInfoSep(ActionEvent event){
          Stage newStage = new Stage();
@@ -288,6 +303,10 @@ public class InterController extends Stage {
     }
     
     
+    /**
+     * This method opens an information window when selected from the menu bar
+     * explaining interference
+     */
     @FXML
     public void handleAbout(){
         Stage stageAbout = new Stage();
@@ -312,11 +331,19 @@ public class InterController extends Stage {
         stageAbout.show();
     }
     
+    /**
+     * This methods closes the interference simulation window when chosen from 
+     * the menu bar
+     */
     @FXML
     public void handleClose(){
        owner.close();
     }
     
+    /**
+     * This method opens the initial window when running the project
+     * with the menu
+     */
     public void openMenu () throws IOException{
         owner.close();
         Stage stageMenu = new Stage(); 
@@ -324,18 +351,29 @@ public class InterController extends Stage {
         mainApp.menuPage(stageMenu);
     }
     
+    /**
+     * This method calls the openMenu() method when selected from the menu
+     * bar
+     */
     @FXML
     public void handleOpenMenu() throws IOException{
         openMenu();
          
     }
     
+    /**
+     * This method opens the diffraction simulation when selected from the
+     * menu bar
+     */
     @FXML
     public void handleOpenDif() throws IOException{
         UIController uiController = new UIController (owner);
         uiController.openDiffSimulation();
     }
     
+    /**
+     * This method opens the slits simulation when selected from the menu bar
+     */
     @FXML
     public void handleOpenSlits() throws IOException{
         UIController uiController = new UIController (owner);
@@ -368,7 +406,8 @@ public class InterController extends Stage {
     }
 
 * *  */
-
+    
+   
     public void handleSldAmp() {
         sldAmp.valueProperty().addListener(new ChangeListener<Number>() {
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
@@ -378,7 +417,7 @@ public class InterController extends Stage {
             }
         });
     }
-
+    
     public void handleSldFreq() {
         sldFreq.valueProperty().addListener(new ChangeListener<Number>() {
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {

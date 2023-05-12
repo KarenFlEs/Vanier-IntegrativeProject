@@ -1,5 +1,8 @@
 package WavesSimulation.Interference;
 
+import WavesSimulation.UI.MainApp;
+import WavesSimulation.UI.UIController;
+import java.io.IOException;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,6 +17,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import javafx.stage.Modality;
 
 /**
@@ -283,6 +287,60 @@ public class InterController extends Stage {
       
     }
     
+    
+    @FXML
+    public void handleAbout(){
+        Stage stageAbout = new Stage();
+        stageAbout.initModality(Modality.NONE);
+        stageAbout.setTitle("Interference Information");
+        stageAbout.setX(50); 
+        stageAbout.setY(50); 
+        
+        StackPane stakePaneAbout = new StackPane();
+        
+        TextArea textInterInfo = new TextArea();
+        textInterInfo.autosize();
+        textInterInfo.setText("info here");
+        textInterInfo.setPrefSize(300, 200);
+        textInterInfo.setWrapText(true);
+        textInterInfo.setEditable(false);
+        
+        stakePaneAbout.getChildren().add(textInterInfo);
+        
+        Scene scene = new Scene(stakePaneAbout, 300, 400);
+        stageAbout.setScene(scene);
+        stageAbout.show();
+    }
+    
+    @FXML
+    public void handleClose(){
+       owner.close();
+    }
+    
+    public void openMenu () throws IOException{
+        owner.close();
+        Stage stageMenu = new Stage(); 
+        MainApp mainApp = new MainApp(); 
+        mainApp.menuPage(stageMenu);
+    }
+    
+    @FXML
+    public void handleOpenMenu() throws IOException{
+        openMenu();
+         
+    }
+    
+    @FXML
+    public void handleOpenDif() throws IOException{
+        UIController uiController = new UIController (owner);
+        uiController.openDiffSimulation();
+    }
+    
+    @FXML
+    public void handleOpenSlits() throws IOException{
+        UIController uiController = new UIController (owner);
+        uiController.openSlitsSimulation();
+    }
     /**
      
     
@@ -329,6 +387,6 @@ public class InterController extends Stage {
                 labelFreq.setText(Integer.toString(freq));
             }
         });
-    }    
-
+    } 
+    
 }

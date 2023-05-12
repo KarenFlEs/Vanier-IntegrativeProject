@@ -21,7 +21,7 @@ public class IntSimulationWindow extends Stage {
     private void loadComponents() throws IOException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/InterferenceSimLayout.fxml"));
          
-        InterController mainController = new InterController();
+        InterController mainController = new InterController(this);
         loader.setController(mainController);
 
         Parent root = loader.load();

@@ -33,15 +33,9 @@ public class InterController extends Stage {
 
     @FXML
     private Slider sldAmp;
-
-    @FXML
-    private Button btnSep0;
     
     @FXML
-    private Button btnSep1;
-     
-    @FXML
-    private Button btnSep2;
+    private Slider sldSep;
 
     @FXML
     private Pane animationPane;
@@ -109,11 +103,10 @@ public class InterController extends Stage {
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
                 int amp;
                 amp = (int) sldAmp.getValue() / 10;
-                System.out.println(amp);
                 engine.setBlur(amp);        
             }
         });
-        
+          
     }
     public InterController() {
     }
@@ -233,7 +226,7 @@ public class InterController extends Stage {
         }else{
             isPlaying = false;
             engine.stopTopAnimation();
-            animationPane.getChildren().clear();
+            engine.clearAnimation(animationPane);
             btnStartBottom.setDisable(false);
             btnStart.setDisable(false);
         }
@@ -243,6 +236,7 @@ public class InterController extends Stage {
     public void handleBtnStart(ActionEvent event) {
         if(!isPlaying){
             isPlaying = true;
+            engine.clearAnimation(animationPane);
             engine.setAnimation(animationPane);
             engine.setAnimationArc(animationPane);
             engine.playAnimation();
@@ -251,7 +245,7 @@ public class InterController extends Stage {
         }else{
             isPlaying = false;
             engine.stopAnimation();
-            animationPane.getChildren().clear();
+            engine.clearAnimation(animationPane);
             btnStartBottom.setDisable(false);
             btnStartTop.setDisable(false);
         }
@@ -269,38 +263,13 @@ public class InterController extends Stage {
         }else{
             isPlaying = false;
             engine.stopBottomAnimation();
-            animationPane.getChildren().clear();
+            engine.clearAnimation(animationPane);
             btnStart.setDisable(false);
             btnStartTop.setDisable(false);
         }
       
     }
     
-    @FXML
-    public void handleBtnSep0(ActionEvent event) {
-      if(!isPlaying){
-            isPlaying = true;
-            engine.playTopAnimation();
-            engine.setAnimationTopCircles(animationPane);
-            btnStart.setVisible(false);
-            btnStartBottom.setVisible(false);
-            imageFaucetBottom.setVisible(false);
-            
-        }else{
-            isPlaying = false;
-            engine.stopTopAnimation();
-            btnStartBottom.setDisable(false);
-            btnStartTop.setDisable(false);
-        }
-    }
-    @FXML
-    public void handleBtnSep1(ActionEvent event) {
-      
-    }
-    @FXML
-    public void handleBtnSep2(ActionEvent event) {
-      
-    }
     
     
     /**

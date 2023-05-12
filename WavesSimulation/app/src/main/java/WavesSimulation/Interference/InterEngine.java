@@ -178,14 +178,18 @@ public class InterEngine {
         
     }
     public void stopAnimation(){
-        topCirc.fillProperty().set(null);
-        scaleTopCirc.stop();
-        topArc.setVisible(false);
-        parallelTransitionTop.stop();
-        bottomCirc.fillProperty().set(null);
-        scaleBottomCirc.stop();
-        bottomArc.setVisible(false);
-        parallelTransitionBottom.stop();
+        for(ScaleTransition scaleTopCircs: listScaleTopCirc){
+            scaleTopCircs.stop();
+        }
+        for(ScaleTransition scaleBottomCircs: listScaleBottomCirc){
+            scaleBottomCircs.stop();
+        }
+        for(ParallelTransition parTopArcs: listParTopArc){
+            parTopArcs.stop();
+        }
+        for(ParallelTransition parBotArcs: listParBottomArc){
+            parBotArcs.stop();
+        }
     }      
     
     public void setBlur (int blur){
@@ -241,8 +245,8 @@ public class InterEngine {
             animationPane.getChildren().add(circle);
         }
         for (ScaleTransition scale : listScaleBottomCirc) {
-            scale.setByX(60f);
-            scale.setByY(60f);
+            scale.setByX(100f);
+            scale.setByY(100f);
             scale.setInterpolator(Interpolator.LINEAR);
             scale.setCycleCount(Animation.INDEFINITE);
         }
@@ -251,6 +255,10 @@ public class InterEngine {
         scaleBottomCirc3.setDelay(Duration.seconds(4));
         
         clipPane(animationPane);
+    }
+    
+    public void clearAnimation(Pane animationPane){
+        animationPane.getChildren().clear();
     }
     /**
      * Set the animation with the correct data for the circles

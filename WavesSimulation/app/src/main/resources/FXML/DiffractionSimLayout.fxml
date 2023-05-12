@@ -29,7 +29,7 @@
               <items>
                   <Menu mnemonicParsing="false" text="Preferences">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="Open Menu Page" />
+                        <MenuItem mnemonicParsing="false" onAction="#handleOpenMenuPage" text="Open Menu Page" />
                       <MenuItem mnemonicParsing="false" onAction="#handleOpenInterSim" text="Open Interference Sim" />
                         <MenuItem mnemonicParsing="false" onAction="#handleOpenSlitsSim" text="Open Slits Sim" />
                     </items>
@@ -106,5 +106,10 @@
             <Font name="Times New Roman" size="48.0" />
          </font>
       </Label>
+      <Button layoutX="6.0" layoutY="35.0" mnemonicParsing="false" onAction="#handleBtnMenuArrow" prefHeight="66.0" prefWidth="68.0" style="-fx-background-color: transparent;" text="&lt;">
+         <font>
+            <Font name="Wide Latin" size="58.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

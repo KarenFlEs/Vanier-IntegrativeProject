@@ -1,5 +1,6 @@
 package WavesSimulation.Diffraction;
 
+import WavesSimulation.UI.MainApp;
 import WavesSimulation.UI.UIController;
 import java.io.IOException;
 import javafx.beans.value.ChangeListener;
@@ -196,6 +197,13 @@ public class DiffController extends Stage {
         });
     }
 
+    public void openMenu () throws IOException{
+        stageSim.close();
+        Stage stageMenu = new Stage(); 
+        MainApp mainApp = new MainApp(); 
+        mainApp.menuPage(stageMenu);
+    }
+    
     /**
      * This allows for the wave information pop-out to show 
      * when the mouse is placed on top of the button i next to the wavelength setting
@@ -304,6 +312,11 @@ public class DiffController extends Stage {
         stageEccInfo.close(); 
     }
     
+    @FXML
+    public void handleBtnMenuArrow () throws IOException{
+        openMenu(); 
+    }
+    
     /**
      * Closes the simulation when pressing the File Close option
      */
@@ -343,10 +356,11 @@ public class DiffController extends Stage {
     }
     
     /**
-     * TODO
+     * handles the OpenMenuPage from the menu bar
      */
-    //@FXML
-    public void handleOpenMenuPage () {
+    @FXML
+    public void handleOpenMenuPage () throws IOException {
+        openMenu(); 
     }
     
     /**

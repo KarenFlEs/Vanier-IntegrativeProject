@@ -1,6 +1,7 @@
 
 package WavesSimulation.UI;
 
+import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,8 +15,7 @@ import javafx.stage.Stage;
  */
 public class MainApp extends Application {
     
-    public void start(Stage stage) throws Exception {
-
+    public void menuPage (Stage stage) throws IOException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/CoverPageLayout.fxml"));
         UIController mainController = new UIController(stage);
         loader.setController(mainController);
@@ -26,9 +26,11 @@ public class MainApp extends Application {
         stage.setTitle("Waves Simulation");
         stage.setMaximized(true);
         stage.show();
-        
-        System.out.println(stage.heightProperty().getValue().toString());
-        System.out.println(stage.widthProperty().getValue().toString());
+    }
+    
+    public void start(Stage stage) throws Exception {
+        menuPage(stage); 
+        System.out.println("Note: the simulation will work with screen dimensions of 1295 x 687");
     }
 
     public static void main(String[] args) {

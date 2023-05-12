@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -80,9 +81,8 @@
                   <Font size="11.0" />
                </font>
             </Button>
-            <Slider fx:id="sldSep" blockIncrement="1.0" layoutX="85.0" layoutY="516.0" majorTickUnit="1.0" max="2.0" minorTickCount="1" prefHeight="14.0" prefWidth="224.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
-            <Label layoutX="290.0" layoutY="491.0" text="max" />
-            <Label layoutX="83.0" layoutY="491.0" text="min" />
+            <CheckBox fx:id="checkBox1" layoutX="169.0" layoutY="516.0" mnemonicParsing="false" onAction="#handleCheckBox1" text="1" />
+            <CheckBox fx:id="checkBox2" layoutX="210.0" layoutY="516.0" mnemonicParsing="false" onAction="#handleCheckBox2" text="2" />
          </children>
       </Pane>
    </right>

@@ -12,6 +12,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.beans.value.ChangeListener;
 import javafx.scene.Scene;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
@@ -35,7 +36,10 @@ public class InterController extends Stage {
     private Slider sldAmp;
     
     @FXML
-    private Slider sldSep;
+    private CheckBox checkBox1;
+    
+    @FXML
+    private CheckBox checkBox2;
 
     @FXML
     private Pane animationPane;
@@ -98,6 +102,7 @@ public class InterController extends Stage {
         //engine.setAnimation(animationPane);
        
         //engine.setAnimationArc(animationPane);
+        checkBox1.setSelected(true);
         
         sldAmp.valueProperty().addListener(new ChangeListener<Number>() {
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
@@ -278,8 +283,22 @@ public class InterController extends Stage {
       
     }
     
+    @FXML
+    public void handleCheckBox1(ActionEvent event){
+        if (checkBox1.isSelected()) {
+            checkBox2.setSelected(false);
+            checkBox1.setSelected(true);
+        }
+    }
     
-    
+    @FXML
+    public void handleCheckBox2(ActionEvent event){
+        if (checkBox2.isSelected()) {
+            checkBox1.setSelected(false);
+            checkBox2.setSelected(true);
+        }
+    }
+   
     /**
      * This method opens an information window when selected from the menu bar
      * explaining interference

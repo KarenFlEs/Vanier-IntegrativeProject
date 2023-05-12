@@ -24,20 +24,25 @@ import javafx.util.Duration;
 public class InterEngine {
     
     final int animationDuration = 6;
+    final int positionCircleX = 40;
+    final int positionTopCircleY = 270;
+    final int positionBottomCircleY = 490;
+    final int positionArcX = -320;
+    final int positionTopArcY = -40;
+    final int positionBottomArcY = 200;
     
-    private int frequency;
-    private int amplitude;
-    private int slitSep;
+    final int circleDiameter = 30;
+    
     
     //top Circles
-    private Circle topCirc = new Circle(30);
-    private Circle topCirc2 = new Circle(30);
-    private Circle topCirc3 = new Circle(30);
+    private Circle topCirc = new Circle(circleDiameter);
+    private Circle topCirc2 = new Circle(circleDiameter);
+    private Circle topCirc3 = new Circle(circleDiameter);
     
     //bottom Circles
-    private Circle bottomCirc = new Circle(30);
-    private Circle bottomCirc2 = new Circle(30);
-    private Circle bottomCirc3 = new Circle(30);
+    private Circle bottomCirc = new Circle(circleDiameter);
+    private Circle bottomCirc2 = new Circle(circleDiameter);
+    private Circle bottomCirc3 = new Circle(circleDiameter);
     
     //circles arrays
     private ArrayList<Circle> listCircles = new ArrayList<>(Arrays.asList(topCirc, topCirc2, topCirc3));
@@ -103,8 +108,165 @@ public class InterEngine {
 
     private InterController interController;
     
+    public InterEngine() {
+    }
+    
     /**
-     * Play the top faucet's animations
+     * Set the animation with the top circles animation
+     *
+     * @param animationPane
+     */
+    public void setAnimationTopCircles(Pane animationPane){
+        for (Circle circle : listCircles) {
+            circle.setFill(Color.BLUE);
+            circle.setStrokeWidth(5);
+            circle.setStroke(Color.BLUE);
+            circle.setLayoutX(40);
+            circle.setLayoutY(270);
+            animationPane.getChildren().add(circle);
+        }
+        for (ScaleTransition scale : listScaleTopCirc) {
+            scale.setByX(100f);
+            scale.setByY(100f);
+            scale.setInterpolator(Interpolator.LINEAR);
+            scale.setCycleCount(Animation.INDEFINITE);
+        }
+        scaleTopCirc2.setDelay(Duration.seconds(2));
+        scaleTopCirc3.setDelay(Duration.seconds(4));
+        clipPane(animationPane);
+    }
+    /**
+     * Set the animation with the correct data for the bottom circles animation
+     * @param animationPane
+     */
+    public void setAnimationBottomCircles(Pane animationPane){
+        for (Circle circle : listBottomCircles) {
+            circle.setFill(Color.BLUE);
+            circle.setStrokeWidth(5);
+            circle.setStroke(Color.BLUE);
+            circle.setLayoutX(40);
+            circle.setLayoutY(490);
+            animationPane.getChildren().add(circle);
+        }
+        for (ScaleTransition scale : listScaleBottomCirc) {
+            scale.setByX(100f);
+            scale.setByY(100f);
+            scale.setInterpolator(Interpolator.LINEAR);
+            scale.setCycleCount(Animation.INDEFINITE);
+        }
+        scaleBottomCirc2.setDelay(Duration.seconds(2));
+        scaleBottomCirc3.setDelay(Duration.seconds(4));
+        clipPane(animationPane);
+    }
+    /**
+     * Set the animation with the correct data for the circles
+     *
+     * @param animationPane
+     */
+    public void setAnimation(Pane animationPane) {
+        for (Circle circle : listCircles) {
+            circle.setFill(Color.BLUE);
+            circle.setStrokeWidth(5);
+            circle.setStroke(Color.BLUE);
+            circle.setLayoutX(40);
+            circle.setLayoutY(270);
+            circle.setEffect(blurCircle);
+            animationPane.getChildren().add(circle);
+        }
+        for (Circle circle : listBottomCircles) {
+            circle.setFill(Color.BLUE);
+            circle.setStrokeWidth(5);
+            circle.setStroke(Color.BLUE);
+            circle.setLayoutX(40);
+            circle.setLayoutY(490);
+            circle.setEffect(blurCircle);
+            animationPane.getChildren().add(circle);
+        } 
+        for (ScaleTransition scale : listScaleTopCirc) {
+            scale.setByX(3f);
+            scale.setByY(3f);
+            scale.setInterpolator(Interpolator.LINEAR);
+            scale.setCycleCount(Animation.INDEFINITE);
+        }
+        for (ScaleTransition scale : listScaleBottomCirc) {
+            scale.setByX(3f);
+            scale.setByY(3f);
+            scale.setInterpolator(Interpolator.LINEAR);
+            scale.setCycleCount(Animation.INDEFINITE);
+        } 
+        scaleTopCirc2.setDelay(Duration.seconds(2));
+        scaleTopCirc3.setDelay(Duration.seconds(4));
+        scaleBottomCirc2.setDelay(Duration.seconds(2));
+        scaleBottomCirc3.setDelay(Duration.seconds(4));
+        clipPane(animationPane);
+    }
+    /**
+     * Set the animation with the correct data for the arcs
+     *
+     * @param animationPane
+     */
+    public void setAnimationArc(Pane animationPane) {
+        //the arcs at the top
+        for (Arc arc : listTopArcs) {
+            arc.setLayoutX(-320);
+            arc.setLayoutY(-40);
+            arc.setStrokeWidth(15);
+            arc.setStroke(Color.BLUE);
+            arc.fillProperty().set(null);
+            arc.setEffect(blurArc);
+            arc.setVisible(false);
+            animationPane.getChildren().add(arc);
+        }
+        //the arcs at the bottom
+        for (Arc arc : listBottomArcs) {
+            arc.setLayoutX(-320);
+            arc.setLayoutY(200);
+            arc.setStrokeWidth(15);
+            arc.setStroke(Color.BLUE);
+            arc.fillProperty().set(null);
+            arc.setEffect(blurArc);
+            arc.setVisible(false);
+            animationPane.getChildren().add(arc);
+        }
+        //animations top arcs
+        for(ScaleTransition scale : listScaleTopArc){
+            scale.setByY(5f);
+        }
+        for(TranslateTransition translate : listTransTopArc){
+            translate.setByX(1500);
+            translate.setInterpolator(Interpolator.LINEAR);
+        }
+        for(ParallelTransition parallel : listParTopArc){
+            parallel.setCycleCount(Animation.INDEFINITE);
+        }
+        parallelTransitionTop.setDelay(Duration.seconds(2));
+        parallelTransitionTop2.setDelay(Duration.seconds(4));
+        parallelTransitionTop3.setDelay(Duration.seconds(6));
+        //animations bottom arcs
+        for(ScaleTransition scale : listScaleBottomArc){
+            scale.setByY(5f);
+        }
+        for(TranslateTransition translate : listTransBottomArc){
+            translate.setByX(1500);
+            translate.setInterpolator(Interpolator.LINEAR);
+        }
+        for(ParallelTransition parallel : listParBottomArc){
+            parallel.setCycleCount(Animation.INDEFINITE);
+        }
+        parallelTransitionBottom.setDelay(Duration.seconds(2));
+        parallelTransitionBottom2.setDelay(Duration.seconds(4));
+        parallelTransitionBottom3.setDelay(Duration.seconds(6));
+        clipPane(animationPane);
+    }
+    /**
+     * method to clear the pane of the nodes on it
+     * @param animationPane
+     */
+    public void clearAnimation(Pane animationPane){
+        animationPane.getChildren().clear();
+    }
+    /**
+     * Play the top faucets animation
      */
     public void playTopAnimation() {
         for (Circle circle : listCircles) {
@@ -118,20 +280,17 @@ public class InterEngine {
             scale.setCycleCount(Animation.INDEFINITE);
             scale.setDuration(Duration.seconds(animationDuration + 10));
         }   
-        
     }
-    
+    /**
+     * Stop the top faucets animation
+     */
     public void stopTopAnimation() {
         for (ScaleTransition scale : listScaleTopCirc) {
             scale.stop();
         }
-        for(Circle topCircs: listCircles){
-           
-        }
     }
-
     /**
-     * Play the bottom faucet's animations
+     * Play the bottom faucets animation
      */
     public void playBottomAnimation() {
         for (Circle circle : listBottomCircles) {
@@ -141,13 +300,14 @@ public class InterEngine {
             scale.play();
         }   
     }
-  
+    /**
+     * Stop the bottom faucets animation
+     */
     public void stopBottomAnimation() {
         for (ScaleTransition scale : listScaleBottomCirc) {
             scale.stop();
         }   
     }
-    
      /**
      * Play the Both Faucet's animations
      */
@@ -178,8 +338,10 @@ public class InterEngine {
         for(ParallelTransition parBottom : listParBottomArc){
             parBottom.play();
         }
-        
     }
+    /**
+     * Stop the animation of both faucets
+     */
     public void stopAnimation(){
         for(ScaleTransition scaleTopCircs: listScaleTopCirc){
             scaleTopCircs.stop();
@@ -194,7 +356,10 @@ public class InterEngine {
             parBotArcs.stop();
         }
     }      
-    
+    /**
+     * Method to set the speed of the animation due to the frequency slider
+     * @param speed
+     */
     public void setSpeed(int speed){
         for(ScaleTransition scaleTopCircs: listScaleTopCirc){
             scaleTopCircs.setDuration(Duration.seconds(animationDuration - speed));
@@ -228,6 +393,11 @@ public class InterEngine {
         parallelTransitionBottom3.setDelay(Duration.seconds((animationDuration-speed)/1.5));
         
     }
+    /**
+     * Method to set the blur of the circles and arcs due to the amplitude 
+     * slider
+     * @param blur
+     */
     public void setBlur (int blur){
         blurCircle.setHeight(initialCircleBlur + blur);
         blurCircle.setWidth(initialCircleBlur + blur);
@@ -245,173 +415,7 @@ public class InterEngine {
         }
         for(Arc topArcs : listTopArcs){
             topArcs.setEffect(blurArc);
-        }
-        
-    }
-    public void setAnimationTopCircles(Pane animationPane){
-        
-        for (Circle circle : listCircles) {
-            circle.setFill(Color.BLUE);
-            circle.setStrokeWidth(5);
-            circle.setStroke(Color.BLUE);
-            circle.setLayoutX(40);
-            circle.setLayoutY(270);
-            animationPane.getChildren().add(circle);
-        }
-        for (ScaleTransition scale : listScaleTopCirc) {
-            scale.setByX(100f);
-            scale.setByY(100f);
-            scale.setInterpolator(Interpolator.LINEAR);
-            scale.setCycleCount(Animation.INDEFINITE);
-        }
-
-        scaleTopCirc2.setDelay(Duration.seconds(2));
-        scaleTopCirc3.setDelay(Duration.seconds(4));
-        
-        clipPane(animationPane);
-    }
-    
-    public void setAnimationBottomCircles(Pane animationPane){
-        for (Circle circle : listBottomCircles) {
-            circle.setFill(Color.BLUE);
-            circle.setStrokeWidth(5);
-            circle.setStroke(Color.BLUE);
-            circle.setLayoutX(40);
-            circle.setLayoutY(490);
-            animationPane.getChildren().add(circle);
-        }
-        for (ScaleTransition scale : listScaleBottomCirc) {
-            scale.setByX(100f);
-            scale.setByY(100f);
-            scale.setInterpolator(Interpolator.LINEAR);
-            scale.setCycleCount(Animation.INDEFINITE);
-        }
-
-        scaleBottomCirc2.setDelay(Duration.seconds(2));
-        scaleBottomCirc3.setDelay(Duration.seconds(4));
-        
-        clipPane(animationPane);
-    }
-    
-    public void clearAnimation(Pane animationPane){
-        animationPane.getChildren().clear();
-    }
-    /**
-     * Set the animation with the correct data for the circles
-     *
-     * @param animationPane
-     */
-    public void setAnimation(Pane animationPane) {
-        
-        for (Circle circle : listCircles) {
-            circle.setFill(Color.BLUE);
-            circle.setStrokeWidth(5);
-            circle.setStroke(Color.BLUE);
-            circle.setLayoutX(40);
-            circle.setLayoutY(270);
-            circle.setEffect(blurCircle);
-            animationPane.getChildren().add(circle);
-        }
-        
-        for (Circle circle : listBottomCircles) {
-            circle.setFill(Color.BLUE);
-            circle.setStrokeWidth(5);
-            circle.setStroke(Color.BLUE);
-            circle.setLayoutX(40);
-            circle.setLayoutY(490);
-            circle.setEffect(blurCircle);
-            animationPane.getChildren().add(circle);
-        }
-        
-        for (ScaleTransition scale : listScaleTopCirc) {
-            scale.setByX(3f);
-            scale.setByY(3f);
-            scale.setInterpolator(Interpolator.LINEAR);
-            scale.setCycleCount(Animation.INDEFINITE);
-        }
-        
-        for (ScaleTransition scale : listScaleBottomCirc) {
-            scale.setByX(3f);
-            scale.setByY(3f);
-            scale.setInterpolator(Interpolator.LINEAR);
-            scale.setCycleCount(Animation.INDEFINITE);
-        }
-        
-        scaleTopCirc2.setDelay(Duration.seconds(2));
-        scaleTopCirc3.setDelay(Duration.seconds(4));
-        
-        scaleBottomCirc2.setDelay(Duration.seconds(2));
-        scaleBottomCirc3.setDelay(Duration.seconds(4));
-       
-        clipPane(animationPane);
-    }
-
-    /**
-     * Set the animation with the correct data for the arcs
-     *
-     * @param animationPane
-     */
-
-    public void setAnimationArc(Pane animationPane) {
-        //the arcs at the top
-        for (Arc arc : listTopArcs) {
-            arc.setLayoutX(-320);
-            arc.setLayoutY(-40);
-            arc.setStrokeWidth(15);
-            arc.setStroke(Color.BLUE);
-            arc.fillProperty().set(null);
-            arc.setEffect(blurArc);
-            arc.setVisible(false);
-            animationPane.getChildren().add(arc);
-        }
-       
-        //the arcs at the bottom
-        for (Arc arc : listBottomArcs) {
-            arc.setLayoutX(-320);
-            arc.setLayoutY(200);
-            arc.setStrokeWidth(15);
-            arc.setStroke(Color.BLUE);
-            arc.fillProperty().set(null);
-            arc.setEffect(blurArc);
-            arc.setVisible(false);
-            animationPane.getChildren().add(arc);
-        }
-        
-        //animations top arcs
-        for(ScaleTransition scale : listScaleTopArc){
-            scale.setByY(5f);
-        }
-        
-        for(TranslateTransition translate : listTransTopArc){
-            translate.setByX(1500);
-            translate.setInterpolator(Interpolator.LINEAR);
-        }
-        
-        for(ParallelTransition parallel : listParTopArc){
-            parallel.setCycleCount(Animation.INDEFINITE);
-        }
-        parallelTransitionTop.setDelay(Duration.seconds(2));
-        parallelTransitionTop2.setDelay(Duration.seconds(4));
-        parallelTransitionTop3.setDelay(Duration.seconds(6));
-        
-        //animations bottom arcs
-        for(ScaleTransition scale : listScaleBottomArc){
-            scale.setByY(5f);
-        }
-        
-        for(TranslateTransition translate : listTransBottomArc){
-            translate.setByX(1500);
-            translate.setInterpolator(Interpolator.LINEAR);
-        }
-        
-        for(ParallelTransition parallel : listParBottomArc){
-            parallel.setCycleCount(Animation.INDEFINITE);
-        }
-        parallelTransitionBottom.setDelay(Duration.seconds(2));
-        parallelTransitionBottom2.setDelay(Duration.seconds(4));
-        parallelTransitionBottom3.setDelay(Duration.seconds(6));
- 
-        clipPane(animationPane);
+        }    
     }
 
     /**
@@ -432,125 +436,5 @@ public class InterEngine {
             clipRectangle.setHeight(newValue.getHeight());
         });
     }
-
-    public InterEngine() {
-    }
-
-    public InterEngine(int frequency, int amplitude, int slitSep) {
-        this.frequency = frequency;
-        this.amplitude = amplitude;
-        this.slitSep = slitSep;
-    }
-
-    public void addWaves(int frequency, int amplitude) {
-    }
-
-    public void adjustSeparation(int slitSep) {
-    }
-
-    public void motion() {
-    }
-
-    public boolean isInside() {
-        return true; //for now
-    }
-
-    public int getFrequency() {
-        return frequency;
-    }
-
-    public void setFrequency(int frequency) {
-        this.frequency = frequency;
-    }
-
-    public int getAmplitude() {
-        return amplitude;
-    }
-
-    public void setAmplitude(int amplitude) {
-        this.amplitude = amplitude;
-    }
-
-    public int getSlitSep() {
-        return slitSep;
-    }
-
-    public void setSlitSep(int slitSep) {
-        this.slitSep = slitSep;
-    }
-
-    public Circle getTopCirc() {
-        return topCirc;
-    }
-
-    public void setTopCirc(Circle topCirc) {
-        this.topCirc = topCirc;
-    }
-
-    public Circle getTopCirc2() {
-        return topCirc2;
-    }
-
-    public void setTopCirc2(Circle topCirc2) {
-        this.topCirc2 = topCirc2;
-    }
-
-    public Circle getTopCirc3() {
-        return topCirc3;
-    }
-
-    public void setTopCirc3(Circle topCirc3) {
-        this.topCirc3 = topCirc3;
-    }
-    
-
-    public Circle getBottomCirc() {
-        return bottomCirc;
-    }
-
-    public void setBottomCirc(Circle bottomCirc) {
-        this.bottomCirc = bottomCirc;
-    }
-
-    public Circle getBottomCirc2() {
-        return bottomCirc2;
-    }
-
-    public void setBottomCirc2(Circle bottomCirc2) {
-        this.bottomCirc2 = bottomCirc2;
-    }
-
-    public Circle getBottomCirc3() {
-        return bottomCirc3;
-    }
-
-    public void setBottomCirc3(Circle bottomCirc3) {
-        this.bottomCirc3 = bottomCirc3;
-    }
-
-    
-    public Arc getTopArc() {
-        return topArc;
-    }
-
-    public void setTopArc(Arc topArc) {
-        this.topArc = topArc;
-    }
-
-    public Arc getBottomArc() {
-        return bottomArc;
-    }
-
-    public void setBottomArc(Arc bottomArc) {
-        this.bottomArc = bottomArc;
-    }
-
-    public ArrayList<Circle> getListCircles() {
-        return listCircles;
-    }
-
-    public void setListCircles(ArrayList<Circle> listCircles) {
-        this.listCircles = listCircles;
-    }
-    
+ 
 }

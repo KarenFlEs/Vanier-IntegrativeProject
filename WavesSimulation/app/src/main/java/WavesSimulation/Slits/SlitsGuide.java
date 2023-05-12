@@ -23,11 +23,7 @@ public class SlitsGuide extends Stage {
 
     private void loadComponents() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/SlitsGuideLayout.fxml"));
-
-        //SlitsController mainController = new SlitsController(this);
-        //loader.setController(mainController);
         Parent root = loader.load();
-
         Scene scene = new Scene(root);
         this.setScene(scene);
         this.setY(450);
@@ -37,17 +33,14 @@ public class SlitsGuide extends Stage {
 }
 
 class FrequencyGuide extends Stage {
-public FrequencyGuide() throws IOException {
+
+    public FrequencyGuide() throws IOException {
         loadComponents();
     }
 
     private void loadComponents() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/FrequencyGuidelayout.fxml"));
-
-        //SlitsController mainController = new SlitsController(this);
-        //loader.setController(mainController);
         Parent root = loader.load();
-
         Scene scene = new Scene(root);
         this.setScene(scene);
         this.setY(100);
@@ -57,17 +50,14 @@ public FrequencyGuide() throws IOException {
 }
 
 class AmplitudeGuide extends Stage {
-   public AmplitudeGuide() throws IOException {
+
+    public AmplitudeGuide() throws IOException {
         loadComponents();
     }
 
     private void loadComponents() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/AmplitudeGuideLayout.fxml"));
-
-        //SlitsController mainController = new SlitsController(this);
-        //loader.setController(mainController);
         Parent root = loader.load();
-
         Scene scene = new Scene(root);
         this.setScene(scene);
         this.setY(300);
@@ -77,17 +67,14 @@ class AmplitudeGuide extends Stage {
 }
 
 class WidthGuide extends Stage {
+
     public WidthGuide() throws IOException {
         loadComponents();
     }
 
     private void loadComponents() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/WidthGuidelayout.fxml"));
-
-        //SlitsController mainController = new SlitsController(this);
-        //loader.setController(mainController);
         Parent root = loader.load();
-
         Scene scene = new Scene(root);
         this.setScene(scene);
         this.setY(600);
@@ -98,17 +85,14 @@ class WidthGuide extends Stage {
 }
 
 class SeperationGuide extends Stage {
-public SeperationGuide() throws IOException {
+
+    public SeperationGuide() throws IOException {
         loadComponents();
     }
 
     private void loadComponents() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/SeperationGuidelayout.fxml"));
-
-        //SlitsController mainController = new SlitsController(this);
-        //loader.setController(mainController);
         Parent root = loader.load();
-
         Scene scene = new Scene(root);
         this.setScene(scene);
         this.setY(750);

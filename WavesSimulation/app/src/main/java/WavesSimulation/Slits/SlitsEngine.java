@@ -126,6 +126,7 @@ public class SlitsEngine {
 
     /**
      * Sets up the properties of the rectangles and also their animation
+     *
      * @param paneAnimation
      */
     public void setUpRectangle(Pane paneAnimation) {
@@ -147,6 +148,7 @@ public class SlitsEngine {
 
     /**
      * Sets up the properties of the arcs and their animation
+     *
      * @param paneAnimation
      */
     public void setUpArc(Pane paneAnimation) {
@@ -201,6 +203,7 @@ public class SlitsEngine {
     /**
      * Handles the change of the width of the slits TODO: Fix the placement of
      * the waves whenever the slit width is changed
+     *
      * @param sldWidth
      * @param sldSeperation
      * @param labelSlitSeperation

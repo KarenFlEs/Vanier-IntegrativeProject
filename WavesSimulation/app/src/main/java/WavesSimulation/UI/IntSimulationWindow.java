@@ -9,7 +9,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
- *
+ * InterfenceSimulationWindow
  * @author Steven & Darina
  */
 public class IntSimulationWindow extends Stage {

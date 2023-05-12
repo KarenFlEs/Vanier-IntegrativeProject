@@ -9,7 +9,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
- *
+ * SlitsSimulationWindow
  * @author Steven & Darina
  */
 public class SlitsSimulationWindow extends Stage {

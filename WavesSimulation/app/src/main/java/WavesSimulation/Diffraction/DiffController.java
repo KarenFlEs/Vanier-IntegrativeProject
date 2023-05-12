@@ -73,6 +73,8 @@ public class DiffController extends Stage {
     
     ImageView imvLaser = new ImageView("/images/laser.png");
 
+    private final int PREFSIZE_X = 300; 
+    private final int PREFSIZE_Y = 100; 
     private final int WAVE_INFO_POSITION_X = 80; 
     private final int WAVE_INFO_POSITION_Y = 740;
     private final int DIAM_INFO_POSITION_X = 860;
@@ -97,16 +99,16 @@ public class DiffController extends Stage {
     double slitDistance = 10.0;
     double eccentricity = 1.0;
     
-    String strWaveInfo = "When the wavelength changes, there is a specific color"
+    String strWaveInfo = "When the wavelength changes, there is a specific color that"
         + " the laser will have. As the wavelength increases, the diffraction pattern"
         + " gets bigger"; 
     
     String strDiamInfo = "The opening of the slit increases if the diameter"
         + " increases which will create a smaller diffraction pattern."; 
     
-    String strEccInfo = "When the eccentricity increases, the width of the"
+    String strEccInfo = "When the eccentricity increases, the height of the"
                 + " slit opening decreases which will affect the diffraction patterned"
-                + " as its height will get smaller."; 
+                + " as its width will get smaller."; 
     
     public DiffController(Stage stageDiff) {
         this.stageSim = stageDiff;
@@ -220,13 +222,13 @@ public class DiffController extends Stage {
         textWave.autosize();
         textWave.setText(strWaveInfo);
         textWave.setFont(Font.font("Book Antica", 14));
-        textWave.setPrefSize(300, 100);
+        textWave.setPrefSize(PREFSIZE_X, PREFSIZE_Y);
         textWave.setWrapText(true);
         textWave.setEditable(false);
         
         stackPaneWaveInfo.getChildren().add(textWave);
         
-        Scene scene = new Scene(stackPaneWaveInfo, 300, 100);
+        Scene scene = new Scene(stackPaneWaveInfo, PREFSIZE_X, PREFSIZE_Y);
         stageWaveInfo.setScene(scene);
         stageWaveInfo.show();
     }
@@ -256,13 +258,13 @@ public class DiffController extends Stage {
         textDiam.autosize();
         textDiam.setText(strDiamInfo);
         textDiam.setFont(Font.font("Book Antica", 14));
-        textDiam.setPrefSize(300, 100);
+        textDiam.setPrefSize(PREFSIZE_X, PREFSIZE_Y);
         textDiam.setWrapText(true);
         textDiam.setEditable(false);
         
         stackPaneDiamInfo.getChildren().add(textDiam);
         
-        Scene scene = new Scene(stackPaneDiamInfo, 300, 100);
+        Scene scene = new Scene(stackPaneDiamInfo, PREFSIZE_X, PREFSIZE_Y);
         stageDiamInfo.setScene(scene);
         stageDiamInfo.show();
     }
@@ -292,13 +294,13 @@ public class DiffController extends Stage {
         textEcc.autosize();
         textEcc.setText(strEccInfo);
         textEcc.setFont(Font.font("Book Antica", 14));
-        textEcc.setPrefSize(300, 100);
+        textEcc.setPrefSize(PREFSIZE_X, PREFSIZE_Y);
         textEcc.setWrapText(true);
         textEcc.setEditable(false);
         
         stackPaneEccInfo.getChildren().add(textEcc);
         
-        Scene scene = new Scene(stackPaneEccInfo, 300, 100);
+        Scene scene = new Scene(stackPaneEccInfo, PREFSIZE_X, PREFSIZE_Y);
         stageEccInfo.setScene(scene);
         stageEccInfo.show();
     }
@@ -383,13 +385,13 @@ public class DiffController extends Stage {
         textDiffractionInfo.setText(strDiffractionDef + "\n\nWavelength: " + strWaveInfo 
                 + "\n\nDiameter: " + strDiamInfo + "\n\nEccentricity: " + strEccInfo );
         textDiffractionInfo.setFont(Font.font("Book Antica", 14));
-        textDiffractionInfo.setPrefSize(300, 200);
+        textDiffractionInfo.setPrefSize(PREFSIZE_X, PREFSIZE_Y + 100);
         textDiffractionInfo.setWrapText(true);
         textDiffractionInfo.setEditable(false);
         
         stakePaneAbout.getChildren().add(textDiffractionInfo);
         
-        Scene scene = new Scene(stakePaneAbout, 300, 400);
+        Scene scene = new Scene(stakePaneAbout, PREFSIZE_X, PREFSIZE_Y + 300);
         stageAbout.setScene(scene);
         stageAbout.show();
     }

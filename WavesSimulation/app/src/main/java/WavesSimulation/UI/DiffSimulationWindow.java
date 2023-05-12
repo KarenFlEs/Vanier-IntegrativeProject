@@ -9,7 +9,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
- *
+ * DiffractionSimulationWindow
  * @author Steven & Karen
  */
 public class DiffSimulationWindow extends Stage {

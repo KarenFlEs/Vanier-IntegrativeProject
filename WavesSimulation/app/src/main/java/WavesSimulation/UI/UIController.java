@@ -149,7 +149,8 @@ public class UIController extends Stage {
         String strDiffractionDef = "\n\nDiffraction is the process of putting a beam light through "
                 + "a narrow aperture in which spreads out the waves"; 
         
-        String strSlitsDef = "\n\nSlits "; 
+        String strSlitsDef = "\n\nSlits are walls that modifies the properties of the waves such "
+                + "as the shapes, curves, and the brightness"; 
         
         TextArea textInformation = new TextArea();
         textInformation.autosize();

@@ -28,6 +28,9 @@ public class DiffEngine {
     private final int POLY_LASER_LAYOUT_X = 908;
     private final int POLY_LASER_LAYOUT_Y = 328;
     
+    private final double POLY_LASER_POINT_1_COORDINATE_X = -50.0;
+    private final double POLY_LASER_POINT_1_COORDINATE_Y = 0.0;
+    private final double POLY_LASER_POINT_23_COORDINATE_X = 286.0;
     private final double OPACITY_1 = 0.7;
     private final double OPACITY_2 = 0.5;
     private final double OPACITY_3 = 0.2;
@@ -181,9 +184,9 @@ public class DiffEngine {
         polyLaser.setLayoutY(POLY_LASER_LAYOUT_Y);
         
         polyLaser.getPoints().addAll(new Double [] {
-            -50.0, 0.0, 
-            286.0, laserRadius, 
-            286.0, -laserRadius }); 
+            POLY_LASER_POINT_1_COORDINATE_X, POLY_LASER_POINT_1_COORDINATE_Y, 
+            POLY_LASER_POINT_23_COORDINATE_X, laserRadius, 
+            POLY_LASER_POINT_23_COORDINATE_X, -laserRadius }); 
         
         Stop[] gradientStops = new Stop[]{new Stop(0, Color.WHITE),
             new Stop(0.5, laserColor),

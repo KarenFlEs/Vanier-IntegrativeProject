@@ -95,12 +95,12 @@
                   <Font size="64.0" />
                </font>
             </Label>
-            <Button fx:id="btnStartTop" layoutX="199.0" layoutY="350.0" mnemonicParsing="false" onAction="#handleBtnStartTop" prefHeight="25.0" prefWidth="44.0" style="-fx-border-color: BLUE;" text="Play">
+            <Button fx:id="btnStartTop" layoutX="150.0" layoutY="179.0" mnemonicParsing="false" onAction="#handleBtnStartTop" prefHeight="27.0" prefWidth="92.0" style="-fx-border-color: BLUE;" text="Play Top">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="btnStartBottom" layoutX="197.0" layoutY="569.0" mnemonicParsing="false" onAction="#handleBtnStartBottom" prefHeight="25.0" prefWidth="46.0" style="-fx-border-color: BLUE;" text="Play">
+            <Button fx:id="btnStartBottom" layoutX="152.0" layoutY="754.0" mnemonicParsing="false" onAction="#handleBtnStartBottom" prefHeight="27.0" prefWidth="92.0" style="-fx-border-color: BLUE;" text="Play Bottom">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>

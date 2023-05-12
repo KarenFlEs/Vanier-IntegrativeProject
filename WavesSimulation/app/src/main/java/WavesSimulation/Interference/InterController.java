@@ -80,21 +80,26 @@ public class InterController extends Stage {
     ImageView imageFaucetTop = new ImageView("/images/faucet.png");
 
     InterEngine engine = new InterEngine();
-
+    
+    final int faucetX = 160;
+    final int faucetTopY = 270;
+    final int faucetBottomY = 490;
+    final int faucetSize = 140;
     /**
      * This is the initialize method which runs when the Interference window is
      * opened
      */
     public void initialize() {
-        imageFaucetTop.setFitHeight(140);
-        imageFaucetTop.setFitWidth(140);
-        imageFaucetTop.setTranslateX(160);
-        imageFaucetTop.setTranslateY(270);
+        
+        imageFaucetTop.setFitHeight(faucetSize);
+        imageFaucetTop.setFitWidth(faucetSize);
+        imageFaucetTop.setTranslateX(faucetX);
+        imageFaucetTop.setTranslateY(faucetTopY);
 
-        imageFaucetBottom.setFitHeight(140);
-        imageFaucetBottom.setFitWidth(140);
-        imageFaucetBottom.setTranslateX(160);
-        imageFaucetBottom.setTranslateY(490);
+        imageFaucetBottom.setFitHeight(faucetSize);
+        imageFaucetBottom.setFitWidth(faucetSize);
+        imageFaucetBottom.setTranslateX(faucetX);
+        imageFaucetBottom.setTranslateY(faucetBottomY);
 
         backgroundPane.getChildren().addAll(imageFaucetTop, imageFaucetBottom);
         btnStartTop.toFront();
@@ -115,7 +120,7 @@ public class InterController extends Stage {
         sldFreq.valueProperty().addListener(new ChangeListener<Number>() {
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
                 int freq;
-                freq = (int) sldFreq.getValue() / 50;
+                freq = (int) sldFreq.getValue() / 60;
                 engine.setSpeed(freq);
             }
         });
@@ -288,6 +293,9 @@ public class InterController extends Stage {
         if (checkBox1.isSelected()) {
             checkBox2.setSelected(false);
             checkBox1.setSelected(true);
+            engine.setFaucetDistance(0);
+            imageFaucetTop.setTranslateY(faucetTopY);
+            imageFaucetBottom.setTranslateY(faucetBottomY);
         }
     }
     
@@ -296,6 +304,9 @@ public class InterController extends Stage {
         if (checkBox2.isSelected()) {
             checkBox1.setSelected(false);
             checkBox2.setSelected(true);
+            engine.setFaucetDistance(60);
+            imageFaucetTop.setTranslateY(faucetTopY-60);
+            imageFaucetBottom.setTranslateY(faucetBottomY+60);
         }
     }
    

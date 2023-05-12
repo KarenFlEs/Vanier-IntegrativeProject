@@ -417,6 +417,21 @@ public class InterEngine {
             topArcs.setEffect(blurArc);
         }    
     }
+    
+    public void setFaucetDistance(int dist){
+        for(Circle topCircs : listCircles){
+            topCircs.setLayoutY(positionTopCircleY-dist);
+        }
+        for(Circle botCircs : listBottomCircles){
+            botCircs.setLayoutY(positionBottomCircleY+dist);
+        }
+        for(Arc topArcs : listTopArcs){
+            topArcs.setLayoutY(positionTopArcY-dist);
+        }
+        for(Arc botArcs : listBottomArcs){
+            botArcs.setLayoutY(positionBottomArcY+dist);
+        }
+    }
 
     /**
      * Makes the animation stay inside the rectangle, cutting its borders

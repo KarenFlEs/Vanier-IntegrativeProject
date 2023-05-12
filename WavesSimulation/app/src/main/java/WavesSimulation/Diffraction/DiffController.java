@@ -1,10 +1,13 @@
 package WavesSimulation.Diffraction;
 
 import WavesSimulation.UI.UIController;
+import WavesSimulation.UI.MainApp;
 import java.io.IOException;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
@@ -247,6 +250,15 @@ public class DiffController extends Stage {
     }
     
     @FXML
+    public void handleOpenMenuPage () throws IOException{
+        stageSim.close();
+        Stage menuStage = new Stage ();
+        MainApp mainApp = new MainApp(); 
+        mainApp.menuPage(menuStage);
+    }
+    
+ /*
+    @FXML
     public void handleBtnInfoWave () {
         Stage stageInfoWave = new Stage (); 
         stageInfoWave.setTitle("Wavelength Information");
@@ -271,7 +283,7 @@ public class DiffController extends Stage {
     }
     
     
-    /*
+    
     @FXML
     public void enteredMouseWaveInfo (){
         stageInfoWavelength.setTitle("Wavelength information");
@@ -357,7 +369,8 @@ public class DiffController extends Stage {
         stageEccInfo.close(); 
     }
     
-*/
+    */
+
    
     
 }

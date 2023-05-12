@@ -23,7 +23,7 @@ import lombok.NoArgsConstructor;
  */
 public class UIController extends Stage {
 
-    Stage owner;
+    Stage mainStage;
 
     @FXML
     private Rectangle recInt;
@@ -69,23 +69,23 @@ public class UIController extends Stage {
     }
 
     public UIController(Stage owner) {
-        this.owner = owner;
+        this.mainStage = owner;
     }
     
     public void openInterSimulation() throws IOException{
-        owner.close();
+        mainStage.close();
         IntSimulationWindow interSim = new IntSimulationWindow();
         interSim.show();
     }
     
     public void openSlitsSimulation() throws IOException{
-        owner.close();
+        mainStage.close();
         SlitsSimulationWindow slitsSim = new SlitsSimulationWindow();
         slitsSim.show();
     }
     
     public void openDiffSimulation() throws IOException{
-        owner.close();
+        mainStage.close();
         DiffSimulationWindow diffSim = new DiffSimulationWindow();
         diffSim.show();
     }
@@ -106,7 +106,7 @@ public class UIController extends Stage {
     
     @FXML
     public void handleCloseFile(){
-        owner.close();
+        mainStage.close();
     }
     
     @FXML

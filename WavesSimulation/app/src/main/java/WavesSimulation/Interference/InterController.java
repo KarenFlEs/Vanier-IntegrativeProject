@@ -97,11 +97,10 @@ public class InterController extends Stage {
         backgroundPane.getChildren().addAll(imageFaucetTop, imageFaucetBottom);
         btnStartTop.toFront();
         btnStartBottom.toFront();
-
-        engine.setAnimation(animationPane);
+        //engine.setAnimation(animationPane);
         handleSldAmp();
         handleSldFreq();
-        engine.setAnimationArc(animationPane);
+        //engine.setAnimationArc(animationPane);
         
     }
     public InterController() {
@@ -200,12 +199,14 @@ public class InterController extends Stage {
     public void handleBtnStartTop(ActionEvent event) {
         if(!isPlaying){
             isPlaying = true;
+            engine.setAnimationTopCircles(animationPane);
             engine.playTopAnimation();
             btnStartBottom.setDisable(true);
             btnStart.setDisable(true);
         }else{
             isPlaying = false;
             engine.stopTopAnimation();
+            animationPane.getChildren().clear();
             btnStartBottom.setDisable(false);
             btnStart.setDisable(false);
         }
@@ -215,12 +216,15 @@ public class InterController extends Stage {
     public void handleBtnStart(ActionEvent event) {
         if(!isPlaying){
             isPlaying = true;
+            engine.setAnimation(animationPane);
+            engine.setAnimationArc(animationPane);
             engine.playAnimation();
             btnStartBottom.setDisable(true);
             btnStartTop.setDisable(true);
         }else{
             isPlaying = false;
             engine.stopAnimation();
+            animationPane.getChildren().clear();
             btnStartBottom.setDisable(false);
             btnStartTop.setDisable(false);
         }
@@ -231,12 +235,14 @@ public class InterController extends Stage {
     public void handleBtnStartBottom(ActionEvent event) {
         if(!isPlaying){
             isPlaying = true;
+            engine.setAnimationBottomCircles(animationPane);
             engine.playBottomAnimation();
             btnStart.setDisable(true);
             btnStartTop.setDisable(true);
         }else{
             isPlaying = false;
             engine.stopBottomAnimation();
+            animationPane.getChildren().clear();
             btnStart.setDisable(false);
             btnStartTop.setDisable(false);
         }
@@ -247,15 +253,15 @@ public class InterController extends Stage {
     public void handleBtnSep0(ActionEvent event) {
       if(!isPlaying){
             isPlaying = true;
-            engine.playAnimation();
+            engine.playTopAnimation();
+            engine.setAnimationTopCircles(animationPane);
             btnStart.setVisible(false);
             btnStartBottom.setVisible(false);
             imageFaucetBottom.setVisible(false);
-            btnStartBottom.setDisable(true);
-            btnStartTop.setDisable(true);
+            
         }else{
             isPlaying = false;
-            engine.stopAnimation();
+            engine.stopTopAnimation();
             btnStartBottom.setDisable(false);
             btnStartTop.setDisable(false);
         }

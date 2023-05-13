@@ -144,7 +144,8 @@ public class UIController extends Stage {
         String strIntro = "This project is a simulation regarding the physical concepts: "
                 + "Interference, Slits and Diffraction";
         
-        String strInterferenceDef = "\n\nInterference "; 
+        String strInterferenceDef = "\n\nInterference is the phenomenon that occurs "
+                + "when two waves meet in the same medium."; 
         
         String strDiffractionDef = "\n\nDiffraction is the process of putting a beam light through "
                 + "a narrow aperture in which spreads out the waves"; 

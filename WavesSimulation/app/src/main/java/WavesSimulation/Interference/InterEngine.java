@@ -22,7 +22,7 @@ import javafx.util.Duration;
  * @author Darina
  */
 public class InterEngine {
-    
+
     final int animationDuration = 6;
     final int positionCircleX = 40;
     final int positionTopCircleY = 270;
@@ -30,20 +30,19 @@ public class InterEngine {
     final int positionArcX = -320;
     final int positionTopArcY = -40;
     final int positionBottomArcY = 200;
-    
+
     final int circleDiameter = 30;
-    
-    
+
     //top Circles
     private Circle topCirc = new Circle(circleDiameter);
     private Circle topCirc2 = new Circle(circleDiameter);
     private Circle topCirc3 = new Circle(circleDiameter);
-    
+
     //bottom Circles
     private Circle bottomCirc = new Circle(circleDiameter);
     private Circle bottomCirc2 = new Circle(circleDiameter);
     private Circle bottomCirc3 = new Circle(circleDiameter);
-    
+
     //circles arrays
     private ArrayList<Circle> listCircles = new ArrayList<>(Arrays.asList(topCirc, topCirc2, topCirc3));
     private ArrayList<Circle> listBottomCircles = new ArrayList<>(Arrays.asList(bottomCirc, bottomCirc2, bottomCirc3));
@@ -53,13 +52,13 @@ public class InterEngine {
     private ScaleTransition scaleTopCirc2 = new ScaleTransition(Duration.seconds(animationDuration), topCirc2);
     private ScaleTransition scaleTopCirc3 = new ScaleTransition(Duration.seconds(animationDuration), topCirc3);
     private ArrayList<ScaleTransition> listScaleTopCirc = new ArrayList<>(Arrays.asList(scaleTopCirc, scaleTopCirc2, scaleTopCirc3));
-    
+
     //scale bottom circle animations
     private ScaleTransition scaleBottomCirc = new ScaleTransition(Duration.seconds(animationDuration), bottomCirc);
     private ScaleTransition scaleBottomCirc2 = new ScaleTransition(Duration.seconds(animationDuration), bottomCirc2);
     private ScaleTransition scaleBottomCirc3 = new ScaleTransition(Duration.seconds(animationDuration), bottomCirc3);
     private ArrayList<ScaleTransition> listScaleBottomCirc = new ArrayList<>(Arrays.asList(scaleBottomCirc, scaleBottomCirc2, scaleBottomCirc3));
-    
+
     //top arcs
     private Arc topArc = new Arc(400, 300, 80, 80, -90, 180);
     private Arc topArc2 = new Arc(400, 300, 80, 80, -90, 180);
@@ -68,9 +67,9 @@ public class InterEngine {
     //bottom arcs
     private Arc bottomArc = new Arc(400, 300, 80, 80, -90, 180);
     private Arc bottomArc2 = new Arc(400, 300, 80, 80, -90, 180);
-    private Arc bottomArc3= new Arc(400, 300, 80, 80, -90, 180);
+    private Arc bottomArc3 = new Arc(400, 300, 80, 80, -90, 180);
     private ArrayList<Arc> listBottomArcs = new ArrayList<>(Arrays.asList(bottomArc, bottomArc2, bottomArc3));
-    
+
     //top arcs animations
     private TranslateTransition translateTopArc = new TranslateTransition(Duration.seconds(animationDuration), topArc);
     private TranslateTransition translateTopArc2 = new TranslateTransition(Duration.seconds(animationDuration), topArc2);
@@ -81,7 +80,7 @@ public class InterEngine {
     private ParallelTransition parallelTransitionTop = new ParallelTransition(translateTopArc, scaleTopArc);
     private ParallelTransition parallelTransitionTop2 = new ParallelTransition(translateTopArc2, scaleTopArc2);
     private ParallelTransition parallelTransitionTop3 = new ParallelTransition(translateTopArc3, scaleTopArc3);
-    
+
     private ArrayList<TranslateTransition> listTransTopArc = new ArrayList<>(Arrays.asList(translateTopArc, translateTopArc2, translateTopArc3));
     private ArrayList<ScaleTransition> listScaleTopArc = new ArrayList<>(Arrays.asList(scaleTopArc, scaleTopArc2, scaleTopArc3));
     private ArrayList<ParallelTransition> listParTopArc = new ArrayList<>(Arrays.asList(parallelTransitionTop, parallelTransitionTop2, parallelTransitionTop3));
@@ -95,28 +94,28 @@ public class InterEngine {
     private ParallelTransition parallelTransitionBottom = new ParallelTransition(translateBottomArc, scaleBottomArc);
     private ParallelTransition parallelTransitionBottom2 = new ParallelTransition(translateBottomArc2, scaleBottomArc2);
     private ParallelTransition parallelTransitionBottom3 = new ParallelTransition(translateBottomArc3, scaleBottomArc3);
-    
+
     private ArrayList<TranslateTransition> listTransBottomArc = new ArrayList<>(Arrays.asList(translateBottomArc, translateBottomArc2, translateBottomArc3));
     private ArrayList<ScaleTransition> listScaleBottomArc = new ArrayList<>(Arrays.asList(scaleBottomArc, scaleBottomArc2, scaleBottomArc3));
     private ArrayList<ParallelTransition> listParBottomArc = new ArrayList<>(Arrays.asList(parallelTransitionBottom, parallelTransitionBottom2, parallelTransitionBottom3));
-    
+
     final int initialArcBlur = 10;
     final int initialCircleBlur = 2;
-   
+
     private BoxBlur blurCircle = new BoxBlur(initialCircleBlur, initialCircleBlur, 1);
     private BoxBlur blurArc = new BoxBlur(initialArcBlur, initialArcBlur, 1);
 
     private InterController interController;
-    
+
     public InterEngine() {
     }
-    
+
     /**
      * Set the animation with the top circles animation
      *
      * @param animationPane
      */
-    public void setAnimationTopCircles(Pane animationPane){
+    public void setAnimationTopCircles(Pane animationPane) {
         for (Circle circle : listCircles) {
             circle.setFill(Color.BLUE);
             circle.setStrokeWidth(5);
@@ -135,11 +134,13 @@ public class InterEngine {
         scaleTopCirc3.setDelay(Duration.seconds(4));
         clipPane(animationPane);
     }
+
     /**
      * Set the animation with the correct data for the bottom circles animation
+     *
      * @param animationPane
      */
-    public void setAnimationBottomCircles(Pane animationPane){
+    public void setAnimationBottomCircles(Pane animationPane) {
         for (Circle circle : listBottomCircles) {
             circle.setFill(Color.BLUE);
             circle.setStrokeWidth(5);
@@ -158,6 +159,7 @@ public class InterEngine {
         scaleBottomCirc3.setDelay(Duration.seconds(4));
         clipPane(animationPane);
     }
+
     /**
      * Set the animation with the correct data for the circles
      *
@@ -181,7 +183,7 @@ public class InterEngine {
             circle.setLayoutY(490);
             circle.setEffect(blurCircle);
             animationPane.getChildren().add(circle);
-        } 
+        }
         for (ScaleTransition scale : listScaleTopCirc) {
             scale.setByX(3f);
             scale.setByY(3f);
@@ -193,13 +195,14 @@ public class InterEngine {
             scale.setByY(3f);
             scale.setInterpolator(Interpolator.LINEAR);
             scale.setCycleCount(Animation.INDEFINITE);
-        } 
+        }
         scaleTopCirc2.setDelay(Duration.seconds(2));
         scaleTopCirc3.setDelay(Duration.seconds(4));
         scaleBottomCirc2.setDelay(Duration.seconds(2));
         scaleBottomCirc3.setDelay(Duration.seconds(4));
         clipPane(animationPane);
     }
+
     /**
      * Set the animation with the correct data for the arcs
      *
@@ -229,28 +232,28 @@ public class InterEngine {
             animationPane.getChildren().add(arc);
         }
         //animations top arcs
-        for(ScaleTransition scale : listScaleTopArc){
+        for (ScaleTransition scale : listScaleTopArc) {
             scale.setByY(5f);
         }
-        for(TranslateTransition translate : listTransTopArc){
+        for (TranslateTransition translate : listTransTopArc) {
             translate.setByX(1500);
             translate.setInterpolator(Interpolator.LINEAR);
         }
-        for(ParallelTransition parallel : listParTopArc){
+        for (ParallelTransition parallel : listParTopArc) {
             parallel.setCycleCount(Animation.INDEFINITE);
         }
         parallelTransitionTop.setDelay(Duration.seconds(2));
         parallelTransitionTop2.setDelay(Duration.seconds(4));
         parallelTransitionTop3.setDelay(Duration.seconds(6));
         //animations bottom arcs
-        for(ScaleTransition scale : listScaleBottomArc){
+        for (ScaleTransition scale : listScaleBottomArc) {
             scale.setByY(5f);
         }
-        for(TranslateTransition translate : listTransBottomArc){
+        for (TranslateTransition translate : listTransBottomArc) {
             translate.setByX(1500);
             translate.setInterpolator(Interpolator.LINEAR);
         }
-        for(ParallelTransition parallel : listParBottomArc){
+        for (ParallelTransition parallel : listParBottomArc) {
             parallel.setCycleCount(Animation.INDEFINITE);
         }
         parallelTransitionBottom.setDelay(Duration.seconds(2));
@@ -258,13 +261,16 @@ public class InterEngine {
         parallelTransitionBottom3.setDelay(Duration.seconds(6));
         clipPane(animationPane);
     }
+
     /**
      * method to clear the pane of the nodes on it
+     *
      * @param animationPane
      */
-    public void clearAnimation(Pane animationPane){
+    public void clearAnimation(Pane animationPane) {
         animationPane.getChildren().clear();
     }
+
     /**
      * Play the top faucets animation
      */
@@ -279,8 +285,9 @@ public class InterEngine {
             scale.setInterpolator(Interpolator.LINEAR);
             scale.setCycleCount(Animation.INDEFINITE);
             scale.setDuration(Duration.seconds(animationDuration + 10));
-        }   
+        }
     }
+
     /**
      * Stop the top faucets animation
      */
@@ -289,6 +296,7 @@ public class InterEngine {
             scale.stop();
         }
     }
+
     /**
      * Play the bottom faucets animation
      */
@@ -298,138 +306,146 @@ public class InterEngine {
         }
         for (ScaleTransition scale : listScaleBottomCirc) {
             scale.play();
-        }   
+        }
     }
+
     /**
      * Stop the bottom faucets animation
      */
     public void stopBottomAnimation() {
         for (ScaleTransition scale : listScaleBottomCirc) {
             scale.stop();
-        }   
+        }
     }
-     /**
+
+    /**
      * Play the Both Faucet's animations
      */
-    public void playAnimation(){
+    public void playAnimation() {
         //top animations
-        for(Circle topCircs : listCircles){
+        for (Circle topCircs : listCircles) {
             topCircs.fillProperty().set(null);
         }
-        for(ScaleTransition scaleTopCircs : listScaleTopCirc){
+        for (ScaleTransition scaleTopCircs : listScaleTopCirc) {
             scaleTopCircs.play();
         }
-        for(Arc topArcs : listTopArcs){
+        for (Arc topArcs : listTopArcs) {
             topArcs.setVisible(true);
         }
-        for(ParallelTransition parTop : listParTopArc){
+        for (ParallelTransition parTop : listParTopArc) {
             parTop.play();
         }
         //bottom animations
-        for(Circle bottomCircs : listBottomCircles){
+        for (Circle bottomCircs : listBottomCircles) {
             bottomCircs.fillProperty().set(null);
         }
-        for(ScaleTransition scaleBottomCircs : listScaleBottomCirc){
+        for (ScaleTransition scaleBottomCircs : listScaleBottomCirc) {
             scaleBottomCircs.play();
         }
-        for(Arc bottomArcs : listBottomArcs){
+        for (Arc bottomArcs : listBottomArcs) {
             bottomArcs.setVisible(true);
         }
-        for(ParallelTransition parBottom : listParBottomArc){
+        for (ParallelTransition parBottom : listParBottomArc) {
             parBottom.play();
         }
     }
+
     /**
      * Stop the animation of both faucets
      */
-    public void stopAnimation(){
-        for(ScaleTransition scaleTopCircs: listScaleTopCirc){
+    public void stopAnimation() {
+        for (ScaleTransition scaleTopCircs : listScaleTopCirc) {
             scaleTopCircs.stop();
         }
-        for(ScaleTransition scaleBottomCircs: listScaleBottomCirc){
+        for (ScaleTransition scaleBottomCircs : listScaleBottomCirc) {
             scaleBottomCircs.stop();
         }
-        for(ParallelTransition parTopArcs: listParTopArc){
+        for (ParallelTransition parTopArcs : listParTopArc) {
             parTopArcs.stop();
         }
-        for(ParallelTransition parBotArcs: listParBottomArc){
+        for (ParallelTransition parBotArcs : listParBottomArc) {
             parBotArcs.stop();
         }
-    }      
+    }
+
     /**
      * Method to set the speed of the animation due to the frequency slider
+     *
      * @param speed
      */
-    public void setSpeed(int speed){
-        for(ScaleTransition scaleTopCircs: listScaleTopCirc){
+    public void setSpeed(int speed) {
+        for (ScaleTransition scaleTopCircs : listScaleTopCirc) {
             scaleTopCircs.setDuration(Duration.seconds(animationDuration - speed));
         }
-        for(ScaleTransition scaleBotCircs: listScaleBottomCirc){
+        for (ScaleTransition scaleBotCircs : listScaleBottomCirc) {
             scaleBotCircs.setDuration(Duration.seconds(animationDuration - speed));
         }
-        for(ScaleTransition scaleTopArcs: listScaleTopArc){
+        for (ScaleTransition scaleTopArcs : listScaleTopArc) {
             scaleTopArcs.setDuration(Duration.seconds(animationDuration - speed));
         }
-        for(ScaleTransition scaleBotArcs: listScaleBottomArc){
+        for (ScaleTransition scaleBotArcs : listScaleBottomArc) {
             scaleBotArcs.setDuration(Duration.seconds(animationDuration - speed));
         }
-        for(TranslateTransition transTopArc : listTransTopArc){
+        for (TranslateTransition transTopArc : listTransTopArc) {
             transTopArc.setDuration(Duration.seconds(animationDuration - speed));
         }
-        for(TranslateTransition transBotArc : listTransBottomArc){
+        for (TranslateTransition transBotArc : listTransBottomArc) {
             transBotArc.setDuration(Duration.seconds(animationDuration - speed));
         }
-        
-        scaleTopCirc2.setDelay(Duration.seconds((animationDuration-speed)/3));
-        scaleTopCirc3.setDelay(Duration.seconds((animationDuration-speed)/1.5));
-        
-        scaleBottomCirc2.setDelay(Duration.seconds((animationDuration-speed)/3));
-        scaleBottomCirc3.setDelay(Duration.seconds((animationDuration-speed)/1.5));
-        
-        parallelTransitionTop2.setDelay(Duration.seconds((animationDuration-speed)/3));
-        parallelTransitionTop3.setDelay(Duration.seconds((animationDuration-speed)/1.5));
-        
-        parallelTransitionBottom2.setDelay(Duration.seconds((animationDuration-speed)/3));
-        parallelTransitionBottom3.setDelay(Duration.seconds((animationDuration-speed)/1.5));
-        
+        scaleTopCirc2.setDelay(Duration.seconds((animationDuration - speed) / 3));
+        scaleTopCirc3.setDelay(Duration.seconds((animationDuration - speed) / 1.5));
+        scaleBottomCirc2.setDelay(Duration.seconds((animationDuration - speed) / 3));
+        scaleBottomCirc3.setDelay(Duration.seconds((animationDuration - speed) / 1.5));
+        parallelTransitionTop2.setDelay(Duration.seconds((animationDuration - speed) / 3));
+        parallelTransitionTop3.setDelay(Duration.seconds((animationDuration - speed) / 1.5));
+        parallelTransitionBottom2.setDelay(Duration.seconds((animationDuration - speed) / 3));
+        parallelTransitionBottom3.setDelay(Duration.seconds((animationDuration - speed) / 1.5));
     }
+
     /**
-     * Method to set the blur of the circles and arcs due to the amplitude 
+     * Method to set the blur of the circles and arcs due to the amplitude
      * slider
+     *
      * @param blur
      */
-    public void setBlur (int blur){
+    public void setBlur(int blur) {
         blurCircle.setHeight(initialCircleBlur + blur);
         blurCircle.setWidth(initialCircleBlur + blur);
-        blurArc.setHeight(initialArcBlur + blur*2);
-        blurArc.setWidth(initialArcBlur + blur*2);
-        
-        for(Circle topCircs : listCircles){
+        blurArc.setHeight(initialArcBlur + blur * 2);
+        blurArc.setWidth(initialArcBlur + blur * 2);
+
+        for (Circle topCircs : listCircles) {
             topCircs.setEffect(blurCircle);
         }
-        for(Circle bottomCircs : listBottomCircles){
+        for (Circle bottomCircs : listBottomCircles) {
             bottomCircs.setEffect(blurCircle);
         }
-        for(Arc topArcs : listTopArcs){
+        for (Arc topArcs : listTopArcs) {
             topArcs.setEffect(blurArc);
         }
-        for(Arc topArcs : listTopArcs){
+        for (Arc topArcs : listTopArcs) {
             topArcs.setEffect(blurArc);
-        }    
+        }
     }
-    
-    public void setFaucetDistance(int dist){
-        for(Circle topCircs : listCircles){
-            topCircs.setLayoutY(positionTopCircleY-dist);
+
+    /**
+     * Method to set the distance of the circles and arcs due to the separation
+     * checkbox
+     *
+     * @param dist
+     */
+    public void setFaucetDistance(int dist) {
+        for (Circle topCircs : listCircles) {
+            topCircs.setLayoutY(positionTopCircleY - dist);
         }
-        for(Circle botCircs : listBottomCircles){
-            botCircs.setLayoutY(positionBottomCircleY+dist);
+        for (Circle botCircs : listBottomCircles) {
+            botCircs.setLayoutY(positionBottomCircleY + dist);
         }
-        for(Arc topArcs : listTopArcs){
-            topArcs.setLayoutY(positionTopArcY-dist);
+        for (Arc topArcs : listTopArcs) {
+            topArcs.setLayoutY(positionTopArcY - dist);
         }
-        for(Arc botArcs : listBottomArcs){
-            botArcs.setLayoutY(positionBottomArcY+dist);
+        for (Arc botArcs : listBottomArcs) {
+            botArcs.setLayoutY(positionBottomArcY + dist);
         }
     }
 
@@ -451,5 +467,4 @@ public class InterEngine {
             clipRectangle.setHeight(newValue.getHeight());
         });
     }
- 
 }

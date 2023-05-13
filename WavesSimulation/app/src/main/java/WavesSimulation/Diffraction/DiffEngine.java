@@ -33,12 +33,16 @@ public class DiffEngine {
     private final double POLY_LASER_POINT_23_COORDINATE_X = 286.0;
     private final double OPACITY_1 = 0.7;
     private final double OPACITY_2 = 0.5;
-    private final double OPACITY_3 = 0.2;
+    private final double OPACITY_3 = 0.3;
+    private final double OPACITY_4 = 0.2;
+    private final double OPACITY_5 = 0.1;
 
     static BoxBlur circleBoxBlur = new BoxBlur(10, 10, 3);
     static BoxBlur arc1BoxBlur = new BoxBlur(20, 20, 3);
     static BoxBlur arc2BoxBlur = new BoxBlur(25, 25, 3);
-    static BoxBlur arc3BoxBlur = new BoxBlur(28, 28, 3);
+    static BoxBlur arc3BoxBlur = new BoxBlur(27, 27, 3);
+     static BoxBlur arc4BoxBlur = new BoxBlur(29, 29, 3);
+      static BoxBlur arc5BoxBlur = new BoxBlur(30, 30, 3);
 
     /**
      * Add the circles into the scene according to the selected data
@@ -56,6 +60,8 @@ public class DiffEngine {
         double newRadius2 = adjustRadius(wavelength, slitDistance, 2);
         double newRadius3 = adjustRadius(wavelength, slitDistance, 3);
         double newRadius4 = adjustRadius(wavelength, slitDistance, 4);
+        double newRadius5 = adjustRadius(wavelength, slitDistance, 5);
+        double newRadius6 = adjustRadius(wavelength, slitDistance, 6);
 
         //Laser
         addLaser(paneLaser, color, newRadius1 * 130); 
@@ -72,8 +78,10 @@ public class DiffEngine {
         Circle arcCircle1 = createArcCircle(newRadius1, newRadius2, eccentricity, OPACITY_1, color, arc1BoxBlur); 
         Circle arcCircle2 = createArcCircle(newRadius2, newRadius3, eccentricity, OPACITY_2, color, arc2BoxBlur); 
         Circle arcCircle3 = createArcCircle(newRadius3, newRadius4, eccentricity, OPACITY_3, color, arc3BoxBlur); 
+        Circle arcCircle4 = createArcCircle(newRadius4, newRadius5, eccentricity, OPACITY_4, color, arc4BoxBlur); 
+        Circle arcCircle5 = createArcCircle(newRadius5, newRadius6, eccentricity, OPACITY_5, color, arc5BoxBlur); 
         
-        paneAnimation.getChildren().addAll(arcCircle3, arcCircle2, arcCircle1, rightCircle);
+        paneAnimation.getChildren().addAll(arcCircle5, arcCircle4, arcCircle3, arcCircle2, arcCircle1, rightCircle);
         
         clipPane(paneAnimation);
     }
@@ -113,20 +121,32 @@ public class DiffEngine {
     public Color selectColor(int wavelength) {
         Color color = Color.WHITE;
 
-        if (wavelength <= 420) {
+        if (wavelength <= 402) {
             color = Color.PURPLE;
+        } else if (wavelength <= 430) {
+         color = Color.INDIGO;
+         } else if (wavelength <= 450) {
+            color = Color.MEDIUMBLUE;
         } else if (wavelength <= 465) {
             color = Color.BLUE;
         } else if (wavelength <= 510) {
             color = Color.CYAN;
-        } else if (wavelength <= 565) {
+        } else if (wavelength <= 525) {
+            color = Color.MEDIUMSPRINGGREEN;
+        } else if (wavelength <= 545) {
             color = Color.LIME;
+        } else if (wavelength <= 565) {
+            color = Color.GREENYELLOW;
         } else if (wavelength <= 610) {
             color = Color.YELLOW;
-        } else if (wavelength <= 660) {
+        } else if (wavelength <= 640) {
             color = Color.ORANGE;
-        } else if (wavelength <= 725) {
+            } else if (wavelength <= 666) {
+            color = Color.ORANGERED;
+        } else if (wavelength <= 718) {
             color = Color.RED;
+            } else if (wavelength <= 745) {
+            color = Color.FIREBRICK;
         } else if (wavelength <= 780) {
             color = Color.DARKRED;
         }
@@ -199,4 +219,8 @@ public class DiffEngine {
         paneLaser.getChildren().addAll(rectLaser, polyLaser); 
     }
 
+    public void addGraph(){
+    
+    }
+    
 }

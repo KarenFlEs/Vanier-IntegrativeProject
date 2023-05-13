@@ -268,7 +268,6 @@ public class InterController extends Stage {
     public void handleBtnStart(ActionEvent event) {
         if (!isPlaying) {
             isPlaying = true;
-            engine.clearAnimation(animationPane);
             engine.setAnimation(animationPane);
             engine.setAnimationArc(animationPane);
             engine.playAnimation();

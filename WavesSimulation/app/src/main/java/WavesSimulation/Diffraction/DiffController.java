@@ -199,6 +199,10 @@ public class DiffController extends Stage {
         });
     }
 
+    /**
+     * Opens the menu page
+     * @throws IOException 
+     */
     public void openMenu () throws IOException{
         stageSim.close();
         Stage stageMenu = new Stage(); 
@@ -314,6 +318,10 @@ public class DiffController extends Stage {
         stageEccInfo.close(); 
     }
     
+    /**
+     * By clicking the arrow button, it goes back to the menu page
+     * @throws IOException 
+     */
     @FXML
     public void handleBtnMenuArrow () throws IOException{
         openMenu(); 

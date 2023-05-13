@@ -69,7 +69,6 @@ public class DiffEngine {
         double newRadius7 = adjustRadius(wavelength, slitDistance, 7);
         double newRadius8 = adjustRadius(wavelength, slitDistance, 8);
 
-
         //Laser
         addLaser(paneLaser, color, newRadius1 * 130); 
         
@@ -227,9 +226,5 @@ public class DiffEngine {
         
         paneLaser.getChildren().addAll(rectLaser, polyLaser); 
     }
-
-    public void addGraph(){
-    
-    }
-    
+ 
 }

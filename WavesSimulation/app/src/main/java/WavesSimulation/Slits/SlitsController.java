@@ -30,12 +30,6 @@ public class SlitsController extends Stage {
     Stage owner;
 
     @FXML
-    private Pane mainScreen;
-
-    @FXML
-    private Pane paneSettings;
-
-    @FXML
     private CheckBox checkBox1Slit;
 
     @FXML
@@ -67,24 +61,6 @@ public class SlitsController extends Stage {
 
     @FXML
     private Label labelSlitSeperation;
-
-    @FXML
-    private Button buttonInfoFrequency;
-
-    @FXML
-    private Button buttonInfoAmplitude;
-
-    @FXML
-    private Button buttonInfoSlits;
-
-    @FXML
-    private Button buttonInfoWidth;
-
-    @FXML
-    private Button buttonInfoSeperation;
-
-    //Variables for the seperation of the Waves
-    Arc arc = new Arc(400, 300, 40, 40, -90, 180);
 
     SlitsEngine slit = new SlitsEngine();
 
@@ -126,12 +102,25 @@ public class SlitsController extends Stage {
     public SlitsController() {
 
     }
-
+    
+    /**
+     * Handles to return to the main stage
+     * @throws IOException 
+     */
     public void openMenu() throws IOException {
         owner.close();
         Stage stageMenu = new Stage();
         MainApp mainApp = new MainApp();
         mainApp.menuPage(stageMenu);
+    }
+    
+    /**
+     * Handles to reset the simulation
+     */
+    @FXML
+    public void handleReset() {
+        checkBox1Slit.setSelected(true);
+        handle1Slit();
     }
 
     /**
@@ -149,7 +138,6 @@ public class SlitsController extends Stage {
         sliderWidth.setMin(150);
         sliderWidth.setMax(300);
 
-        //slit.handleSliderWidth(sldWidth, sldSeperation, labelSlitSeperation, labelSlitWidth);
         if (checkBox2Slit.isSelected()) {
             checkBox2Slit.setSelected(false);
 
@@ -173,12 +161,12 @@ public class SlitsController extends Stage {
 
         for (Arc arc1 : slit.getListArc()) {
             arc1.setRadiusY(450 - slit.getSlitTopWall().getHeight() - slit.getSlitSeperationBottom().getHeight() / 2);
-            arc1.setLayoutY(((slit.getSlitSeperationBottom().getHeight() / 2 + arc.getRadiusY() / 2) * -1) + 100);
+            arc1.setLayoutY(((slit.getSlitSeperationBottom().getHeight() / 2 + arc1.getRadiusY() / 2 ) * -1) + 100);
         }
 
         for (Arc arc2 : slit.getListArc2()) {
             arc2.setRadiusY(450 - slit.getSlitTopWall().getHeight() - slit.getSlitSeperationBottom().getHeight() / 2);
-            arc2.setLayoutY(slit.getSlitSeperationBottom().getHeight() + arc.getRadiusY() + 100);
+            arc2.setLayoutY(slit.getSlitSeperationBottom().getHeight() + arc2.getRadiusY() / 2 + 100);
         }
 
         sliderWidth.setMin(350);
@@ -216,10 +204,9 @@ public class SlitsController extends Stage {
      */
     @FXML
     public void handleAboutSlits(javafx.event.ActionEvent event) {
+        
         Stage newStage = new Stage();
-
         newStage.initModality(Modality.APPLICATION_MODAL);
-
         newStage.setTitle("Slits Simulation information");
 
         StackPane layout = new StackPane();
@@ -247,7 +234,6 @@ public class SlitsController extends Stage {
 
     /**
      * Handles the opening of the main page in the menu.
-     *
      * @throws IOException
      */
     @FXML
@@ -257,7 +243,6 @@ public class SlitsController extends Stage {
 
     /**
      * Handles the opening of the interference simulation in the menu.
-     *
      * @throws IOException
      */
     @FXML
@@ -268,7 +253,6 @@ public class SlitsController extends Stage {
 
     /**
      * Handles the opening of the diffraction simulation in the menu.
-     *
      * @throws IOException
      */
     @FXML
@@ -279,12 +263,19 @@ public class SlitsController extends Stage {
 
     /**
      * Handles the opening button of the main page.
-     *
      * @throws IOException
      */
     @FXML
     public void handleBtnMenuArrow() throws IOException {
         openMenu();
+    }
+
+    /**
+     * Handles to close the simulation
+     */
+    @FXML
+    public void handleClose() {
+        owner.close();
     }
 
     /**
@@ -311,7 +302,6 @@ public class SlitsController extends Stage {
 
     /**
      * Handles the information of amplitude when entering the amplitude button.
-     *
      * @throws IOException
      */
     @FXML

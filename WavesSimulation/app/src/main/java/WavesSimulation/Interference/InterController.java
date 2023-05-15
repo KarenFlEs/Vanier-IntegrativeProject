@@ -143,7 +143,6 @@ public class InterController extends Stage {
         Stage newStage = new Stage();
 
         newStage.initModality(Modality.APPLICATION_MODAL);
-
         newStage.setTitle("Frequency information");
 
         StackPane layout = new StackPane();
@@ -160,9 +159,7 @@ public class InterController extends Stage {
         layout.getChildren().add(text);
 
         Scene scene = new Scene(layout, 300, 200);
-
         newStage.setScene(scene);
-
         newStage.show();
     }
 
@@ -194,9 +191,7 @@ public class InterController extends Stage {
         layout.getChildren().add(text);
 
         Scene scene = new Scene(layout, 300, 200);
-
         newStage.setScene(scene);
-
         newStage.show();
     }
 
@@ -231,9 +226,7 @@ public class InterController extends Stage {
         layout.getChildren().add(text);
 
         Scene scene = new Scene(layout, 300, 200);
-
         newStage.setScene(scene);
-
         newStage.show();
     }
 
@@ -353,12 +346,12 @@ public class InterController extends Stage {
         TextArea textInterInfo = new TextArea();
         textInterInfo.autosize();
         textInterInfo.setText("Interference is the phenomenon that occurs"
-                + " when two waves meet in the same medium. When changing the"
+                + " when two waves meet in the same medium. \n\nWhen changing the"
                 + " amplitude, the waves become less bright and precise when the"
                 + " amplitude decreases and much more defined when the amplitude"
-                + " increases. The frequency modifies the spead of the waves."
+                + " increases. \n\nThe frequency modifies the spead of the waves."
                 + " Speed increases proportionally to increase in frequency."
-                + " Separation also affects the interference, when they are further"
+                + " \n\nSeparation also affects the interference, when they are further"
                 + " apart, the waves meet further in time."
                 + " We can also see that when playing the individual up or bottom "
                 + "animations, we do not have any interference since there are"

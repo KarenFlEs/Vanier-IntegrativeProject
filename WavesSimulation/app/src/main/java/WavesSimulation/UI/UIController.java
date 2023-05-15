@@ -163,7 +163,7 @@ public class UIController extends Stage {
         
         stakePaneHelp.getChildren().add(textInformation);
         
-        Scene scene = new Scene(stakePaneHelp,300,400);
+        Scene scene = new Scene(stakePaneHelp, 300, 350);
         stageHelp.setScene(scene);
         stageHelp.show();
     }

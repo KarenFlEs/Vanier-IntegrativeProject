@@ -104,7 +104,7 @@ public class InterController extends Stage {
         backgroundPane.getChildren().addAll(imageFaucetTop, imageFaucetBottom);
         btnStartTop.toFront();
         btnStartBottom.toFront();
-        
+
         checkBox1.setSelected(true);
 
         sldAmp.valueProperty().addListener(new ChangeListener<Number>() {
@@ -359,7 +359,10 @@ public class InterController extends Stage {
                 + " increases. The frequency modifies the spead of the waves."
                 + " Speed increases proportionally to increase in frequency."
                 + " Separation also affects the interference, when they are further"
-                + " apart, the waves meet further in time. ");
+                + " apart, the waves meet further in time."
+                + " We can also see that when playing the individual up or bottom "
+                + "animations, we do not have any interference since there are"
+                + " no waves meeting.");
         textInterInfo.setPrefSize(300, 200);
         textInterInfo.setWrapText(true);
         textInterInfo.setEditable(false);
@@ -369,6 +372,16 @@ public class InterController extends Stage {
         Scene scene = new Scene(stakePaneAbout, 300, 400);
         stageAbout.setScene(scene);
         stageAbout.show();
+    }
+
+    /**
+     * By clicking the arrow button, it goes back to the menu page
+     *
+     * @throws IOException
+     */
+    @FXML
+    public void handleBtnMenuArrow() throws IOException {
+        openMenu();
     }
 
     /**
@@ -383,6 +396,7 @@ public class InterController extends Stage {
     /**
      * This method opens the initial window when running the project with the
      * menu
+     * @throws IOException
      */
     public void openMenu() throws IOException {
         owner.close();
@@ -393,6 +407,7 @@ public class InterController extends Stage {
 
     /**
      * This method calls the openMenu() method when selected from the menu bar
+     * @throws IOException
      */
     @FXML
     public void handleOpenMenu() throws IOException {
@@ -403,6 +418,7 @@ public class InterController extends Stage {
     /**
      * This method opens the diffraction simulation when selected from the menu
      * bar
+     * @throws IOException
      */
     @FXML
     public void handleOpenDif() throws IOException {
@@ -412,10 +428,22 @@ public class InterController extends Stage {
 
     /**
      * This method opens the slits simulation when selected from the menu bar
+     * @throws IOException
      */
     @FXML
     public void handleOpenSlits() throws IOException {
         UIController uiController = new UIController(owner);
         uiController.openSlitsSimulation();
+    }
+    /**
+     * Resets the simulation when pressing the Edit Reset option
+     */
+    @FXML
+    public void handleReset (){
+        sldAmp.setValue(sldAmp.getMin());
+        sldFreq.setValue(sldFreq.getMin());
+        checkBox1.setSelected(true);
+        checkBox2.setSelected(false);
+        animationPane.getChildren().clear(); 
     }
 }

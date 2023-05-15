@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1056.0" prefWidth="1936.0" style="-fx-background-color: GRAY;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1056.0" prefWidth="1936.0" style="-fx-background-color: GRAY;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
@@ -21,12 +21,21 @@
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" onAction="#handleOpenMenu" text="Open menu" />
-                  <MenuItem mnemonicParsing="false" onAction="#handleOpenDif" text="Open Diffraction Sim" />
-                  <MenuItem mnemonicParsing="false" onAction="#handleOpenSlits" text="Open SlitsSim" />
-            </items>
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#handleReset" text="Reset" />
+               </items>
           </Menu>
+            <Menu mnemonicParsing="false" text="Settings">
+              <items>
+                  <Menu mnemonicParsing="false" text="Preferences">
+                    <items>
+                    <MenuItem mnemonicParsing="false" onAction="#handleOpenMenu" text="Open menu" />
+                        <MenuItem mnemonicParsing="false" onAction="#handleOpenDif" text="Open Diffraction Sim" />
+                        <MenuItem mnemonicParsing="false" onAction="#handleOpenSlits" text="Open SlitsSim" />
+                    </items>
+                  </Menu>
+              </items>
+            </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#handleAbout" text="About" />
@@ -108,6 +117,11 @@
             <Button fx:id="btnStart" layoutX="152.0" layoutY="460.0" mnemonicParsing="false" onAction="#handleBtnStart" prefHeight="28.0" prefWidth="91.0" style="-fx-border-color: BLUE;" text="Play Both">
                <font>
                   <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button layoutX="31.0" layoutY="24.0" mnemonicParsing="false" onAction="#handleBtnMenuArrow" prefHeight="66.0" prefWidth="68.0" style="-fx-background-color: transparent;" text="&lt;">
+               <font>
+                  <Font name="Wide Latin" size="58.0" />
                </font>
             </Button>
          </children>
